@@ -10,7 +10,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>schema-iso19139.gemini23</artifactId>
-  <name>Gemini 2.3 Metadata Standard</name>
+  <name>Gemini 2.3 Metadata Profile</name>
 
   <dependencies>
     <dependency>
@@ -18,6 +18,13 @@
       <artifactId>schema-core</artifactId>
       <version>${project.version}</version>
     </dependency>
+
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>schema-iso19139</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
     <dependency>
       <groupId>org.xmlunit</groupId>
       <artifactId>xmlunit-core</artifactId>

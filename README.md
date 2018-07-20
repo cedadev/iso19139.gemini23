@@ -1,7 +1,6 @@
-# Gemini 2.3 Metadata Standard schema plugin
+# Gemini 2.3 Metadata Profile schema plugin
 
-WORK IN PROGRESS- FOR TESTING AND DEVELOPMENT PURPOSES ONLY. DO NOT USE IN PRODUCTION
-Gemini 2.3 Metadata Standard
+Gemini 2.3 Metadata Profile
 
 ## Installing the plugin
 

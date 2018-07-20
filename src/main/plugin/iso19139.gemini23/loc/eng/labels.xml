@@ -120,7 +120,7 @@
     <_condition>Use obligation/condition from referencing object</_condition>
   </element>
   <element name="gmd:CI_ResponsibleParty" id="374.0">
-    <label>Responsible party</label>
+    <label>Responsible Organisation</label>
     <description>Identification of, and means of communication with, person(s) and organizations
       associated with the dataset
     </description>
@@ -165,10 +165,11 @@
     <description>Adherence to rules of the conceptual schema</description>
   </element>
   <element name="gmd:DQ_ConformanceResult" id="129.0">
-    <label>Conformance result</label>
+    <label>Conformity</label>
     <description>Information about the outcome of evaluating the obtained value (or set of
       values) against a specified acceptable conformance quality level
     </description>
+    <condition>Mandatory</condition>
   </element>
   <element name="gmd:DQ_DataQuality" id="78.0">
     <label>Data quality</label>
@@ -250,8 +251,9 @@
     <description>Information about spatial, vertical, and temporal extent</description>
   </element>
   <element name="gmd:EX_GeographicBoundingBox" id="343.0">
-    <label>Geographic bounding box</label>
+    <label>Bounding Box</label>
     <description>Geographic position of the dataset</description>
+    <condition>Mandatory</condition>
   </element>
   <element name="gmd:EX_GeographicDescription" id="348.0">
     <label>Geographic description</label>
@@ -405,7 +407,7 @@
     <description>Information about an image's suitability for use</description>
   </element>
   <element name="gmd:MD_Keywords" id="52.0">
-    <label>Keywords</label>
+    <label>Keyword</label>
     <description>Keywords, their type and reference source</description>
   </element>
   <element name="gmd:MD_LegalConstraints" id="69.0">
@@ -514,11 +516,12 @@
     <condition>mandatory</condition>
   </element>
   <element name="gmd:accessConstraints" id="70.0">
-    <label>Access constraints</label>
+    <label>Limitations on Public Access</label>
     <description>Access constraints applied to assure the protection of privacy or intellectual
       property, and any special restrictions or limitations on obtaining the
       resource
     </description>
+    <condition>mandatory</condition>
   </element>
   <element name="gmd:address" id="525.0" context="gmd:CI_ResponsibleParty">
     <label>Address</label>
@@ -548,7 +551,7 @@
     <description>Provides aggregate dataset information</description>
   </element>
   <element name="gmd:alternateTitle" id="361.0">
-    <label>Alternate title</label>
+    <label>Alternative title</label>
     <description>Short name or other language name by which the cited information is known.
       Example: "DCW" as an alternative title for "Digital Chart of the World
     </description>
@@ -757,7 +760,7 @@
     <condition>mandatory</condition>
   </element>
   <element name="gmd:contact" id="8.0" context="gmd:MD_Metadata">
-    <condition>mandatory</condition>
+    <condition>Metadata Point of Contact</condition>
     <label>Contact</label>
     <btnLabel>Add contact</btnLabel>
     <btnClass>fa fa-user-plus</btnClass>
@@ -874,7 +877,7 @@
   </element>
   <element name="gmd:date" id="362.0" context="gmd:CI_Citation">
     <condition>mandatory</condition>
-    <label>Date</label>
+    <label>Dataset Reference Date</label>
     <btnClass>fa fa-calendar-plus-o</btnClass>
     <description>Reference date for the cited resource</description>
     <_condition>M</_condition>
@@ -892,7 +895,7 @@
     <description>Scheduled revision date for resource (YYYY-MM-DD)</description>
   </element>
   <element name="gmd:dateStamp" id="9.0">
-    <label>Date stamp</label>
+    <label>Metadata Date</label>
     <btnClass>fa fa-calendar-plus-o</btnClass>
     <description>Date that the metadata was created (YYYY-MM-DDThh:mm:ss)</description>
     <condition>mandatory</condition>
@@ -1007,8 +1010,9 @@
     <description>Role description</description>
   </element>
   <element name="gmd:descriptiveKeywords" id="33.0">
-    <label>Descriptive keywords</label>
+    <label>Keyword</label>
     <description>Provides category keywords, their type, and reference source</description>
+    <condition>mandatory</condition>
   </element>
   <element name="gmd:descriptor" id="258.0">
     <label>Descriptor</label>
@@ -1018,8 +1022,8 @@
     <label>Dimension</label>
     <description>Information on the dimensions of the cell measurement value</description>
   </element>
-  <element name="gmd:dimensionName" id="180.0">
-    <label>Dimension name</label>
+  <element name="gmd:dimensionName" id="180.0"
+>    <label>Dimension name</label>
     <description>Name of the axis</description>
     <condition>mandatory</condition>
   </element>
@@ -1360,7 +1364,7 @@
     </description>
   </element>
   <element name="gmd:identifier" id="573.0" context="gmd:CI_Citation">
-    <label>Citation identifier</label>
+    <label>Unique Resource Identifier</label>
     <description>Identifier of the citation</description>
   </element>
   <element name="gmd:identifier" id="575.0" context="gmd:MD_Authority">
@@ -1422,14 +1426,14 @@
   <element name="gmd:language" id="3.0">
     <label>Metadata language</label>
     <description>Language used for documenting metadata</description>
-    <condition>conditional</condition>
+    <condition>Mandatory</condition>
   </element>
   <element name="gmd:language" context="gmd:MD_DataIdentification"
            id="39.0">
-    <label>Language</label>
+    <label>Dataset Language</label>
     <description>Language(s) used within the dataset</description>
     <help>language(s) used within the dataset</help>
-    <_condition>Mandatory</_condition>
+    <condition>Mandatory</condition>
   </element>
   <element name="gmd:language" context="gmd:MD_FeatureCatalogueDescription"
            id="235.0">
@@ -1443,7 +1447,7 @@
     </description>
   </element>
   <element name="gmd:level" id="139.0">
-    <label>Hierarchy level</label>
+    <label>Resource Type</label>
     <description>Hierarchical level of the data specified by the scope</description>
     <condition>mandatory</condition>
   </element>
@@ -1459,10 +1463,10 @@
     <description>Non-quantitative quality information about the lineage of the data specified by
       the scope
     </description>
-    <_condition>Conditional / report not provided?</_condition>
+    <condition>mandatory</condition>
   </element>
   <element name="gmd:linkage" id="397.0">
-    <label>Linkage</label>
+    <label>Resource Locator</label>
     <description>Location (address) for on-line access using a Uniform Resource Locator address
       or similar addressing scheme such as http://www.statkart.no/isotc211
     </description>
@@ -2252,7 +2256,7 @@
     <condition>conditional</condition>
   </element>
   <element name="gmd:referenceSystemInfo" id="13.0">
-    <label>Reference System Information</label>
+    <label>Spatial Reference System</label>
     <abbrLabel>Ref. Sys.</abbrLabel>
     <description>Description of the spatial and temporal reference systems used in the
       dataset
@@ -2333,8 +2337,9 @@
     <condition>mandatory</condition>
   </element>
   <element name="gmd:scope" id="79.0">
-    <label>Scope</label>
+    <label>Quality Scope</label>
     <description>The specific data to which the data quality information applies</description>
+    <condition>Mandatory</condition>
   </element>
   <element name="gmd:sequenceIdentifier" id="257.0">
     <label>Sequence identifier</label>
@@ -2418,12 +2423,14 @@
   <element name="gmd:spatialRepresentationType" id="37.0">
     <label>Spatial representation type</label>
     <description>Method used to spatially represent geographic information</description>
+    <condition>Mandatory</condition>
   </element>
   <element name="gmd:spatialResolution" id="38.0">
     <label>Spatial resolution</label>
     <description>Factor which provides a general understanding of the density of spatial data in
       the dataset
     </description>
+    <condition>mandatory</condition>
   </element>
   <element name="gmd:specificUsage" id="63.0">
     <label>Specific usage</label>
@@ -2589,6 +2596,7 @@
       property, and any special restrictions or limitations or warnings on using the
       resource
     </description>
+    <condition>Mandatory</condition>
   </element>
   <element name="gmd:useLimitation" id="68.0">
     <label>Use limitation</label>
@@ -2661,7 +2669,7 @@
     <condition>mandatory</condition>
   </element>
   <element name="gmd:verticalElement" id="338.0">
-    <label>Vertical element</label>
+    <label>Vertical Extent Information</label>
     <description>Provides vertical component of the extent of the referring object</description>
     <condition>conditional</condition>
   </element>
