@@ -169,7 +169,7 @@
     <description>Information about the outcome of evaluating the obtained value (or set of
       values) against a specified acceptable conformance quality level
     </description>
-    <condition>Mandatory</condition>
+    <condition>mandatory</condition>
   </element>
   <element name="gmd:DQ_DataQuality" id="78.0">
     <label>Data quality</label>
@@ -253,7 +253,7 @@
   <element name="gmd:EX_GeographicBoundingBox" id="343.0">
     <label>Bounding Box</label>
     <description>Geographic position of the dataset</description>
-    <condition>Mandatory</condition>
+    <condition>mandatory</condition>
   </element>
   <element name="gmd:EX_GeographicDescription" id="348.0">
     <label>Geographic description</label>
@@ -1426,14 +1426,14 @@
   <element name="gmd:language" id="3.0">
     <label>Metadata language</label>
     <description>Language used for documenting metadata</description>
-    <condition>Mandatory</condition>
+    <condition>mandatory</condition>
   </element>
   <element name="gmd:language" context="gmd:MD_DataIdentification"
            id="39.0">
     <label>Dataset Language</label>
     <description>Language(s) used within the dataset</description>
     <help>language(s) used within the dataset</help>
-    <condition>Mandatory</condition>
+    <condition>mandatory</condition>
   </element>
   <element name="gmd:language" context="gmd:MD_FeatureCatalogueDescription"
            id="235.0">
@@ -2339,7 +2339,7 @@
   <element name="gmd:scope" id="79.0">
     <label>Quality Scope</label>
     <description>The specific data to which the data quality information applies</description>
-    <condition>Mandatory</condition>
+    <condition>mandatory</condition>
   </element>
   <element name="gmd:sequenceIdentifier" id="257.0">
     <label>Sequence identifier</label>
@@ -2423,7 +2423,7 @@
   <element name="gmd:spatialRepresentationType" id="37.0">
     <label>Spatial representation type</label>
     <description>Method used to spatially represent geographic information</description>
-    <condition>Mandatory</condition>
+    <condition>mandatory</condition>
   </element>
   <element name="gmd:spatialResolution" id="38.0">
     <label>Spatial resolution</label>
@@ -2596,7 +2596,7 @@
       property, and any special restrictions or limitations or warnings on using the
       resource
     </description>
-    <condition>Mandatory</condition>
+    <condition>mandatory</condition>
   </element>
   <element name="gmd:useLimitation" id="68.0">
     <label>Use limitation</label>
