@@ -93,10 +93,10 @@
     <gco:DateTime>2005-03-31T19:13:30</gco:DateTime>
   </dateStamp>
   <metadataStandardName>
-    <gco:CharacterString>ISO 19115:2003/19139</gco:CharacterString>
+    <gco:CharacterString>UK Gemini</gco:CharacterString>
   </metadataStandardName>
   <metadataStandardVersion>
-    <gco:CharacterString>1.0</gco:CharacterString>
+    <gco:CharacterString>2.3</gco:CharacterString>
   </metadataStandardVersion>
   <referenceSystemInfo>
     <MD_ReferenceSystem>
@@ -114,9 +114,7 @@
       <citation>
         <CI_Citation>
           <title>
-            <gco:CharacterString>Template for Vector data in ISO19139
-              (preferred!)
-            </gco:CharacterString>
+            <gco:CharacterString>Template for Vector data in Gemini 2.3</gco:CharacterString>
           </title>
           <date>
             <CI_Date>
