@@ -13,7 +13,7 @@
 
   <!-- Readonly elements -->
   <!-- Uncomment to make gmd:metadataStandardName and gmd:metadataStandardVersion readonly -->
--<xsl:template mode="mode-iso19139" priority="2000" match="gmd:metadataStandardName[$schema='iso19139.gemini23']|gmd:metadataStandardVersion[$schema='iso19139.gemini23']">
+<xsl:template mode="mode-iso19139" priority="2000" match="gmd:metadataStandardName[$schema='iso19139.gemini23']|gmd:metadataStandardVersion[$schema='iso19139.gemini23']">
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
 
