@@ -1253,6 +1253,7 @@
     <label>File identifier</label>
     <description>Unique identifier for this metadata file</description>
   </element>
+  <condition>mandatory</condition>
   <element name="gmd:fileName" id="49.0">
     <label>File name</label>
     <description>Name of the file that contains a graphic that provides an illustration of the
