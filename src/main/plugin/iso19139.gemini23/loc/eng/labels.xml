@@ -1425,7 +1425,7 @@
     </description>
   </element>
   <element name="gmd:language" id="3.0">
-    <label>Metadata language</label>
+    <label>Metadata Language</label>
     <description>Language used for documenting metadata</description>
     <condition>mandatory</condition>
     <helper>
