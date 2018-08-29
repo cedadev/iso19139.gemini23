@@ -760,8 +760,8 @@
     <condition>mandatory</condition>
   </element>
   <element name="gmd:contact" id="8.0" context="gmd:MD_Metadata">
-    <condition>Metadata Point of Contact</condition>
-    <label>Contact</label>
+    <condition>mandatory</condition>
+    <label>Metadata point of contact</label>
     <btnLabel>Add contact</btnLabel>
     <btnClass>fa fa-user-plus</btnClass>
     <description>Party responsible for the metadata information</description>
@@ -1195,7 +1195,7 @@
   <element name="gmd:extent" id="351.0" context="gmd:EX_TemporalExtent">
     <label>Extent</label>
     <description>Date and time for the content of the dataset</description>
-    <_condition>mandatory</_condition>
+    <condition>mandatory</condition>
   </element>
   <element name="gmd:extentTypeCode" id="340.0">
     <label>Extent type code</label>
@@ -1334,15 +1334,16 @@
     </description>
   </element>
   <element name="gmd:hierarchyLevel" id="6.0">
-    <label>Hierarchy level</label>
+    <label>Resource type</label>
     <description>Scope to which the metadata applies (see annex H for more information about
       metadata hierarchy levels)
     </description>
+    <condition>mandatory</condition>
   </element>
   <element name="gmd:hierarchyLevelName" id="7.0">
     <label>Hierarchy level name</label>
     <description>Name of the hierarchy levels for which the metadata is provided</description>
-    <_condition>Conditional / hierarchyLevel is not equal to "dataset"?</_condition>
+    <condition>conditional</condition>
   </element>
   <element name="gmd:hoursOfService" id="391.0">
     <label>Hours of service</label>
@@ -1423,6 +1424,7 @@
     <description>Commonly used word(s) or formalised word(s) or phrase(s) used to describe the
       subject
     </description>
+    <condition>mandatory</condition>
   </element>
   <element name="gmd:language" id="3.0">
     <label>Metadata Language</label>
@@ -1433,7 +1435,6 @@
            id="39.0">
     <label>Dataset Language</label>
     <description>Language(s) used within the dataset</description>
-    <help>language(s) used within the dataset</help>
     <condition>mandatory</condition>
   </element>
   <element name="gmd:language" context="gmd:MD_FeatureCatalogueDescription"
