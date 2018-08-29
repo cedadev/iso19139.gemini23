@@ -2274,4 +2274,31 @@
       <label>Unknown</label>
     </entry>
   </codelist>
+
+   <codelist name="gmd:language">
+    <entry>
+      <code>eng</code>
+      <label>English</label>
+    </entry>
+    <entry>
+      <code>cym</code>
+      <label>Welsh</label>
+    </entry>
+    <entry>
+      <code>gle</code>
+      <label>Gaelic (Irish)</label>
+    </entry>
+    <entry>
+      <code>gla</code>
+      <label>Gaelic (Scots)</label>
+    </entry>
+    <entry>
+      <code>cor</code>
+      <label>Cornish</label>
+    </entry>
+    <entry>
+      <code>sco</code>
+      <label>Ulster Scots</label>
+    </entry>
+  </codelist>
 </codelists>
