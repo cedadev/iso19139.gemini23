@@ -1428,14 +1428,6 @@
     <label>Metadata Language</label>
     <description>Language used for documenting metadata</description>
     <condition>mandatory</condition>
-    <helper>
-      <option value="eng">English</option>
-      <option value="cym">Welsh</option>
-      <option value="gle">Gaelic (Irish)</option>
-      <option value="gla">Gaelic (Scottish)</option>
-      <option value="cor">Cornish</option>
-      <option value="sco">Ulster Scots</option>
-    </helper>
   </element>
   <element name="gmd:language" context="gmd:MD_DataIdentification"
            id="39.0">
@@ -3113,6 +3105,14 @@
   <element name="gmd:languageCode">
     <label>Language</label>
     <description>Language code</description>
+    <helper>
+      <option value="eng">English</option>
+      <option value="cym">Welsh</option>
+      <option value="gle">Gaelic (Irish)</option>
+      <option value="gla">Gaelic (Scottish)</option>
+      <option value="cor">Cornish</option>
+      <option value="sco">Ulster Scots</option>
+    </helper>
   </element>
   <element name="gmd:LanguageCode">
     <label>ISO Language code</label>
