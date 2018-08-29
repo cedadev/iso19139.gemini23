@@ -31,4 +31,46 @@
 
   </xsl:template>
 
+  <!-- Restrict language code to values from codelist -->
+
+  <xsl:template mode="mode-iso19139" priority="5000" match="*[*/@codeList and $schema='iso19139.gemini23']">
+    <xsl:param name="schema" select="$schema" required="no"/>
+    <xsl:param name="labels" select="$labels" required="no"/>
+    <xsl:param name="codelists" select="$codelists" required="no"/>
+    <xsl:param name="overrideLabel" select="''" required="no"/>
+
+    <xsl:variable name="xpath" select="gn-fn-metadata:getXPath(.)"/>
+    <xsl:variable name="isoType" select="if (../@gco:isoType) then ../@gco:isoType else ''"/>
+    <xsl:variable name="elementName" select="name()"/>
+    <xsl:variable name="labelConfig">
+      <xsl:choose>
+        <xsl:when test="$overrideLabel != ''">
+          <element>
+            <label><xsl:value-of select="$overrideLabel"/></label>
+          </element>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:copy-of select="gn-fn-metadata:getLabel($schema, name(), $labels, name(..), '', $xpath)"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+
+    <xsl:call-template name="render-element">
+      <xsl:with-param name="label" select="$labelConfig/*"/>
+      <xsl:with-param name="value" select="*/@codeListValue"/>
+      <xsl:with-param name="cls" select="local-name()"/>
+      <xsl:with-param name="xpath" select="$xpath"/>
+      <xsl:with-param name="type" select="gn-fn-iso19139:getCodeListType(name())"/>
+      <xsl:with-param name="name" 
+                      select="if ($isEditing) then concat(*/gn:element/@ref, '_codeListValue') else ''"/>
+      <xsl:with-param name="editInfo" select="*/gn:element"/>
+      <xsl:with-param name="parentEditInfo" select="gn:element"/>
+      <xsl:with-param name="listOfValues" 
+                      select="gn-fn-metadata:getCodeListValues($schema, name(*[@codeListValue]), $codelists, .)"/>
+      <xsl:with-param name="isFirst" 
+                      select="count(preceding-sibling::*[name() = $elementName]) = 0"/>
+    </xsl:call-template>
+
+  </xsl:template>
+
 </xsl:stylesheet>
