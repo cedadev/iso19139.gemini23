@@ -51,8 +51,6 @@
     <for name="gmd:specificUsage" use="textarea"/>
     <for name="gmd:userNote" use="textarea"/>
     <for name="gmd:useLimitation" use="textarea"/>
-<!--     <for name="gmd:language" use="textarea"/>
-    <for name="gmd:languageCode" use="textarea"/> -->
 
 
     <for name="gco:Distance" use="number"/>
