@@ -2252,7 +2252,7 @@
     </entry>
     <entry>
       <code>withheld</code>
-      <label>With held</label>
+      <label>Withheld</label>
     </entry>
   </codelist>
 
@@ -2275,6 +2275,7 @@
     </entry>
   </codelist>
 
+<!-- added for Gemini 2.3 -->
    <codelist name="gmd:language">
     <entry>
       <code>eng</code>
