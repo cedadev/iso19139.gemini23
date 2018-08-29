@@ -52,6 +52,7 @@
     <for name="gmd:userNote" use="textarea"/>
     <for name="gmd:useLimitation" use="textarea"/>
     <for name="gmd:language" use="textarea"/>
+    <for name="gmd:languageCode" use="textarea"/>
 
 
     <for name="gco:Distance" use="number"/>
@@ -71,7 +72,7 @@
     <for name="gmd:electronicMailAddress" use="email"/>
 
     <!-- <for name="gmd:language" use="data-gn-language-picker"/> -->
-    <for name="gmd:languageCode" use="data-gn-language-picker"/>
+    <!-- <for name="gmd:languageCode" use="data-gn-language-picker"/> -->
 
     <for name="gmd:country" use="data-gn-country-picker"/>
 
@@ -2350,7 +2351,6 @@
 
 
           <field xpath="/gmd:MD_Metadata/gmd:language" />
-
           <action type="add" btnLabel="metadataLanguage"
                   name="language" or="language"
                   in="/gmd:MD_Metadata">

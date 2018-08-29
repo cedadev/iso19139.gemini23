@@ -2276,7 +2276,7 @@
   </codelist>
 
 <!-- added for Gemini 2.3 -->
-   <codelist name="gmd:language">
+   <codelist name="gmd:languageCode">
     <entry>
       <code>eng</code>
       <label>English</label>
