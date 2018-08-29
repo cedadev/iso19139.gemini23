@@ -2276,7 +2276,7 @@
   </codelist>
 
 <!-- added for Gemini 2.3 -->
-   <!-- <codelist name="gmd:language">
+   <codelist name="gmd:language">
     <entry>
       <code>eng</code>
       <label>English</label>
@@ -2301,5 +2301,5 @@
       <code>sco</code>
       <label>Ulster Scots</label>
     </entry>
-  </codelist> -->
+  </codelist>
 </codelists>
