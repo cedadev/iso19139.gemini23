@@ -13,7 +13,7 @@
      <gco:CharacterString>ae0e855d-f0a2-438e-855c-6ef5400f4ef3</gco:CharacterString>
 </gmd:fileIdentifier>
 <gmd:language>
-     <gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/php/code_list.php" codeListValue="eng">eng</gmd:LanguageCode>
+     <gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/php/code_list.php" codeListValue="eng">English</gmd:LanguageCode>
 </gmd:language>
 <gmd:hierarchyLevel>
      <gmd:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset">dataset</gmd:MD_ScopeCode>
@@ -251,7 +251,7 @@ codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Sch
            </gmd:MD_Resolution>
          </gmd:spatialResolution>
          <gmd:language>
-           <gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/php/code_list.php" codeListValue="eng">eng</gmd:LanguageCode>
+           <gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/php/code_list.php" codeListValue="eng">English</gmd:LanguageCode>
          </gmd:language>
          <gmd:topicCategory>
            <gmd:MD_TopicCategoryCode></gmd:MD_TopicCategoryCode>
