@@ -2278,37 +2278,37 @@
 <!-- added for Gemini 2.3 -->
    <codelist name="gmd:LanguageCode">
     <entry>
-      eng
+      <code>eng</code>
       <label>English</label>
       <description></description>
     </entry>
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
     <entry>
-      cym
+      <code>cym</code>
       <label>Welsh</label>
       <description></description>
     </entry>
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
     <entry>
-      gle
+      <code>gle</code>
       <label>Gaelic (Irish)</label>
       <description></description>
     </entry>
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
     <entry>
-      gla
+      <code>gla</code>
       <label>Gaelic (Scots)</label>
       <description></description>
     </entry>
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
     <entry>
-      cor
+      <code>cor</code>
       <label>Cornish</label>
       <description></description>
     </entry>
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
     <entry>
-      sco
+      <code>sco</code>
       <label>Ulster Scots</label>
       <description></description>
     </entry>
