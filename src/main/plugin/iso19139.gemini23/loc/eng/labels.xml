@@ -1049,11 +1049,12 @@
     </helper>
   </element>
   <element name="gmd:distributionFormat" id="271.0">
-    <label>Distribution format</label>
+    <label>Data format</label>
     <condition>mandatory</condition>
     <description>Provides a description of the format of the data to be
       distributed
     </description>
+    <condition>mandatory</condition>
   </element>
   <element name="gmd:distributionInfo" id="17.0">
     <description>Provides information about the distributor of and options for obtaining the
@@ -1109,7 +1110,7 @@
     </_condition>
   </element>
   <element name="gmd:eastBoundLongitude" id="345.0">
-    <label>East bound</label>
+    <label>East bounding longitude</label>
     <description>Eastern-most coordinate of the limit of the dataset extent, expressed in
       longitude in decimal degrees (positive east)
     </description>
@@ -1479,7 +1480,6 @@
     <description>Frequency with which changes and additions are made to the resource after the
       initial resource is completed
     </description>
-    <condition>mandatory</condition>
   </element>
   <element name="gmd:maintenanceNote" id="148.0">
     <label>Maintenance note</label>
@@ -1988,8 +1988,8 @@
     </helper>
   </element>
   <element name="gmd:northBoundLatitude" id="347.0">
-    <label>North bound</label>
-    <description>Northern-most, coordinate of the limit of the dataset extent expressed in
+    <label>North bounding latitude</label>
+    <description>Northern-most coordinate of the limit of the dataset extent expressed in
       latitude in decimal degrees (positive north)
     </description>
     <condition>mandatory</condition>
@@ -2406,7 +2406,7 @@
     </description>
   </element>
   <element name="gmd:southBoundLatitude" id="346.0">
-    <label>South bound</label>
+    <label>South bounding latitude</label>
     <description>Southern-most coordinate of the limit of the dataset extent, expressed in
       latitude in decimal degrees (positive north)
     </description>
@@ -2418,7 +2418,7 @@
     <condition>mandatory</condition>
   </element>
   <element name="gmd:spatialRepresentationInfo" id="12.0">
-    <label>Spatial representation info</label>
+    <label>Spatial representation type</label>
     <abbrLabel>Spatial Repr.</abbrLabel>
     <description>Digital representation of spatial information in the dataset</description>
   </element>
@@ -2455,17 +2455,16 @@
   </element>
   <element name="gmd:statement" id="83.0">
     <label>Statement</label>
-    <description>General explanation of the data producer_s knowledge about the lineage of a
+    <description>General explanation of the data producers knowledge about the lineage of a
       dataset
     </description>
-    <condition>conditional</condition>
   </element>
   <element name="gmd:status" id="28.0">
     <label>Status</label>
     <description>Status of the resource(s)</description>
   </element>
   <element name="gmd:supplementalInformation" id="46.0">
-    <label>Supplemental Information</label>
+    <label>Additional information source</label>
     <description>Any other descriptive information about the dataset</description>
   </element>
   <element name="gmd:temporalElement" id="337.0">
@@ -2686,7 +2685,7 @@
     <description>Number of items in the media identified</description>
   </element>
   <element name="gmd:westBoundLongitude" id="344.0">
-    <label>West bound</label>
+    <label>West bounding longitude</label>
     <description>Western-most coordinate of the limit of the dataset extent, expressed in
       longitude in decimal degrees (positive east)
     </description>
