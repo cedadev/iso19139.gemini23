@@ -1165,25 +1165,24 @@
     <sch:title>Metadata resource type test</sch:title>
     <sch:p>Test to ensure that metadata about datasets include the gmd:MD_DataIdentification element
       and metadata about services include the srv:SV_ServiceIdentification element</sch:p>
-    <sch:rule context="//gmd:MD_Metadata[1]/gmd:identificationInfo[1]">
-      <sch:assert
-        test="
-          ((../gmd:hierarchyLevel[1]/*[1]/@codeListValue = 'dataset' or
-          ../gmd:hierarchyLevel[1]/*[1]/@codeListValue = 'series') and
-          (local-name(*) = 'MD_DataIdentification' or */@gco:isoType = 'gmd:MD_DataIdentification')) or
-          (../gmd:hierarchyLevel[1]/*[1]/@codeListValue != 'dataset' and
-          ../gmd:hierarchyLevel[1]/*[1]/@codeListValue != 'series') or
-          count(../gmd:hierarchyLevel) = 0"
-        > AT-2a: The first identification information element shall be of type
-        gmd:MD_DataIdentification. </sch:assert>
-      <sch:assert
-        test="
-          ((../gmd:hierarchyLevel[1]/*[1]/@codeListValue = 'service') and
-          (local-name(*) = 'SV_ServiceIdentification' or */@gco:isoType = 'srv:SV_ServiceIdentification')) or
-          (../gmd:hierarchyLevel[1]/*[1]/@codeListValue != 'service') or
-          count(../gmd:hierarchyLevel) = 0"
-        > AT-2b: The first identification information element shall be of type
-        srv:SV_ServiceIdentification. </sch:assert>
+    <sch:rule context="/*[1]/gmd:identificationInfo[1]">
+    <sch:let name="isData" value="../gmd:hierarchyLevel[1]/gmd:MD_ScopeCode/@codeListValue='dataset' or
+                            ../gmd:hierarchyLevel[1]/gmd:MD_ScopeCode/@codeListValue='series'"/>
+    <sch:let name="isService" value="../gmd:hierarchyLevel[1]/gmd:MD_ScopeCode/@codeListValue='service'"/>
+    <sch:let name="dataIdExists" value="count(*[local-name()='MD_DataIdentification'])=1 or
+                                  count(*[@gco:isoType='gmd:MD_DataIdentification'])=1"/>
+    <sch:let name="serviceIdExists" value="count(*[local-name()='SV_ServiceIdentification'])=1 or
+                                  count(*[@gco:isoType='srv:SV_ServiceIdentification'])=1"/>
+    <sch:report test="$isData">Resource type is data</sch:report>
+    <sch:report test="$isService">Resource type is service</sch:report>
+    <sch:assert test="not($isData) or
+                ( $isData and $dataIdExists ) or
+                count(../gmd:hierarchyLevel) = 0">AT-2a: The first identification information element shall be of type
+    gmd:MD_DataIdentification. </sch:assert>
+    <sch:assert test="not($isService) or
+                ( $isService and $serviceIdExists ) or
+                count(../gmd:hierarchyLevel) = 0">AT-2b: The first identification information element shall be of type
+    srv:SV_ServiceIdentification. </sch:assert>
     </sch:rule>
   </sch:pattern>
   <sch:pattern fpi="Gemini2-at3">
