@@ -30,6 +30,7 @@
                 version="2.0"
                 exclude-result-prefixes="#all">
 
+<xsl:import href="../../iso19139/layout/utility-tpl.xsl"/>
   <xsl:include href="utility-tpl-multilingual.xsl"/>
 
  <xsl:template name="get-iso19139.gemini23-title">
