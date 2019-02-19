@@ -69,7 +69,7 @@
 
   <!-- gml (both known places for 3.1.1) -->
 
-  <system systemId="http://www.opengis.org/gml/gml.xsd"
+  <system systemId="http://www.opengis.org/gml/3.2/gml.xsd"
           uri="schema/gml/gml.xsd"/>
   <system systemId="http://schemas.opengis.org/gml/3.1.1/base/gml.xsd"
           uri="schema/gml/gml.xsd"/>
