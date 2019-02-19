@@ -94,6 +94,8 @@
   <sch:ns uri="http://www.isotc211.org/2005/gss" prefix="gss"/>
   <sch:ns uri="http://www.isotc211.org/2005/gts" prefix="gts"/>
   <sch:ns uri="http://www.isotc211.org/2005/gsr" prefix="gsr"/>
+  <!-- Include geonetwork namespace -->
+  <sch:ns prefix="geonet" uri="http://www.fao.org/geonetwork"/>
   <sch:p>This Schematron schema is designed to test the constraints introduced in the GEMINI2 discovery metadata standard.</sch:p>
   <!-- Define some generic parameters -->
   <sch:let name="hierarchyLevelCLValue"
