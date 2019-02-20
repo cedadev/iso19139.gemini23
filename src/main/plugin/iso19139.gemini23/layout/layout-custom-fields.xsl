@@ -73,4 +73,35 @@
 
   </xsl:template>
 
+   <!-- otherConstraints with gmx:Anchor -->
+  <xsl:template mode="mode-iso19139" priority="200" match="gmd:otherConstraints[$schema='iso19139.eamp' and gmx:Anchor]">
+    <xsl:variable name="name" select="name(.)"/>
+
+    <xsl:variable name="labelConfig" select="gn-fn-metadata:getLabel($schema, $name, $labels)"/>
+    <xsl:variable name="helper" select="gn-fn-metadata:getHelper($labelConfig/helper, .)"/>
+
+
+    <xsl:variable name="attributes">
+      <!-- Create form for all existing attribute (not in gn namespace)
+      and all non existing attributes not already present. -->
+      <xsl:apply-templates mode="render-for-field-for-attribute"
+                           select="gmx:Anchor/@*|gmx:Anchor/gn:attribute[not(@name = parent::node()/@*/name())]">
+        <xsl:with-param name="ref" select="gmx:Anchor/gn:element/@ref"/>
+        <xsl:with-param name="insertRef" select="gmx:Anchor/gn:element/@ref"/>
+      </xsl:apply-templates>
+    </xsl:variable>
+
+    <xsl:call-template name="render-element">
+      <xsl:with-param name="label" select="$labelConfig/label"/>
+      <xsl:with-param name="value" select="gmx:Anchor" />
+      <xsl:with-param name="name" select="gmx:Anchor/gn:element/@ref" />
+      <xsl:with-param name="cls" select="local-name()" />
+      <xsl:with-param name="xpath" select="gn-fn-metadata:getXPath(.)"/>
+      <xsl:with-param name="editInfo" select="gmx:Anchor/gn:element" />
+      <xsl:with-param name="isDisabled" select="false()" />
+      <xsl:with-param name="attributesSnippet" select="$attributes" />
+      <xsl:with-param name="forceDisplayAttributes" select="true()" />
+    </xsl:call-template>
+  </xsl:template>
+
 </xsl:stylesheet>

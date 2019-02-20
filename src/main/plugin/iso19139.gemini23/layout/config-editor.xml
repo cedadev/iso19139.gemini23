@@ -3126,6 +3126,8 @@
         <for name="gmd:topicCategory"/>
         <for name="srv:parameters"/>
         <for name="gmd:temporalElement"/>
+        <for name="gmd:resourceConstraints"/>
+        <for name="gmd:otherConstraints"/>
       </flatModeExceptions>
 
       <!--
@@ -3323,10 +3325,8 @@
     </section>
 
     <section name="resourceConstraints">
-      <!-- Insert a new access contraints
-            Warning: Duplicates may be inserted.
-      -->
-      <field name="legalConstraints"
+      <!-- Insert a new access constraint -->
+      <field name="accessConstraints"
              xpath="gmd:identificationInfo/*/
                       gmd:resourceConstraints/gmd:MD_LegalConstraints/
                         gmd:accessConstraints"
@@ -3338,9 +3338,20 @@
           <![CDATA[<gmd:MD_RestrictionCode xmlns:gmd='http://www.isotc211.org/2005/gmd' codeListValue='{{value}}'/>]]></template>
       </field>
 
-      <!-- Insert a new other contraints
-            Warning: Duplicates may be inserted.
-      -->
+      <!-- Insert a new use constraint -->
+      <field name="useConstraints"
+             xpath="gmd:identificationInfo/*/
+                      gmd:resourceConstraints/gmd:MD_LegalConstraints/
+                        gmd:useConstraints"
+             use="data-gn-codelist-picker"
+             codelist="gmd:MD_RestrictionCode"
+             insertMode="gn_create"
+             removable="true">
+        <template>
+          <![CDATA[<gmd:MD_RestrictionCode xmlns:gmd='http://www.isotc211.org/2005/gmd' codeListValue='{{value}}'/>]]></template>
+      </field>
+
+      <!-- Insert a new other constraint -->
       <field name="otherConstraints"
              xpath="gmd:identificationInfo/*/
                       gmd:resourceConstraints/gmd:MD_LegalConstraints/

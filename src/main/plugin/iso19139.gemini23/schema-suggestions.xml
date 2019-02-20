@@ -260,22 +260,34 @@
     <suggest name="xlink:href"/>
   </field>
 
-
-  <field name="gmd:MD_Constraints">
+  <!-- comment out MD_Constraints because we're not using it -->
+  <!-- <field name="gmd:MD_Constraints">
     <suggest name="gmd:useLimitation"/>
+  </field> -->
+
+  <!-- restrict resourceConstraints to legal only -->
+  <field name="gmd:resourceConstraints">
+    <suggest name="gmd:MD_LegalConstraints"/>
   </field>
 
+  <!-- restrict legalConstraints to access or use plus other -->
   <field name="gmd:MD_LegalConstraints">
-    <suggest name="gmd:useLimitation"/>
     <suggest name="gmd:accessConstraints"/>
     <suggest name="gmd:useConstraints"/>
-    <suggest name="gmd:otherContraints"/>
+    <suggest name="gmd:otherConstraints"/>
   </field>
 
-  <field name="gmd:MD_SecurityContraints">
+  <!-- other constraints should give option of anchor or text -->
+  <field name="gmd:otherConstraints">
+    <suggest name="gmx:Anchor"/>
+    <suggest name="gco:CharacterString"/>
+  </field>
+
+  <!-- comment out SecurityConstraints as we're not using it -->
+  <!-- <field name="gmd:MD_SecurityConstraints">
     <suggest name="gmd:classification"/>
     <suggest name="gmd:useLimitation"/>
-  </field>
+  </field> -->
 
 
 </fields>
