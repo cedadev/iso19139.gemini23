@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink"
-        xmlns:sch="http://www.ascc.net/xml/schematron" targetNamespace="http://www.opengis.net/gml"
+<schema xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:sch="http://www.ascc.net/xml/schematron" targetNamespace="http://www.opengis.net/gml/3.2"
         xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" version="3.2.0">
   <annotation>
     <appinfo source="urn:ogc:specification:gml:schema-xsd:gmlBase:3.2.0">gmlBase.xsd</appinfo>
     <appinfo source="urn:ogc:specification:gml:schema-xsd:gmlBase:3.2.0">
       <sch:title>Schematron validation</sch:title>
-      <sch:ns prefix="gml" uri="http://www.opengis.net/gml"/>
+      <sch:ns prefix="gml" uri="http://www.opengis.net/gml/3.2"/>
       <sch:ns prefix="xlink" uri="http://www.w3.org/1999/xlink"/>
       <sch:pattern name="Check either href or content not both">
         <sch:rule abstract="true" id="hrefOrContent">
