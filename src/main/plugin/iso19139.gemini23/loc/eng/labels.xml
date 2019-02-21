@@ -248,7 +248,7 @@
   </element>
   <element name="gmd:EX_Extent" id="334.0">
     <label>Extent</label>
-    <description>Information about spatial, vertical, and temporal extent</description>
+    <description>Extent of the data resource</description>
   </element>
   <element name="gmd:EX_GeographicBoundingBox" id="343.0">
     <label>Bounding Box</label>
@@ -265,11 +265,11 @@
   </element>
   <element name="gmd:EX_TemporalExtent" id="350.0">
     <label>Temporal Extent</label>
-    <description>Time period covered by the content of the dataset</description>
+    <description>Date for the content of the data resource</description>
   </element>
   <element name="gmd:EX_VerticalExtent" id="354.0">
     <label>Vertical extent</label>
-    <description>Vertical domain of dataset</description>
+    <description>Vertical domain of data resource</description>
   </element>
   <element name="gmd:ISBN" id="372.0">
     <label>ISBN</label>
@@ -512,7 +512,7 @@
   </element>
   <element name="gmd:abstract" id="25.0">
     <label>Abstract</label>
-    <description>Brief narrative summary of the content of the resource(s)</description>
+    <description>Brief narrative summary of the resource</description>
     <condition>mandatory</condition>
   </element>
   <element name="gmd:accessConstraints" id="70.0">
@@ -552,8 +552,7 @@
   </element>
   <element name="gmd:alternateTitle" id="361.0">
     <label>Alternative title</label>
-    <description>Short name or other language name by which the cited information is known.
-      Example: "DCW" as an alternative title for "Digital Chart of the World
+    <description>Short name, other name, acronym or alternative language title for the data resource
     </description>
   </element>
   <element name="gmd:amendmentNumber" id="287.0">
@@ -703,8 +702,8 @@
     </description>
   </element>
   <element name="gmd:code" id="207.0" context="gmd:RS_Identifier">
-    <label>Unique resource identifier</label>
-    <description>Alphanumeric value identifying an instance in the namespace</description>
+    <label>Reference System Identifier</label>
+    <description>Code identifying the reference system</description>
     <condition>mandatory</condition>
   </element>
   <element name="gmd:code" id="207.0" context="gmd:MD_Identifier">
@@ -764,7 +763,7 @@
     <label>Metadata point of contact</label>
     <btnLabel>Add contact</btnLabel>
     <btnClass>fa fa-user-plus</btnClass>
-    <description>Party responsible for the metadata information</description>
+    <description>Party responsible for the creation and maintenance of the metadata</description>
   </element>
   <element name="gmd:contact" id="148.1" context="gmd:MD_MaintenanceInformation">
     <label>Contact</label>
@@ -869,6 +868,11 @@
     <label>Date of last update</label>
     <btnClass>fa fa-calendar-plus-o</btnClass>
     <description>Date of last update</description>
+  </element>
+  <element name="gmd:date" id="570.0" context="gmd:MD_DataIdentification">
+    <label>Dataset Reference Date</label>
+    <btnClass>fa fa-calendar-plus-o</btnClass>
+    <description>Reference date for the data resource</description>
   </element>
   <element name="gmd:date" id="144.0" context="gmd:MD_MaintenanceInformation">
     <label>Date of next update</label>
@@ -1050,9 +1054,7 @@
   </element>
   <element name="gmd:distributionFormat" id="271.0">
     <label>Data format</label>
-    <condition>mandatory</condition>
-    <description>Provides a description of the format of the data to be
-      distributed
+    <description>Format in which the digital data is provided
     </description>
     <condition>mandatory</condition>
   </element>
@@ -1343,7 +1345,7 @@
   </element>
   <element name="gmd:hierarchyLevelName" id="7.0">
     <label>Hierarchy level name</label>
-    <description>Name of the hierarchy levels for which the metadata is provided</description>
+    <description>Name of the hierarchy level for which the metadata is provided</description>
     <condition>conditional</condition>
   </element>
   <element name="gmd:hoursOfService" id="391.0">
@@ -1422,20 +1424,19 @@
   <element name="gmd:keyword" id="53.0">
     <label>Keyword</label>
     <btnClass>fa fa-tag</btnClass>
-    <description>Commonly used word(s) or formalised word(s) or phrase(s) used to describe the
-      subject
+    <description>Topic of the content of the data resource
     </description>
     <condition>mandatory</condition>
   </element>
   <element name="gmd:language" id="3.0">
     <label>Metadata Language</label>
-    <description>Language used for documenting metadata</description>
+    <description>Language used for documenting the metadata</description>
     <condition>mandatory</condition>
   </element>
   <element name="gmd:language" context="gmd:MD_DataIdentification"
            id="39.0">
     <label>Dataset Language</label>
-    <description>Language(s) used within the dataset</description>
+    <description>Language used within the data resource</description>
     <condition>mandatory</condition>
   </element>
   <element name="gmd:language" context="gmd:MD_FeatureCatalogueDescription"
@@ -1463,8 +1464,7 @@
   </element>
   <element name="gmd:lineage" id="81.0">
     <label>Lineage</label>
-    <description>Non-quantitative quality information about the lineage of the data specified by
-      the scope
+    <description>Information about the events or source data used in the construction of the data resource
     </description>
     <condition>mandatory</condition>
   </element>
@@ -2014,9 +2014,8 @@
     <description>The physical value corresponding to a cell value of zero</description>
   </element>
   <element name="gmd:onLine" id="277.0">
-    <label>OnLine resource</label>
-    <description>Information about online sources from which the resource can be
-      obtained
+    <label>Resource Locator</label>
+    <description>Location (address) for online access using a Uniform Resource Locator (URL) address or similar addressing scheme
     </description>
   </element>
   <element name="gmd:onlineResource" id="390.0">
@@ -2088,8 +2087,7 @@
     <label>Parent identifier</label>
     <btnLabel>Add parent record</btnLabel>
     <btnClass>fa fa-sitemap</btnClass>
-    <description>File identifier of the metadata to which this metadata is a subset
-      (child)
+    <description>File identifier of the metadata that is a parent to this child metadata
     </description>
   </element>
   <element name="gmd:pass" id="132.0">
@@ -2260,8 +2258,7 @@
   <element name="gmd:referenceSystemInfo" id="13.0">
     <label>Spatial Reference System</label>
     <abbrLabel>Ref. Sys.</abbrLabel>
-    <description>Description of the spatial and temporal reference systems used in the
-      dataset
+    <description>Identifier, name or description of the system of spatial reference, whether by coordinates or geographic identifiers, used in the data resource
     </description>
   </element>
   <element name="gmd:report" id="80.0">
@@ -2429,8 +2426,7 @@
   </element>
   <element name="gmd:spatialResolution" id="38.0">
     <label>Spatial resolution</label>
-    <description>Factor which provides a general understanding of the density of spatial data in
-      the dataset
+    <description>Measure of the granularity of the data (in metres)
     </description>
     <condition>mandatory</condition>
   </element>
@@ -2455,8 +2451,7 @@
   </element>
   <element name="gmd:statement" id="83.0">
     <label>Statement</label>
-    <description>General explanation of the data producers knowledge about the lineage of a
-      dataset
+    <description>Information about the events or source data used in the construction of the data resource
     </description>
   </element>
   <element name="gmd:status" id="28.0">
@@ -2484,7 +2479,7 @@
   </element>
   <element name="gmd:title" id="360.0">
     <label>Title</label>
-    <description>Name by which the cited resource is known</description>
+    <description>Name given to the resource</description>
     <condition>mandatory</condition>
   </element>
   <element name="gmd:title" id="507.0" context="gmd:MD_Legislation">
