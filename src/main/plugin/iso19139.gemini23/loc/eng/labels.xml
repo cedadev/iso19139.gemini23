@@ -124,7 +124,8 @@
     <description>Identification of, and means of communication with, person(s) and organizations
       associated with the dataset
     </description>
-    <_condition>Use obligation/condition from referencing object</_condition>
+    <!-- <_condition>Use obligation/condition from referencing object</_condition> -->
+    <condition>mandatory</condition>
   </element>
   <element name="gmd:CI_Series" id="403.0">
     <label>Series</label>
