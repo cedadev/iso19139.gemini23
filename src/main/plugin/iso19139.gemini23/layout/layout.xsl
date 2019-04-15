@@ -35,6 +35,7 @@
                 exclude-result-prefixes="#all">
 
   <xsl:include href="layout-custom-fields.xsl"/>
+  <xsl:include href="layout-custom-tpl.xsl"/>
   <xsl:include href="utility-tpl.xsl"/>
 
   <!-- Visit all XML tree recursively -->
