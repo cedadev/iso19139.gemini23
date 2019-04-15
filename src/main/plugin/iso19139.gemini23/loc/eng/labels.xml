@@ -764,6 +764,7 @@
     <btnLabel>Add contact</btnLabel>
     <btnClass>fa fa-user-plus</btnClass>
     <description>Party responsible for the creation and maintenance of the metadata</description>
+    <condition>mandatory</condition>
   </element>
   <element name="gmd:contact" id="148.1" context="gmd:MD_MaintenanceInformation">
     <label>Contact</label>
@@ -2123,6 +2124,7 @@
     <description>Identification of, and means of communication with, person(s) and
       organizations(s) associated with the resource(s)
     </description>
+    <condition>mandatory</condition>
   </element>
   <element name="gmd:polygon" id="342.0">
     <label>Polygon</label>
