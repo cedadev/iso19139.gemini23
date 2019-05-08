@@ -22,8 +22,8 @@
                         *[1]/name() = $editorConfig/editor/tableFields/table/@for and
                         (1 or @gn:addedObj = 'true') and
                         $isFlatMode]"
-                priority="2000">
-    <xsl:call-template name="iso19139-table"/>
+                priority="3000">
+    <xsl:call-template name="iso19139-table-gemini23"/>
   </xsl:template>
 
   <!-- Ignore the following -->
@@ -33,14 +33,14 @@
                         preceding-sibling::*[1]/name() = name() and
                         not(@gn:addedObj) and
                         $isFlatMode]"
-                priority="2000"/>
+                priority="3000"/>
 
   <!-- Define table layout -->
-  <xsl:template name="iso19139-table">
+  <xsl:template name="iso19139-table-gemini23">
     <xsl:variable name="name" select="name()"/>
     <xsl:variable name="xpath" select="gn-fn-metadata:getXPath(.)"/>
     <xsl:variable name="isoType" select="if (../@gco:isoType) then ../@gco:isoType else ''"/>
-
+    
     <xsl:variable name="childName"
                   select="*[1]/name()"/>
 
