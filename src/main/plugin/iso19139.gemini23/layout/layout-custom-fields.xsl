@@ -74,7 +74,7 @@
   </xsl:template>
 
    <!-- otherConstraints with gmx:Anchor -->
-  <xsl:template mode="mode-iso19139" priority="200" match="gmd:otherConstraints[$schema='iso19139.eamp' and gmx:Anchor]">
+  <xsl:template mode="mode-iso19139" priority="200" match="gmd:otherConstraints[$schema='iso19139.gemini23' and gmx:Anchor]">
     <xsl:variable name="name" select="name(.)"/>
 
     <xsl:variable name="labelConfig" select="gn-fn-metadata:getLabel($schema, $name, $labels)"/>
@@ -103,5 +103,4 @@
       <xsl:with-param name="forceDisplayAttributes" select="true()" />
     </xsl:call-template>
   </xsl:template>
-
 </xsl:stylesheet>
