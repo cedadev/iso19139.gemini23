@@ -3125,7 +3125,6 @@
         <for name="gmd:processor"/>
         <for name="gmd:topicCategory"/>
         <for name="srv:parameters"/>
-        <for name="gmd:temporalElement"/>
         <for name="gmd:resourceConstraints"/>
         <for name="gmd:otherConstraints"/>
       </flatModeExceptions>
