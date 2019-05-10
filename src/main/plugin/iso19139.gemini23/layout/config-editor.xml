@@ -28,7 +28,7 @@
         xmlns:gmd="http://www.isotc211.org/2005/gmd"
         xmlns:gmx="http://www.isotc211.org/2005/gmx"
         xmlns:srv="http://www.isotc211.org/2005/srv"
-        xmlns:gml="http://www.opengis.net/gml"
+        xmlns:gml="http://www.opengis.net/gml/3.2"
         xmlns:xlink="http://www.w3.org/1999/xlink"
         xsi:noNamespaceSchemaLocation="../../../../../../config-editor.xsd">
 
@@ -3125,7 +3125,6 @@
         <for name="gmd:processor"/>
         <for name="gmd:topicCategory"/>
         <for name="srv:parameters"/>
-        <for name="gmd:temporalElement"/>
         <for name="gmd:resourceConstraints"/>
         <for name="gmd:otherConstraints"/>
       </flatModeExceptions>
