@@ -65,6 +65,12 @@ codeListValue="pointOfContact">pointOfContact</gmd:CI_RoleCode>
 <gmd:dateStamp>
      <gco:DateTime></gco:DateTime>
 </gmd:dateStamp>
+<gmd:metadataStandardName>
+      <gco:CharacterString>UK GEMINI</gco:CharacterString>
+  </gmd:metadataStandardName>
+  <gmd:metadataStandardVersion>
+      <gco:CharacterString>2.3</gco:CharacterString>
+  </gmd:metadataStandardVersion>
 <gmd:referenceSystemInfo>
      <gmd:MD_ReferenceSystem>
          <gmd:referenceSystemIdentifier>
