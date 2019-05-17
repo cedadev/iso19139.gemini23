@@ -31,9 +31,11 @@
 
   </xsl:template>
 
-  <!-- Restrict language code to values from codelist -->
+  <!-- Restrict to gemini 2.3 codelists (same template in iso19139 uses explicitly the codelists from iso19139,
+       doesn't use the current schema codelists, so has to be overriden with higher priority than same template in iso19139 (priority=200).
+       Be careful with priority to not be higher than the template for gmd:dateType (4000) or will cause side effects. -->
 
-  <xsl:template mode="mode-iso19139" priority="5000" match="*[*/@codeList and $schema='iso19139.gemini23']">
+  <xsl:template mode="mode-iso19139" priority="500" match="*[*/@codeList and $schema='iso19139.gemini23']">
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
     <xsl:param name="codelists" select="$codelists" required="no"/>
