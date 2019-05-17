@@ -62,15 +62,15 @@
     <_condition>Use obligation/condition from referencing object</_condition>
   </element>
   <element name="gco:DateTime" id="64.0" context="gmd:MD_Usage">
-    <description>Formatted as 2007-09-12T15:00:00 (YYYY-MM-DDTHH:mm:ss)</description>
     <label>Usage Date / Time</label>
+    <description>Formatted as 2007-09-12T15:00:00 (YYYY-MM-DDTHH:mm:ss)</description>
     <help>date and time of the first use or range of uses of the resource and/or resource
       series
     </help>
   </element>
   <element name="gco:DateTime" id="300.0" context="gmd:MD_StandardOrderProcess">
-    <description>Formatted as 2007-09-12T15:00:00 (YYYY-MM-DDTHH:mm:ss)</description>
     <label>Planned Available Date / Time</label>
+    <description>Formatted as 2007-09-12T15:00:00 (YYYY-MM-DDTHH:mm:ss)</description>
     <help>date and time when theresource will be available</help>
   </element>
   <element name="gco:DateTime">
@@ -306,10 +306,10 @@
     <description>Aggregate dataset information</description>
   </element>
   <element name="gmd:MD_ApplicationSchemaInformation" id="320.0">
+    <label>Application Schema Information</label>
     <description>Information about the application schema used to build the
       dataset
     </description>
-    <label>Application Schema Information</label>
   </element>
   <element name="gmd:MD_Band" id="259.0">
     <label>Band</label>
@@ -317,10 +317,10 @@
     <help>range of wavelengths in the electromagnetic spectrum</help>
   </element>
   <element name="gmd:MD_BrowseGraphic" id="48.0">
+    <label>Browse Graphic</label>
     <description>Graphic that provides an illustration of the dataset (should include a legend
       for the graphic)
     </description>
-    <label>Browse Graphic</label>
   </element>
   <element name="gmd:MD_Constraints" id="67.0">
     <label>Constraints</label>
@@ -646,18 +646,18 @@
     <condition>conditional</condition>
   </element>
   <element name="gmd:checkPointAvailability" id="163.0">
+    <label>Checkpoint Availability</label>
     <description>Indication of whether or not geographic position points are available to test
       the accuracy of the georeferenced grid data
     </description>
     <condition>mandatory</condition>
-    <label>Checkpoint Availability</label>
   </element>
   <element name="gmd:checkPointDescription" id="164.0">
+    <label>Checkpoint Description</label>
     <description>Description of geographic position points used to test the accuracy of the
       georeferenced grid data
     </description>
     <condition>conditional</condition>
-    <label>Checkpoint Description</label>
   </element>
   <element name="gmd:citation" id="24.0" context="gmd:MD_Identification">
     <label>Citation</label>
@@ -793,10 +793,10 @@
     </description>
   </element>
   <element name="gmd:contentInfo" id="16.0">
+    <label>Content Information</label>
     <description>Provides information about the feature catalogue and describes the coverage and
       image data characteristics
     </description>
-    <label>Content Information</label>
     <abbrLabel>Content Info.</abbrLabel>
   </element>
   <element name="gmd:contentType" id="241.0">
@@ -856,9 +856,9 @@
     <condition>mandatory</condition>
   </element>
   <element name="gmd:dataset" id="154.0">
+    <label>Dataset</label>
     <description>Dataset to which the information applies</description>
     <condition/>
-    <label>Dataset</label>
   </element>
   <element name="gmd:date" id="570.0">
     <label>Date</label>
@@ -1061,10 +1061,10 @@
     <condition>mandatory</condition>
   </element>
   <element name="gmd:distributionInfo" id="17.0">
+    <label>Distribution Information</label>
     <description>Provides information about the distributor of and options for obtaining the
       resource(s)
     </description>
-    <label>Distribution Information</label>
     <abbrLabel>Distribution</abbrLabel>
   </element>
   <element name="gmd:distributionOrderProcess" id="281.0">
@@ -2275,7 +2275,7 @@
     <label>Resolution</label>
     <description>Degree of detail in the grid dataset</description>
   </element>
-  <element name="gmd:resourceConstraints" id="35.0">
+  <element name="gmd:resourceConstraints" id="35.0" context="">
     <label>Resource constraints</label>
     <description>Provides information about constraints which apply to the
       resource(s)

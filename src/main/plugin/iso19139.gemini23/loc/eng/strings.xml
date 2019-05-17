@@ -228,4 +228,9 @@
 
   <sds-section-custodian>Responsible custodian</sds-section-custodian>
   <sds-addOperation>Add Operation</sds-addOperation>
+
+
+  <addAccessConstraints>Access constraints</addAccessConstraints>
+  <addUseConstraints>Add use contraints</addUseConstraints>
+  <addContact>Add contact</addContact>
 </strings>
