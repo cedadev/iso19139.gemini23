@@ -3143,16 +3143,29 @@
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceSpecificUsage">
           </field>
 
+          <!-- resource constraints with gmd:MD_Constraints  -->
+          <field
+                 xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints[gmd:MD_Constraints]">
+          </field>
+
+          <!-- resource constraints with gmd:MD_SecurityConstraints   -->
+          <field
+                 xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints[gmd:MD_SecurityConstraints ]">
+          </field>
+
+          <!-- resource constraints legal constraints without access or use constraints -->
+          <field
+            xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints[gmd:MD_LegalConstraints
+                    and not(gmd:MD_LegalConstraints/gmd:accessConstraints) and not(gmd:MD_LegalConstraints/gmd:useConstraints) ]">
+          </field>
 
           <!-- legal access constraints -->
           <field name="accessConstraints" del="."
                  xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints[gmd:MD_LegalConstraints/gmd:accessConstraints]">
           </field>
 
-
           <action type="add" btnLabel="addAccessConstraints" name="addAccessConstraints" or="resourceConstraints"
-                  in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification"
-                  if="count(gmd:MD_Metadata1111/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints)=0">
+                  in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification">
             <template>
               <snippet>
                 <gmd:resourceConstraints>
@@ -3176,8 +3189,7 @@
           </field>
 
           <action type="add" btnLabel="addUseConstraints" name="addUseConstraints" or="resourceConstraints"
-                  in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification"
-                  if="count(gmd:MD_Metadata1111/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints)=0">
+                  in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification">
             <template>
               <snippet>
 
