@@ -49,20 +49,30 @@
   <xsl:template name="evaluate-iso19139.gemini23">
     <xsl:param name="base" as="node()"/>
     <xsl:param name="in"/>
+    <!-- <xsl:message>in xml <xsl:copy-of select="$base"></xsl:copy-of></xsl:message>
+     <xsl:message>search for <xsl:copy-of select="$in"></xsl:copy-of></xsl:message>-->
+    <xsl:variable name="nodeOrAttribute" select="saxon:evaluate(concat('$p1', $in), $base)"/>
 
-    <xsl:call-template name="evaluate-iso19139">
-      <xsl:with-param name="base" select="$base"/>
-      <xsl:with-param name="in" select="$in"/>
-    </xsl:call-template>
+    <xsl:choose>
+      <xsl:when test="$nodeOrAttribute instance of text()+">
+        <xsl:value-of select="$nodeOrAttribute"/>
+      </xsl:when>
+      <xsl:when test="$nodeOrAttribute instance of element()+">
+        <xsl:copy-of select="$nodeOrAttribute"/>
+      </xsl:when>
+      <xsl:when test="$nodeOrAttribute instance of attribute()+">
+        <xsl:value-of select="$nodeOrAttribute"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$nodeOrAttribute"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
   <xsl:template name="evaluate-iso19139.gemini23-boolean">
-  <xsl:param name="base" as="node()"/>
-  <xsl:param name="in"/>
+    <xsl:param name="base" as="node()"/>
+    <xsl:param name="in"/>
 
-  <xsl:call-template name="evaluate-iso19139-boolean">
-    <xsl:with-param name="base" select="$base"/>
-    <xsl:with-param name="in" select="$in"/>
-  </xsl:call-template>
+    <xsl:value-of select="saxon:evaluate(concat('$p1', $in), $base)"/>
   </xsl:template>
 </xsl:stylesheet>
