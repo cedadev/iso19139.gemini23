@@ -3093,12 +3093,15 @@
           <field xpath="/gmd:MD_Metadata/gmd:fileIdentifier"/>
           <field xpath="/gmd:MD_Metadata/gmd:language" or="language" in="/gmd:MD_Metadata"/>
           <field xpath="/gmd:MD_Metadata/gmd:characterSet"/>
-          <field xpath="/gmd:MD_Metadata/gmd:parentIdentifier" or="parentIdentifier"
+          <!-- <field xpath="/gmd:MD_Metadata/gmd:parentIdentifier" or="parentIdentifier"
                  in="/gmd:MD_Metadata"/>
           <field xpath="/gmd:MD_Metadata/gmd:hierarchyLevel" or="hierarchyLevel"
                  in="/gmd:MD_Metadata"/>
           <field xpath="/gmd:MD_Metadata/gmd:hierarchyLevelName" or="hierarchyLevelName"
-                 in="/gmd:MD_Metadata"/>
+                 in="/gmd:MD_Metadata"/> -->
+          <field xpath="/gmd:MD_Metadata/gmd:parentIdentifier"/>
+          <field xpath="/gmd:MD_Metadata/gmd:hierarchyLevel"/>
+          <field xpath="/gmd:MD_Metadata/gmd:hierarchyLevelName"/>
           <field xpath="/gmd:MD_Metadata/gmd:dateStamp"/>
           <field xpath="/gmd:MD_Metadata/gmd:metadataStandardName"/>
           <field xpath="/gmd:MD_Metadata/gmd:metadataStandardVersion"/>
@@ -3118,6 +3121,7 @@
         <for name="gmd:descriptiveKeywords"/>
         <for name="gmd:keyword"/>
         <for name="gmd:spatialResolution"/>
+        <for name="gmd:referenceSystemInfo"/>
         <for name="gmd:pointOfContact"/>
         <for name="gmd:distributor"/>
         <for name="gmd:distributionFormat"/>
@@ -3127,6 +3131,7 @@
         <for name="srv:parameters"/>
         <for name="gmd:resourceConstraints"/>
         <for name="gmd:otherConstraints"/>
+        <for name="gmd:EX_TemporalExtent"/>
       </flatModeExceptions>
 
       <!--

@@ -1371,8 +1371,8 @@
     </description>
   </element>
   <element name="gmd:identifier" id="573.0" context="gmd:CI_Citation">
-    <label>Unique Resource Identifier</label>
-    <description>Identifier of the citation</description>
+    <label>Resource Identifier</label>
+    <description>Value uniquely identifying the data resource</description>
   </element>
   <element name="gmd:identifier" id="575.0" context="gmd:MD_Authority">
     <label>Identifier</label>
@@ -2118,12 +2118,11 @@
     <description>Point in a pixel corresponding to the Earth location of the pixel</description>
     <condition>mandatory</condition>
   </element>
-  <element name="gmd:pointOfContact" id="29.0">
-    <label>Point of contact</label>
+  <element name="gmd:pointOfContact" id="29.0" context="gmd:MD_DataIdentification">
+    <label>Responsible organisation</label>
     <btnLabel>Add contact</btnLabel>
     <btnClass>fa fa-user-plus</btnClass>
-    <description>Identification of, and means of communication with, person(s) and
-      organizations(s) associated with the resource(s)
+    <description>Details of the organisation(s) responsible for the establishment, management, maintenance and distribution of the data resource
     </description>
     <condition>mandatory</condition>
   </element>
