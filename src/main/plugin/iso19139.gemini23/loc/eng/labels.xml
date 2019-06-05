@@ -167,8 +167,7 @@
   </element>
   <element name="gmd:DQ_ConformanceResult" id="129.0">
     <label>Conformity</label>
-    <description>Information about the outcome of evaluating the obtained value (or set of
-      values) against a specified acceptable conformance quality level
+    <description>Statement of conformity with the product specification or user requirement against which the data is being evaluated
     </description>
     <condition>mandatory</condition>
   </element>
