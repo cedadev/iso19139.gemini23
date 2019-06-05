@@ -627,15 +627,13 @@
   </element>
   <element name="gmd:characterSet" id="4.0" context="gmd:MD_Metadata">
     <label>Character set</label>
-    <description>Full name of the character coding standard used for the metadata
-      set
-    </description>
+    <description>Full name of the character coding standard used for the metadata</description>
     <condition>conditional</condition>
     <_condition>conditional / ISO/IEC 10646-1 not used and not defined by encoding?</_condition>
   </element>
   <element name="gmd:characterSet" id="40.0" context="gmd:MD_DataIdentification">
     <label>Character set</label>
-    <description>Full name of the character coding standard used for the dataset</description>
+    <description>The character encoding used in the dataset</description>
     <_condition>Conditional / ISO 10646-1 not used?</_condition>
   </element>
   <element name="gmd:characterSet" id="4.0">
