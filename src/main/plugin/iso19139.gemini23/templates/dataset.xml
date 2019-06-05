@@ -233,7 +233,7 @@
                                           codeListValue="otherRestrictions">otherRestrictions</gmd:MD_RestrictionCode>
                </gmd:accessConstraints>
                <gmd:otherConstraints>
-                  <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1e"/>
+                  <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/noLimitations">no limitations</gmx:Anchor>
                </gmd:otherConstraints>
                <gmd:otherConstraints>
                   <gco:CharacterString/>
@@ -247,7 +247,7 @@
                                           codeListValue="otherRestrictions">otherRestrictions</gmd:MD_RestrictionCode>
                </gmd:useConstraints>
                <gmd:otherConstraints>
-                  <gmx:Anchor xlink:href="https://os.uk/business/licences/index.html">Use limitation dependent upon licence</gmx:Anchor>
+                  <gmx:Anchor xlink:href='http://inspire.ec.europa.eu/metadata-codelist/ConditionsApplyingToAccessAndUse/noConditionsApply'>no conditions apply</gmx:Anchor>
                </gmd:otherConstraints>
             </gmd:MD_LegalConstraints>
          </gmd:resourceConstraints>
