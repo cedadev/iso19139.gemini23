@@ -39,7 +39,7 @@
   <xsl:include href="utility-tpl.xsl"/>
 
   <!-- Override template in iso19139 to allow the usage of overrideLabel parameter -->
-  <xsl:template mode="mode-iso19139" priority="500"
+  <xsl:template mode="mode-iso19139" priority="205"
                 match="*[(name() = $editorConfig/editor/fieldsWithFieldset/name
     or @gco:isoType = $editorConfig/editor/fieldsWithFieldset/name)]|
       gmd:report/*|
@@ -54,7 +54,7 @@
     <xsl:variable name="xpath" select="gn-fn-metadata:getXPath(.)"/>
     <xsl:variable name="isoType" select="if (../@gco:isoType) then ../@gco:isoType else ''"/>
 
-    <xsl:variable name="attributes">
+     <xsl:variable name="attributes">
       <!-- Create form for all existing attribute (not in gn namespace)
       and all non existing attributes not already present. -->
       <xsl:apply-templates mode="render-for-field-for-attribute"
@@ -77,7 +77,6 @@
     <xsl:variable name="labelConfig">
       <xsl:choose>
         <xsl:when test="$overrideLabel != ''">
-          <xsl:message>overrideLabel: <xsl:value-of select="$overrideLabel"/> </xsl:message>
           <element>
             <label><xsl:value-of select="$overrideLabel"/></label>
           </element>
