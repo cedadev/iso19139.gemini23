@@ -3398,4 +3398,7 @@
   <element name="gco:Scale">
     <label>Scale</label>
   </element>
+  <element name="gmx:MX_ScopeCode">
+    <label>Code</label>
+  </element>
 </labels>
