@@ -55,8 +55,12 @@
     <label>Edition Date</label>
     <description>Date of the edition</description>
   </element>
+  <element name="gco:Date" id="364.0" context="gmd:CI_Date">
+    <label>Dataset reference date</label>
+    <description>Reference date for the data resource</description>
+  </element>
   <element name="gco:Date" id="393.0">
-    <label>Date</label>
+    <label>Dataset reference date</label>
     <description>Formatted as 2007-09-12 (YYYY-MM-DD)</description>
     <help>reference date and event used to describe it</help>
     <_condition>Use obligation/condition from referencing object</_condition>
@@ -858,7 +862,7 @@
     <condition/>
   </element>
   <element name="gmd:date" id="570.0">
-    <label>Date</label>
+    <label>Dataset Reference Date</label>
     <btnClass>fa fa-calendar-plus-o</btnClass>
     <description>Reference date for the cited resource (YYYY-MM-DD)</description>
     <condition>mandatory</condition>
@@ -887,7 +891,7 @@
   </element>
   <element name="gmd:date" id="394.0" context="gmd:CI_Date">
     <condition>mandatory</condition>
-    <label>Date</label>
+    <label>Dataset Reference Date</label>
     <btnClass>fa fa-calendar-plus-o</btnClass>
     <description>Reference date for the cited resource</description>
     <_condition>M</_condition>
@@ -3401,4 +3405,86 @@
   <element name="gmx:MX_ScopeCode">
     <label>Code</label>
   </element>
-</labels>
+
+ <element name="gmd:CI_PresentationFormCode">
+  <label>Presentation Form Code</label>
+  </element>
+ <element name="gmd:CI_OnLineFunctionCode">
+  <label>Online Function Code</label>
+  </element>
+ <element name="gmd:CI_DateTypeCode">
+  <label>Citation Date Type Code</label>
+  </element>
+ <element name="gmd:MD_CellGeometryCode">
+  <label>Cell Geometry Code</label>
+  </element>
+ <element name="gmd:MD_DimensionNameTypeCode">
+  <label>Dimensions Name Type Code</label>
+  </element>
+ <element name="gmd:MD_DatatypeCode">
+  <label>Metadata Data Type Code</label>
+  </element>
+ <element name="gmd:MD_CoverageContentTypeCode">
+  <label>Coverage Content Type Code</label>
+  </element>
+ <element name="gmd:MD_ImagingConditionCode">
+  <label>Imaging Condition Code</label>
+  </element>
+ <element name="gmd:MD_ClassificationCode">
+  <label>Classification Code</label>
+  </element>
+ <element name="gmd:MD_RestrictionCode">
+  <label>Restriction Code</label>
+  </element>
+ <element name="gmd:MD_DistributionUnits">
+  <label>Distribution Units</label>
+  </element>
+ <element name="gmd:MD_MediumFormatCode">
+  <label>Format Code</label>
+  </element>
+ <element name="gmd:MD_MediumNameCode">
+  <label>Name Code</label>
+  </element>
+ <element name="gmx:MX_ScopeCode">
+  <label>Scope Code</label>
+  </element>
+ <element name="gmd:MD_KeywordTypeCode">
+  <label>Keyword Type Code</label>
+  </element>
+ <element name="gmd:DQ_EvaluationMethodTypeCode">
+  <label>Evaluation Method Type Code</label>
+  </element>
+ <element name="gmd:LocalisedCharacterString">
+  <label>Localised Character String</label>
+  </element>
+ <element name="gmd:Country">
+  <label>Country</label>
+  </element>
+ <element name="srv:SV_OperationModel">
+  <label>Service Operation Model</label>
+  </element>
+ <element name="gmx:MimeFileType">
+  <label>Mime File Type</label>
+  </element>
+ <element name="gmd:CI_OnLineFunctionCode">
+  <label>Online Function Code</label>
+  </element>
+ <element name="gmd:CI_PresentationFormCode">
+  <label>Presentation Form Code</label>
+  </element>
+ <element name="gmd:DQ_EvaluationMethodTypeCode">
+  <label>Data Quality Evaluation Method Type Code</label>
+  </element>
+ <element name="gmd:MD_CellGeometryCode">
+  <label>Cell Geometry Code</label>
+  </element>
+ <element name="gmd:MD_ClassificationCode">
+  <label>Classification Code</label>
+  </element>
+ <element name="gmd:MD_CoverageContentTypeCode">
+  <label>Coverage Content Type Code</label>
+  </element>
+ <element name="gmd:MD_DimensionNameTypeCode">
+  <label>Dimension Name Type Code</label>
+  </element>
+  </labels>
