@@ -3445,9 +3445,6 @@
  <element name="gmd:MD_MediumNameCode">
   <label>Name Code</label>
   </element>
- <element name="gmx:MX_ScopeCode">
-  <label>Scope Code</label>
-  </element>
  <element name="gmd:MD_KeywordTypeCode">
   <label>Keyword Type Code</label>
   </element>
