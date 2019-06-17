@@ -3193,8 +3193,8 @@
           </field>
 
           <field
-            xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords">
-          </field>
+            xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords" or="descriptiveKeywords"
+            in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification"/>
 
           <field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceSpecificUsage">
