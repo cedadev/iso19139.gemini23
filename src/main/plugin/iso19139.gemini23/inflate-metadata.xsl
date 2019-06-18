@@ -52,20 +52,30 @@
       <xsl:copy-of select="gmd:resourceConstraints" />
       <xsl:copy-of select="gmd:aggregationInfo" />
       <xsl:copy-of select="gmd:spatialRepresentationType" />
+      <!-- Add spatialrepresentationtype if missing -->
+      <xsl:if test="not(gmd:spatialRepresentationType)">
+        <gmd:spatialRepresentationType>
+            <gmd:MD_SpatialRepresentationTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_SpatialRepresentationTypeCode"
+                                                  codeListValue="textTable"/>
+         </gmd:spatialRepresentationType>
+       </xsl:if>
       <xsl:copy-of select="gmd:spatialResolution" />
       <xsl:copy-of select="gmd:language" />
       <xsl:copy-of select="gmd:characterSet" />
+      <!-- Add characterSet if missing -->
+      <xsl:if test="not(gmd:characterSet)">
+        <gmd:characterSet>
+          <gmd:MD_CharacterSetCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_CharacterSetCode"
+                                     codeListValue="utf8">UTF-8</gmd:MD_CharacterSetCode>
+        </gmd:characterSet>
+      </xsl:if>      
       <xsl:copy-of select="gmd:topicCategory" />
-      
-
       <!-- Add gmd:topicCategory if missing -->
       <xsl:if test="not(gmd:topicCategory)">
-
         <gmd:topicCategory>
           <gmd:MD_TopicCategoryCode></gmd:MD_TopicCategoryCode>
         </gmd:topicCategory>
       </xsl:if>
-
       <xsl:copy-of select="gmd:environmentDescription" />
 
       <xsl:variable name="hasTimePeriodElement" select="count(gmd:extent/gmd:EX_Extent/gmd:temporalElement/gmd:EX_TemporalExtent/gmd:extent/gml:TimePeriod/gml:beginPosition) > 0" />
