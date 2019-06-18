@@ -25,6 +25,8 @@
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:gmd="http://www.isotc211.org/2005/gmd"
+                xmlns:gco="http://www.isotc211.org/2005/gco"
+                xmlns:gml="http://www.opengis.net/gml/3.2"
                 version="2.0">
 
 
@@ -54,12 +56,10 @@
       <xsl:copy-of select="gmd:language" />
       <xsl:copy-of select="gmd:characterSet" />
       <xsl:copy-of select="gmd:topicCategory" />
-
-      <xsl:message>INFLATE - check</xsl:message>
+      
 
       <!-- Add gmd:topicCategory if missing -->
       <xsl:if test="not(gmd:topicCategory)">
-        <xsl:message>INFLATE - added</xsl:message>
 
         <gmd:topicCategory>
           <gmd:MD_TopicCategoryCode></gmd:MD_TopicCategoryCode>
@@ -67,9 +67,108 @@
       </xsl:if>
 
       <xsl:copy-of select="gmd:environmentDescription" />
-      <xsl:copy-of select="gmd:extent" />
+
+      <xsl:variable name="hasTimePeriodElement" select="count(gmd:extent/gmd:EX_Extent/gmd:temporalElement/gmd:EX_TemporalExtent/gmd:extent/gml:TimePeriod/gml:beginPosition) > 0" />
+      <xsl:variable name="hasTimeInstantElement" select="count(gmd:extent/gmd:EX_Extent/gmd:temporalElement/gmd:EX_TemporalExtent/gmd:extent/gml:TimeInstant) > 0" />
+      <xsl:variable name="hasBboxElement" select="count(gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox) > 0" />
+
+      <xsl:choose>
+        <xsl:when test="not(gmd:extent)">
+          <!-- No extent element: create it with bbox and temporal extent -->
+          <gmd:extent>
+            <gmd:EX_Extent>
+              <xsl:call-template name="addBboxElement" />
+              <xsl:call-template name="addTimePeriodElement" />
+            </gmd:EX_Extent>
+          </gmd:extent>
+        </xsl:when>
+
+        <xsl:when test="(not($hasTimePeriodElement) and not($hasTimeInstantElement)) or not($hasBboxElement)">
+          <!-- Add  temporal extent or bbox elements (if missing) to the first gmd:extent -->
+          <xsl:for-each select="gmd:extent">
+            <xsl:copy>
+              <xsl:copy-of select="@*" />
+
+              <xsl:choose>
+                <xsl:when test="position() = 1">
+                  <xsl:for-each select="gmd:EX_Extent">
+                    <xsl:copy>
+                      <xsl:copy-of select="@*" />
+
+                      <xsl:apply-templates select="gmd:description" />
+
+                      <xsl:choose>
+                        <xsl:when test="not($hasBboxElement)">
+                          <xsl:call-template name="addBboxElement" />
+                        </xsl:when>
+                        <xsl:otherwise>
+                          <xsl:apply-templates select="gmd:geographicElement" />
+                        </xsl:otherwise>
+                      </xsl:choose>
+
+                      <xsl:choose>
+                        <xsl:when test="not($hasTimePeriodElement) and not($hasTimeInstantElement)">
+                          <xsl:call-template name="addTimePeriodElement" />
+                        </xsl:when>
+                        <xsl:otherwise>
+                          <xsl:apply-templates select="gmd:temporalElement" />
+                        </xsl:otherwise>
+                      </xsl:choose>
+
+                      <xsl:apply-templates select="gmd:verticalElement" />
+                    </xsl:copy>
+
+                  </xsl:for-each>
+                </xsl:when>
+
+                <xsl:otherwise>
+                  <xsl:apply-templates select="*"/>
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:copy>
+          </xsl:for-each>
+        </xsl:when>
+
+        <xsl:otherwise>
+          <xsl:copy-of select="gmd:extent" />
+        </xsl:otherwise>
+      </xsl:choose>
+      
       <xsl:copy-of select="gmd:supplementalInformation" />
     </xsl:copy>
+  </xsl:template>
+
+
+  <xsl:template name="addBboxElement">
+    <gmd:geographicElement>
+      <gmd:EX_GeographicBoundingBox>
+        <gmd:westBoundLongitude>
+          <gco:Decimal>-8.45</gco:Decimal>
+        </gmd:westBoundLongitude>
+        <gmd:eastBoundLongitude>
+          <gco:Decimal>1.78</gco:Decimal>
+        </gmd:eastBoundLongitude>
+        <gmd:southBoundLatitude>
+          <gco:Decimal>49.86</gco:Decimal>
+        </gmd:southBoundLatitude>
+        <gmd:northBoundLatitude>
+          <gco:Decimal>60.86</gco:Decimal>
+        </gmd:northBoundLatitude>
+      </gmd:EX_GeographicBoundingBox>
+    </gmd:geographicElement>
+  </xsl:template>
+
+  <xsl:template name="addTimePeriodElement">
+    <gmd:temporalElement>
+      <gmd:EX_TemporalExtent>
+        <gmd:extent>
+          <gml:TimePeriod gml:id="{generate-id()}">
+            <gml:beginPosition/>
+            <gml:endPosition/>
+          </gml:TimePeriod>
+        </gmd:extent>
+      </gmd:EX_TemporalExtent>
+    </gmd:temporalElement>
   </xsl:template>
 
   <xsl:template match="@*|node()">
