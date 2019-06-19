@@ -1501,6 +1501,11 @@
     <description>Highest vertical extent contained in the dataset</description>
     <condition>mandatory</condition>
   </element>
+  <element name="gmd:maximumValue" context="gmd:EX_VerticalExtent" id="355.0">
+    <label>Maximum value</label>
+    <description>Highest vertical extent contained in the dataset</description>
+    <condition>optional</condition>
+  </element>
   <element name="gmd:measureDescription" id="102.0">
     <label>Measure description</label>
     <description>Description of the measure being determined</description>
@@ -1559,6 +1564,11 @@
     <label>Minimum value</label>
     <description>Lowest vertical extent contained in the dataset</description>
     <condition>mandatory</condition>
+  </element>
+  <element name="gmd:minimumValue" context="gmd:EX_VerticalExtent" id="355.0">
+    <label>Minimum value</label>
+    <description>Lowest vertical extent contained in the dataset</description>
+    <condition>optional</condition>
   </element>
   <element name="gmd:name" context="gmd:MD_AbstractClass" id="560.0">
     <label>Name</label>

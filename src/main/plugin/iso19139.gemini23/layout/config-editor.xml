@@ -242,6 +242,7 @@
     <name>gmd:topicCategory</name>
 <!--     <name>gmd:spatialRepresentationType</name> -->
     <name>gmd:resourceMaintenance</name>
+    <name>gmd:verticalCRS</name>
   </fieldsWithFieldset>
 
   <multilingualFields>
