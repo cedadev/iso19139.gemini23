@@ -3494,4 +3494,53 @@
  <element name="gmd:MD_DimensionNameTypeCode">
   <label>Dimension Name Type Code</label>
   </element>
+
+<element name="gmx:ML_ProjectedCRS">
+  <label>Projected CRS</label>
+  </element>
+<element name="gml:DerivedCRS">
+  <label>Derived CRS</label>
+  </element>
+<element name="gmx:ML_DerivedCRS">
+  <label>Derived CRS</label>
+  </element>
+<element name="gml:GeodeticCRS">
+  <label>Geodetic CRS</label>
+  </element>
+<element name="gmx:ML_GeodeticCRS">
+  <label>Geodetic CRS</label>
+  </element>
+<element name="gmx:ML_VerticalCRS">
+  <label>Vertical CRS</label>
+  </element>
+<element name="gml:EngineeringCRS">
+  <label>Engineering CRS</label>
+  </element>
+<element name="gmx:ML_EngineeringCRS">
+  <label>Engineering CRS</label>
+  </element>
+<element name="gml:ImageCRS">
+  <label>Image CRS</label>
+  </element>
+<element name="gmx:ML_ImageCRS">
+  <label>Image CRS</label>
+  </element>
+<element name="gml:TemporalCRS">
+  <label>Temporal CRS</label>
+  </element>
+<element name="gmx:ML_TemporalCRS">
+  <label>Temporal CRS</label>
+  </element>
+<element name="gml:GeographicCRS">
+  <label>Geographic CRS</label>
+  </element>
+<element name="gml:GeocentricCRS">
+  <label>Geocentric CRS</label>
+  </element>
+<element name="gml:CompoundCRS">
+  <label>Compound CRS</label>
+  </element>
+<element name="gmx:ML_CompoundCRS">
+  <label>Compound CRS</label>
+  </element>
   </labels>
