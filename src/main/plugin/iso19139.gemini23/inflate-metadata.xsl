@@ -136,6 +136,7 @@
                         <xsl:when test="($hasVerticalExtentMin and $hasVerticalExtentMax) and not($hasVerticalCRSElement)">
                           <xsl:apply-templates select="gmd:verticalElement/gmd:EX_VerticalExtent/gmd:minimumValue" />
                           <xsl:apply-templates select="gmd:verticalElement/gmd:EX_VerticalExtent/gmd:maximumValue" />
+                          <xsl:message>Got vertical extent but no CRS</xsl:message>
                           <xsl:call-template name="addVerticalCRSElement" />
                         </xsl:when>
                         <xsl:otherwise>
