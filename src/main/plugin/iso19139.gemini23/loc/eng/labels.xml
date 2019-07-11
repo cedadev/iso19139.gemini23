@@ -519,6 +519,11 @@
     <description>Brief narrative summary of the resource</description>
     <condition>mandatory</condition>
   </element>
+  <element name="gmd:abstract" id="25.0" context="srv:SV_ServiceIdentification">
+    <label>Abstract</label>
+    <description>Brief narrative summary of the resource including a conditional statement on the spatial resolution for services</description>
+    <condition>mandatory</condition>
+  </element>
   <element name="gmd:accessConstraints" id="70.0">
     <label>Limitations on Public Access</label>
     <description>Access constraints applied to assure the protection of privacy or intellectual
@@ -2137,6 +2142,14 @@
     </description>
     <condition>mandatory</condition>
   </element>
+  <element name="gmd:pointOfContact" id="29.0" context="srv:SV_ServiceIdentification">
+    <label>Responsible organisation</label>
+    <btnLabel>Add contact</btnLabel>
+    <btnClass>fa fa-user-plus</btnClass>
+    <description>Details of the organisation(s) responsible for the establishment, management, maintenance and distribution of the data resource
+    </description>
+    <condition>mandatory</condition>
+  </element>
   <element name="gmd:polygon" id="342.0">
     <label>Polygon</label>
     <description>Sets of points defining the bounding polygon</description>
@@ -2885,22 +2898,22 @@
     <label>Parameter direction</label>
   </element>
   <element name="srv:serviceType"><!-- readonly="true" -->
-    <label>Service Type</label>
-    <description>Service type name from a registry of services. For example, the values of the
-      nameSpace and name attributes of GeneralName may be 'OGC' and 'catalogue'
+    <label>Spatial data service type</label>
+    <description>Generic name of the service type
     </description>
     <helper>
-      <option value="OGC:WMS">OGC Web Map Service (OGC:WMS)</option>
+      <!--<option value="OGC:WMS">OGC Web Map Service (OGC:WMS)</option>
       <option value="OGC:WFS">OGC Web Feature Service (OGC:WFS)</option>
       <option value="OGC:WCS">OGC Web Coverage Service (OGC:WCS)</option>
       <option value="W3C:HTML:DOWNLOAD">Download (W3C:HTML:DOWNLOAD)</option>
-      <option value="W3C:HTML:LINK">Information (W3C:HTML:LINK)</option>
+      <option value="W3C:HTML:LINK">Information (W3C:HTML:LINK)</option>-->
       <!--INSPIRE Service type defined in MD IR / 1.3.1 Spatial data service type -->
-      <option value="discovery">INSPIRE Discovery Service (discovery)</option>
-      <option value="view">INSPIRE View Service (view)</option>
-      <option value="download">INSPIRE Download Service (download)</option>
-      <option value="transformation">INSPIRE Transformation Service (transformation)</option>
-      <option value="other">INSPIRE Other Services (other)</option>
+      <option value="discovery">Discovery Service (discovery)</option>
+      <option value="view">View Service (view)</option>
+      <option value="download">Download Service (download)</option>
+      <option value="transformation">Transformation Service (transformation)</option>
+      <option value="invoke">Invoke Spatial Data Service (invoke)</option>
+      <option value="other">Other Service (other)</option>
     </helper>
   </element>
   <element name="srv:serviceTypeVersion">
@@ -2930,8 +2943,8 @@
     </description>
   </element>
   <element name="srv:operatesOn">
-    <label>Operates On</label>
-    <description>Provides information on the datasets that the service operates on</description>
+    <label>Coupled resource</label>
+    <description>Identifier of a dataset that the service operates on</description>
   </element>
   <element name="srv:operationName">
     <label>Operation Name</label>
@@ -3131,8 +3144,8 @@
     <description>CharacterEncoding</description>
   </element>
   <element name="uuidref">
-    <label>Metadata uuid</label>
-    <description>Unique identifier</description>
+    <label>Data UUID</label>
+    <description>Identifies the data resource on which the service operates</description>
   </element>
   <element name="uom">
     <label>Units of measure</label>
@@ -3286,9 +3299,8 @@
     </description>
   </element>
   <element name="xlink:href">
-    <label>Link href</label>
-    <description>Supplies the data that allows an XLink application to find a remote resource (or
-      resource fragment) [W3C XLINK]
+    <label>Data Metadata URL</label>
+    <description>The corresponding URL for the published data metadata record. This may be an OGC CSW GetRecordById request or an address of a metadata instance in a WAF
     </description>
   </element>
   <!-- ==================================================== -->
