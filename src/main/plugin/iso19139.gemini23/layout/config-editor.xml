@@ -243,6 +243,7 @@
 <!--     <name>gmd:spatialRepresentationType</name> -->
     <name>gmd:resourceMaintenance</name>
     <name>gmd:verticalCRS</name>
+    <name>gmd:geographicIdentifier</name>
   </fieldsWithFieldset>
 
   <multilingualFields>
