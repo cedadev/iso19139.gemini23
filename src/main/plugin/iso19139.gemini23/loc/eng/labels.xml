@@ -889,14 +889,14 @@
   </element>
   <element name="gmd:date" id="362.0" context="gmd:CI_Citation">
     <condition>mandatory</condition>
-    <label>Dataset Reference Date</label>
+    <label>Date</label>
     <btnClass>fa fa-calendar-plus-o</btnClass>
     <description>Reference date for the cited resource</description>
     <_condition>M</_condition>
   </element>
   <element name="gmd:date" id="394.0" context="gmd:CI_Date">
     <condition>mandatory</condition>
-    <label>Dataset Reference Date</label>
+    <label>Reference Date</label>
     <btnClass>fa fa-calendar-plus-o</btnClass>
     <description>Reference date for the cited resource</description>
     <_condition>M</_condition>
