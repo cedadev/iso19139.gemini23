@@ -2314,4 +2314,17 @@
     </entry>
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
   </codelist>
+  <codelist name="gmd:hierarchyLevelName">
+    <entry>
+      <code>service</code>
+      <label>Service</label>
+      <description>Service</description>
+    </entry>
+    <entry>
+      <code>map service</code>
+      <label>Map Service</label>
+      <description>Map Service</description>
+    </entry>
+  </codelist>
+  
 </codelists>

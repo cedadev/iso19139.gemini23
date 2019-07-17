@@ -1355,6 +1355,10 @@
     <label>Hierarchy level name</label>
     <description>Name of the hierarchy level for which the metadata is provided</description>
     <condition>conditional</condition>
+    <helper>
+      <option value="service">Service</option>
+      <option value="map service">Map Service</option>
+    </helper>
   </element>
   <element name="gmd:hoursOfService" id="391.0">
     <label>Hours of service</label>
