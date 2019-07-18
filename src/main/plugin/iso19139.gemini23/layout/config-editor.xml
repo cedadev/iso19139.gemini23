@@ -244,6 +244,7 @@
     <name>gmd:resourceMaintenance</name>
     <name>gmd:verticalCRS</name>
     <name>gmd:geographicIdentifier</name>
+    <name>srv:serviceType</name>
   </fieldsWithFieldset>
 
   <multilingualFields>

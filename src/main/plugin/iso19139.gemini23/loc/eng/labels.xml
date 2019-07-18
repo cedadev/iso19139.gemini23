@@ -3203,7 +3203,7 @@
     <description/>
   </element>
   <element name="gco:LocalName">
-    <label>Local name</label>
+    <label>Name</label>
     <description/>
   </element>
   <element name="gco:ScopedName">
