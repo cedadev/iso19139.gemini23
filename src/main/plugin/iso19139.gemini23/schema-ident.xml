@@ -28,7 +28,7 @@
   <name>iso19139.gemini23</name>
   <id>c9054754-5692-4189-9ac2-e95cf404a470</id>
   <version>1.0</version>
-  <appMinorVersionSupported>3.4.0</appMinorVersionSupported>
+  <appMinorVersionSupported>3.6.0</appMinorVersionSupported>
   <title>Gemini 2.3 Metadata Profile</title>
   <description>Gemini 2.3 Metadata Profile</description>
   <standardUrl>https://github.com/AstunTechnology/iso19139.gemini23</standardUrl>
