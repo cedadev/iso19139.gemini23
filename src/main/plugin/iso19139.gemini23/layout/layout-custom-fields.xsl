@@ -84,13 +84,13 @@
       <xsl:with-param name="cls" select="local-name()"/>
       <xsl:with-param name="xpath" select="$xpath"/>
       <xsl:with-param name="type" select="gn-fn-iso19139:getCodeListType(name())"/>
-      <xsl:with-param name="name" 
+      <xsl:with-param name="name"
                       select="if ($isEditing) then concat(*/gn:element/@ref, '_codeListValue') else ''"/>
       <xsl:with-param name="editInfo" select="*/gn:element"/>
       <xsl:with-param name="parentEditInfo" select="gn:element"/>
-      <xsl:with-param name="listOfValues" 
+      <xsl:with-param name="listOfValues"
                       select="gn-fn-metadata:getCodeListValues($schema, name(*[@codeListValue]), $codelists, .)"/>
-      <xsl:with-param name="isFirst" 
+      <xsl:with-param name="isFirst"
                       select="count(preceding-sibling::*[name() = $elementName]) = 0"/>
     </xsl:call-template>
 
@@ -202,7 +202,7 @@
 
       A custom directive is created.
  -->
-  <!-- <xsl:template mode="mode-iso19139" match="gml:duration[$schema='iso19139.gemini23']" priority="200">
+  <xsl:template mode="mode-iso19139" match="gml:duration[$schema='iso19139.gemini23']" priority="200">
 
     <xsl:variable name="xpath" select="gn-fn-metadata:getXPath(.)"/>
     <xsl:variable name="isoType" select="if (../@gco:isoType) then ../@gco:isoType else ''"/>
@@ -214,16 +214,16 @@
       <xsl:with-param name="value" select="."/>
       <xsl:with-param name="cls" select="local-name()"/>
       <xsl:with-param name="xpath" select="$xpath"/>
-      <xsl:with-param name="directive" select="'gn-field-duration'"/>
+      <xsl:with-param name="type" select="'data-gn-field-duration-div'"/>
       <xsl:with-param name="editInfo" select="gn:element"/>
       <xsl:with-param name="parentEditInfo" select="../gn:element"/>
     </xsl:call-template>
 
-  </xsl:template> -->
+  </xsl:template>
 
 
   <!-- Topic categories boxed -->
-  <!-- <xsl:template mode="mode-iso19139"
+  <xsl:template mode="mode-iso19139"
                 match="gmd:topicCategory[position() =1 and $schema='iso19139.gemini23']"
                 priority="2200">
 
@@ -261,7 +261,7 @@
           <xsl:with-param name="value" select="$topicCategories"/>
           <xsl:with-param name="cls" select="local-name()"/>
           <xsl:with-param name="xpath" select="$xpath"/>
-          <xsl:with-param name="directive" select="'gn-topiccategory-selector'"/>
+          <xsl:with-param name="type" select="'data-gn-topiccategory-selector-div'"/>
           <xsl:with-param name="editInfo" select="gn:element"/>
           <xsl:with-param name="parentEditInfo" select="../gn:element"/>
         </xsl:call-template>
@@ -269,5 +269,5 @@
     </xsl:call-template>
 
 
-  </xsl:template> -->
+  </xsl:template>
 </xsl:stylesheet>
