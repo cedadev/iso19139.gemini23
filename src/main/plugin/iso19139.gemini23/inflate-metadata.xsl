@@ -27,6 +27,7 @@
                 xmlns:gmd="http://www.isotc211.org/2005/gmd"
                 xmlns:gco="http://www.isotc211.org/2005/gco"
                 xmlns:gml="http://www.opengis.net/gml/3.2"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
                 version="2.0">
 
 
@@ -78,9 +79,12 @@
       </xsl:if>
       <xsl:copy-of select="gmd:environmentDescription" />
 
-      <xsl:variable name="hasTimePeriodElement" select="count(gmd:extent/gmd:EX_Extent/gmd:temporalElement/gmd:EX_TemporalExtent/gmd:extent/gml:TimePeriod/gml:beginPosition) > 0" />
+<xsl:variable name="hasTimePeriodElement" select="count(gmd:extent/gmd:EX_Extent/gmd:temporalElement/gmd:EX_TemporalExtent/gmd:extent/gml:TimePeriod/gml:beginPosition) > 0" />
       <xsl:variable name="hasTimeInstantElement" select="count(gmd:extent/gmd:EX_Extent/gmd:temporalElement/gmd:EX_TemporalExtent/gmd:extent/gml:TimeInstant) > 0" />
       <xsl:variable name="hasBboxElement" select="count(gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox) > 0" />
+      <xsl:variable name="hasVerticalCRSElement" select="count(gmd:extent/gmd:EX_Extent/gmd:verticalElement/gmd:EX_VerticalExtent/gmd:verticalCRS) > 0" />
+      <xsl:variable name="hasVerticalExtentMin" select="count(gmd:extent/gmd:EX_Extent/gmd:verticalElement/gmd:EX_VerticalExtent/gmd:minimumValue) > 0" />
+      <xsl:variable name="hasVerticalExtentMax" select="count(gmd:extent/gmd:EX_Extent/gmd:verticalElement/gmd:EX_VerticalExtent/gmd:maximumValue) > 0" />
 
       <xsl:choose>
         <xsl:when test="not(gmd:extent)">
@@ -93,7 +97,7 @@
           </gmd:extent>
         </xsl:when>
 
-        <xsl:when test="(not($hasTimePeriodElement) and not($hasTimeInstantElement)) or not($hasBboxElement)">
+       <xsl:when test="(not($hasTimePeriodElement) and not($hasTimeInstantElement)) or not($hasBboxElement) or not($hasVerticalCRSElement)">
           <!-- Add  temporal extent or bbox elements (if missing) to the first gmd:extent -->
           <xsl:for-each select="gmd:extent">
             <xsl:copy>
@@ -125,7 +129,41 @@
                         </xsl:otherwise>
                       </xsl:choose>
 
-                      <xsl:apply-templates select="gmd:verticalElement" />
+                      <xsl:choose>
+                        <!-- add vertical CRS if it's missing-->
+                        <!-- but only if vertical min and max are present -->
+                        <xsl:when test="($hasVerticalExtentMin and $hasVerticalExtentMax) and not($hasVerticalCRSElement)">
+                          <xsl:for-each select="gmd:verticalElement">
+                            <xsl:copy>
+                              <xsl:copy-of select="@*" />
+
+                              <xsl:choose>
+                                <xsl:when test="position() = 1">
+                                  <xsl:for-each select="gmd:EX_VerticalExtent">
+                                    <xsl:copy>
+                                      <xsl:copy-of select="@*" />
+
+                                      <xsl:apply-templates select="gmd:minimumValue" />
+                                      <xsl:apply-templates select="gmd:maximumValue" />
+                                      <xsl:message>Got vertical extent but no CRS</xsl:message>
+                                      <xsl:call-template name="addVerticalCRSElement" />
+                                    </xsl:copy>
+                                  </xsl:for-each>
+                                </xsl:when>
+
+                                <xsl:otherwise>
+                                  <xsl:apply-templates select="*"/>
+                                </xsl:otherwise>
+                              </xsl:choose>
+
+                            </xsl:copy>
+                          </xsl:for-each>
+                        </xsl:when>
+                        <xsl:otherwise>
+                          <xsl:apply-templates select="gmd:verticalElement" />
+                        </xsl:otherwise>
+                      </xsl:choose>
+
                     </xsl:copy>
 
                   </xsl:for-each>
@@ -139,6 +177,7 @@
           </xsl:for-each>
         </xsl:when>
 
+
         <xsl:otherwise>
           <xsl:copy-of select="gmd:extent" />
         </xsl:otherwise>
@@ -146,6 +185,10 @@
       
       <xsl:copy-of select="gmd:supplementalInformation" />
     </xsl:copy>
+  </xsl:template>
+
+  <xsl:template name="addVerticalCRSElement">
+       <gmd:verticalCRS xlink:href='http://www.opengis.net/def/crs/EPSG/0/5701'/>
   </xsl:template>
 
 
