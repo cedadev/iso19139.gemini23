@@ -519,6 +519,11 @@
     <description>Brief narrative summary of the resource</description>
     <condition>mandatory</condition>
   </element>
+  <element name="gmd:abstract" id="25.0" context="srv:SV_ServiceIdentification">
+    <label>Abstract</label>
+    <description>Brief narrative summary of the resource including a conditional statement on the spatial resolution for services</description>
+    <condition>mandatory</condition>
+  </element>
   <element name="gmd:accessConstraints" id="70.0">
     <label>Limitations on Public Access</label>
     <description>Access constraints applied to assure the protection of privacy or intellectual
@@ -884,14 +889,14 @@
   </element>
   <element name="gmd:date" id="362.0" context="gmd:CI_Citation">
     <condition>mandatory</condition>
-    <label>Dataset Reference Date</label>
+    <label>Date</label>
     <btnClass>fa fa-calendar-plus-o</btnClass>
     <description>Reference date for the cited resource</description>
     <_condition>M</_condition>
   </element>
   <element name="gmd:date" id="394.0" context="gmd:CI_Date">
     <condition>mandatory</condition>
-    <label>Dataset Reference Date</label>
+    <label>Reference Date</label>
     <btnClass>fa fa-calendar-plus-o</btnClass>
     <description>Reference date for the cited resource</description>
     <_condition>M</_condition>
@@ -1298,9 +1303,9 @@
     </_condition>
   </element>
   <element name="gmd:geographicIdentifier" id="349.0">
-    <label>Geographic identifier</label>
-    <description>Identifier used to represent a geographic area</description>
-    <condition>mandatory</condition>
+    <label>Extent</label>
+    <description>Extent of the data resource</description>
+    <condition>optional</condition>
   </element>
   <element name="gmd:geometricObjectCount" id="185.0">
     <label>Geometric object count</label>
@@ -1350,6 +1355,11 @@
     <label>Hierarchy level name</label>
     <description>Name of the hierarchy level for which the metadata is provided</description>
     <condition>conditional</condition>
+    <helper>
+      <option value="service">Service</option>
+      <option value="series">Series</option>
+      <option value="dataset">Dataset</option>
+    </helper>
   </element>
   <element name="gmd:hoursOfService" id="391.0">
     <label>Hours of service</label>
@@ -1499,7 +1509,7 @@
   <element name="gmd:maximumValue" id="356.0">
     <label>Maximum value</label>
     <description>Highest vertical extent contained in the dataset</description>
-    <condition>mandatory</condition>
+    <condition>optional</condition>
   </element>
   <element name="gmd:maximumValue" context="gmd:EX_VerticalExtent" id="355.0">
     <label>Maximum value</label>
@@ -1563,7 +1573,7 @@
   <element name="gmd:minimumValue" id="355.0">
     <label>Minimum value</label>
     <description>Lowest vertical extent contained in the dataset</description>
-    <condition>mandatory</condition>
+    <condition>optional</condition>
   </element>
   <element name="gmd:minimumValue" context="gmd:EX_VerticalExtent" id="355.0">
     <label>Minimum value</label>
@@ -2130,6 +2140,14 @@
     <condition>mandatory</condition>
   </element>
   <element name="gmd:pointOfContact" id="29.0" context="gmd:MD_DataIdentification">
+    <label>Responsible organisation</label>
+    <btnLabel>Add contact</btnLabel>
+    <btnClass>fa fa-user-plus</btnClass>
+    <description>Details of the organisation(s) responsible for the establishment, management, maintenance and distribution of the data resource
+    </description>
+    <condition>mandatory</condition>
+  </element>
+  <element name="gmd:pointOfContact" id="29.0" context="srv:SV_ServiceIdentification">
     <label>Responsible organisation</label>
     <btnLabel>Add contact</btnLabel>
     <btnClass>fa fa-user-plus</btnClass>
@@ -2885,22 +2903,22 @@
     <label>Parameter direction</label>
   </element>
   <element name="srv:serviceType"><!-- readonly="true" -->
-    <label>Service Type</label>
-    <description>Service type name from a registry of services. For example, the values of the
-      nameSpace and name attributes of GeneralName may be 'OGC' and 'catalogue'
+    <label>Spatial data service type</label>
+    <description>Generic name of the service type
     </description>
     <helper>
-      <option value="OGC:WMS">OGC Web Map Service (OGC:WMS)</option>
+      <!--<option value="OGC:WMS">OGC Web Map Service (OGC:WMS)</option>
       <option value="OGC:WFS">OGC Web Feature Service (OGC:WFS)</option>
       <option value="OGC:WCS">OGC Web Coverage Service (OGC:WCS)</option>
       <option value="W3C:HTML:DOWNLOAD">Download (W3C:HTML:DOWNLOAD)</option>
-      <option value="W3C:HTML:LINK">Information (W3C:HTML:LINK)</option>
+      <option value="W3C:HTML:LINK">Information (W3C:HTML:LINK)</option>-->
       <!--INSPIRE Service type defined in MD IR / 1.3.1 Spatial data service type -->
-      <option value="discovery">INSPIRE Discovery Service (discovery)</option>
-      <option value="view">INSPIRE View Service (view)</option>
-      <option value="download">INSPIRE Download Service (download)</option>
-      <option value="transformation">INSPIRE Transformation Service (transformation)</option>
-      <option value="other">INSPIRE Other Services (other)</option>
+      <option value="discovery">Discovery Service (discovery)</option>
+      <option value="view">View Service (view)</option>
+      <option value="download">Download Service (download)</option>
+      <option value="transformation">Transformation Service (transformation)</option>
+      <option value="invoke">Invoke Spatial Data Service (invoke)</option>
+      <option value="other">Other Service (other)</option>
     </helper>
   </element>
   <element name="srv:serviceTypeVersion">
@@ -2930,8 +2948,8 @@
     </description>
   </element>
   <element name="srv:operatesOn">
-    <label>Operates On</label>
-    <description>Provides information on the datasets that the service operates on</description>
+    <label>Coupled resource</label>
+    <description>Identifier of a dataset that the service operates on</description>
   </element>
   <element name="srv:operationName">
     <label>Operation Name</label>
@@ -3131,8 +3149,8 @@
     <description>CharacterEncoding</description>
   </element>
   <element name="uuidref">
-    <label>Metadata uuid</label>
-    <description>Unique identifier</description>
+    <label>Data UUID</label>
+    <description>Identifies the data resource on which the service operates</description>
   </element>
   <element name="uom">
     <label>Units of measure</label>
@@ -3185,7 +3203,7 @@
     <description/>
   </element>
   <element name="gco:LocalName">
-    <label>Local name</label>
+    <label>Name</label>
     <description/>
   </element>
   <element name="gco:ScopedName">
@@ -3286,9 +3304,8 @@
     </description>
   </element>
   <element name="xlink:href">
-    <label>Link href</label>
-    <description>Supplies the data that allows an XLink application to find a remote resource (or
-      resource fragment) [W3C XLINK]
+    <label>Data Metadata URL</label>
+    <description>The corresponding URL for the published data metadata record. This may be an OGC CSW GetRecordById request or an address of a metadata instance in a WAF
     </description>
   </element>
   <!-- ==================================================== -->
@@ -3493,5 +3510,54 @@
   </element>
  <element name="gmd:MD_DimensionNameTypeCode">
   <label>Dimension Name Type Code</label>
+  </element>
+
+<element name="gmx:ML_ProjectedCRS">
+  <label>Projected CRS</label>
+  </element>
+<element name="gml:DerivedCRS">
+  <label>Derived CRS</label>
+  </element>
+<element name="gmx:ML_DerivedCRS">
+  <label>Derived CRS</label>
+  </element>
+<element name="gml:GeodeticCRS">
+  <label>Geodetic CRS</label>
+  </element>
+<element name="gmx:ML_GeodeticCRS">
+  <label>Geodetic CRS</label>
+  </element>
+<element name="gmx:ML_VerticalCRS">
+  <label>Vertical CRS</label>
+  </element>
+<element name="gml:EngineeringCRS">
+  <label>Engineering CRS</label>
+  </element>
+<element name="gmx:ML_EngineeringCRS">
+  <label>Engineering CRS</label>
+  </element>
+<element name="gml:ImageCRS">
+  <label>Image CRS</label>
+  </element>
+<element name="gmx:ML_ImageCRS">
+  <label>Image CRS</label>
+  </element>
+<element name="gml:TemporalCRS">
+  <label>Temporal CRS</label>
+  </element>
+<element name="gmx:ML_TemporalCRS">
+  <label>Temporal CRS</label>
+  </element>
+<element name="gml:GeographicCRS">
+  <label>Geographic CRS</label>
+  </element>
+<element name="gml:GeocentricCRS">
+  <label>Geocentric CRS</label>
+  </element>
+<element name="gml:CompoundCRS">
+  <label>Compound CRS</label>
+  </element>
+<element name="gmx:ML_CompoundCRS">
+  <label>Compound CRS</label>
   </element>
   </labels>

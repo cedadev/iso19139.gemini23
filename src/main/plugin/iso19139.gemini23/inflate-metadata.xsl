@@ -128,6 +128,7 @@
                           <xsl:apply-templates select="gmd:temporalElement" />
                         </xsl:otherwise>
                       </xsl:choose>
+                      
 
                       <xsl:choose>
                         <!-- add vertical CRS if it's missing-->
@@ -164,10 +165,15 @@
                         </xsl:otherwise>
                       </xsl:choose>
 
+
                     </xsl:copy>
 
                   </xsl:for-each>
                 </xsl:when>
+            
+                
+
+
 
                 <xsl:otherwise>
                   <xsl:apply-templates select="*"/>
@@ -222,6 +228,14 @@
         </gmd:extent>
       </gmd:EX_TemporalExtent>
     </gmd:temporalElement>
+  </xsl:template>
+
+   <xsl:template name="addVerticalCRSElement">
+    <gmd:verticalElement>
+       <gmd:EX_VerticalExtent>
+         <gmd:verticalCRS xlink:href='http://www.opengis.net/def/crs/EPSG/0/5701'/>
+       </gmd:EX_VerticalExtent>
+     </gmd:verticalElement>
   </xsl:template>
 
   <xsl:template match="@*|node()">
