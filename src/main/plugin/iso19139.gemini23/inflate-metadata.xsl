@@ -193,9 +193,6 @@
     </xsl:copy>
   </xsl:template>
 
-  <xsl:template name="addVerticalCRSElement">
-       <gmd:verticalCRS xlink:href='http://www.opengis.net/def/crs/EPSG/0/5701'/>
-  </xsl:template>
 
 
   <xsl:template name="addBboxElement">
