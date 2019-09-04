@@ -233,4 +233,5 @@
   <addAccessConstraints>Access constraints</addAccessConstraints>
   <addUseConstraints>Add use contraints</addUseConstraints>
   <addContact>Add contact</addContact>
+  <addVerticalExtent>Vertical Extent</addVerticalExtent>
 </strings>

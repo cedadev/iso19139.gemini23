@@ -889,14 +889,14 @@
   </element>
   <element name="gmd:date" id="362.0" context="gmd:CI_Citation">
     <condition>mandatory</condition>
-    <label>Dataset Reference Date</label>
+    <label>Date</label>
     <btnClass>fa fa-calendar-plus-o</btnClass>
     <description>Reference date for the cited resource</description>
     <_condition>M</_condition>
   </element>
   <element name="gmd:date" id="394.0" context="gmd:CI_Date">
     <condition>mandatory</condition>
-    <label>Dataset Reference Date</label>
+    <label>Reference Date</label>
     <btnClass>fa fa-calendar-plus-o</btnClass>
     <description>Reference date for the cited resource</description>
     <_condition>M</_condition>
@@ -1303,9 +1303,9 @@
     </_condition>
   </element>
   <element name="gmd:geographicIdentifier" id="349.0">
-    <label>Geographic identifier</label>
-    <description>Identifier used to represent a geographic area</description>
-    <condition>mandatory</condition>
+    <label>Extent</label>
+    <description>Extent of the data resource</description>
+    <condition>optional</condition>
   </element>
   <element name="gmd:geometricObjectCount" id="185.0">
     <label>Geometric object count</label>
@@ -1355,6 +1355,11 @@
     <label>Hierarchy level name</label>
     <description>Name of the hierarchy level for which the metadata is provided</description>
     <condition>conditional</condition>
+    <helper>
+      <option value="service">Service</option>
+      <option value="series">Series</option>
+      <option value="dataset">Dataset</option>
+    </helper>
   </element>
   <element name="gmd:hoursOfService" id="391.0">
     <label>Hours of service</label>
@@ -1504,7 +1509,7 @@
   <element name="gmd:maximumValue" id="356.0">
     <label>Maximum value</label>
     <description>Highest vertical extent contained in the dataset</description>
-    <condition>mandatory</condition>
+    <condition>optional</condition>
   </element>
   <element name="gmd:maximumValue" context="gmd:EX_VerticalExtent" id="355.0">
     <label>Maximum value</label>
@@ -1568,7 +1573,7 @@
   <element name="gmd:minimumValue" id="355.0">
     <label>Minimum value</label>
     <description>Lowest vertical extent contained in the dataset</description>
-    <condition>mandatory</condition>
+    <condition>optional</condition>
   </element>
   <element name="gmd:minimumValue" context="gmd:EX_VerticalExtent" id="355.0">
     <label>Minimum value</label>
@@ -3198,7 +3203,7 @@
     <description/>
   </element>
   <element name="gco:LocalName">
-    <label>Local name</label>
+    <label>Name</label>
     <description/>
   </element>
   <element name="gco:ScopedName">
