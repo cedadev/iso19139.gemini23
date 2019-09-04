@@ -44,6 +44,7 @@
     or @gco:isoType = $editorConfig/editor/fieldsWithFieldset/name)]|
       gmd:report/*|
       gmd:result/*|
+      gmd:verticalCRS[count(gml:*) > 0]|
       gmd:extent[name(..)!='gmd:EX_TemporalExtent']|
       *[namespace-uri(.) != $gnUri and $isFlatMode = false() and gmd:* and not(gco:CharacterString) and not(gmd:URL)]">
     <xsl:param name="schema" select="$schema" required="no"/>

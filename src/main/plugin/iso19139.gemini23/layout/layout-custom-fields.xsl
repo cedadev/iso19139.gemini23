@@ -311,4 +311,31 @@
     </xsl:call-template>
   </xsl:template>
 
+  <!-- Template to handled gmd:verticalCRS without children, just xlink:href -->
+ <xsl:template mode="mode-iso19139"
+               match="gmd:verticalCRS[(count(gml:*) = 0) and $schema='iso19139.gemini23']"
+               priority="2200">
+
+   <xsl:param name="schema" select="$schema" required="no"/>
+   <xsl:param name="labels" select="$labels" required="no"/>
+   <xsl:param name="overrideLabel" select="''" required="no"/>
+
+   <xsl:variable name="xpath" select="gn-fn-metadata:getXPath(.)"/>
+   <xsl:variable name="isoType" select="if (../@gco:isoType) then ../@gco:isoType else ''"/>
+
+   <xsl:variable name="labelConfig" select="gn-fn-metadata:getLabel($schema, name(), $labels, name(..), $isoType, $xpath)"/>
+
+   <xsl:call-template name="render-element">
+     <xsl:with-param name="label" select="$labelConfig"/>
+     <xsl:with-param name="value"
+                     select="@xlink:href"/>
+     <xsl:with-param name="name"
+                     select="if ($isEditing) then concat(gn:element/@ref, '_xlinkCOLONhref') else ''"/>
+     <xsl:with-param name="cls" select="local-name()"/>
+     <xsl:with-param name="editInfo" select="gn:element"/>
+     <xsl:with-param name="isDisabled" select="false()"/>
+   </xsl:call-template>
+
+
+ </xsl:template>
 </xsl:stylesheet>

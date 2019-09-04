@@ -242,7 +242,7 @@
     <name>gmd:topicCategory</name>
 <!--     <name>gmd:spatialRepresentationType</name> -->
     <name>gmd:resourceMaintenance</name>
-    <name>gmd:verticalCRS</name>
+    <!--<name>gmd:verticalCRS</name>-->
     <name>gmd:geographicIdentifier</name>
     <name>srv:serviceType</name>
   </fieldsWithFieldset>
