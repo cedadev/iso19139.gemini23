@@ -242,7 +242,7 @@
     <name>gmd:topicCategory</name>
 <!--     <name>gmd:spatialRepresentationType</name> -->
     <name>gmd:resourceMaintenance</name>
-    <name>gmd:verticalCRS</name>
+    <!--<name>gmd:verticalCRS</name>-->
     <name>gmd:geographicIdentifier</name>
     <name>srv:serviceType</name>
   </fieldsWithFieldset>
@@ -3414,15 +3414,52 @@
           </field>
 
           <field
-            xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:temporalElement">
+            xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:temporalElement" 
+            if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0">
+          </field> 
+
+          <field
+            xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:extent/gmd:EX_Extent/gmd:temporalElement" 
+            if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0">
           </field>
 
           <field
-            xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:verticalElement">
+            xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:verticalElement"
+            if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0">
           </field>
+
+          <field
+            xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:extent/gmd:EX_Extent/gmd:verticalElement"
+            if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0">
+          </field>
+
+          <!-- addverticalelement datasets -->
 
           <action type="add" btnLabel="addVerticalExtent" name="addVerticalExtent" or="verticalElement"
                   in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent">
+            <template>
+              <snippet>
+
+
+              <gmd:verticalElement>
+                <gmd:EX_VerticalExtent>
+                  <gmd:minimumValue>
+                    <gco:Real/>
+                  </gmd:minimumValue>
+                  <gmd:maximumValue>
+                    <gco:Real/>
+                  </gmd:maximumValue>
+                  <gmd:verticalCRS xlink:href='http://www.opengis.net/def/crs/EPSG/0/5701'/>
+                </gmd:EX_VerticalExtent>
+              </gmd:verticalElement>
+              </snippet>
+            </template>
+          </action>
+
+           <!-- addverticalelement services -->
+
+          <action type="add" btnLabel="addVerticalExtent" name="addVerticalExtent" or="verticalElement"
+                  in="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:extent/gmd:EX_Extent">
             <template>
               <snippet>
 
