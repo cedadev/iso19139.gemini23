@@ -155,12 +155,12 @@
         data-insert-modes=""
         data-variables="gmd:role/gmd:CI_RoleCode/@codeListValue~{role}"/>
     </for>
-    <for name="gmd:report" addDirective="data-gn-directory-entry-selector">
+    <for name="gmd:result" addDirective="data-gn-directory-entry-selector">
       <directiveAttributes
         data-template-add-action="true"
         data-search-action="true"
         data-popup-action="true"
-        data-filter='{"_root": "gmd:DQ_DomainConsistency"}'
+        data-filter='{"_root": "gmd:DQ_ConformanceResult"}'
         data-insert-modes=""
         data-template-type="report"/>
     </for>
@@ -245,6 +245,7 @@
     <!--<name>gmd:verticalCRS</name>-->
     <name>gmd:geographicIdentifier</name>
     <name>srv:serviceType</name>
+    <name>gmd:specification</name>
   </fieldsWithFieldset>
 
   <multilingualFields>
