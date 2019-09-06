@@ -170,7 +170,7 @@
     <description>Adherence to rules of the conceptual schema</description>
   </element>
   <element name="gmd:DQ_ConformanceResult" id="129.0">
-    <label>Conformity</label>
+    <label>Report</label>
     <description>Statement of conformity with the product specification or user requirement against which the data is being evaluated
     </description>
     <condition>mandatory</condition>
@@ -182,8 +182,8 @@
     </description>
   </element>
   <element name="gmd:DQ_DomainConsistency" id="113.0">
-    <label>Domain consistency</label>
-    <description>Adherence of values to the value domains</description>
+    <label>Conformity</label>
+    <description>Statement of conformity with the product specification or user requirement against which the data is being evaluated</description>
   </element>
   <element name="gmd:DQ_FormatConsistency" id="114.0">
     <label>Format consistency</label>
@@ -2114,8 +2114,8 @@
     </description>
   </element>
   <element name="gmd:pass" id="132.0">
-    <label>Pass</label>
-    <description>Indication of the conformance result where 0 = fail and 1 = pass</description>
+    <label>Degree</label>
+    <description>The purpose of this element is to identify the conformity of the data resource to the cited specification</description>
     <condition>mandatory</condition>
   </element>
   <element name="gmd:peakResponse" id="263.0">
@@ -2468,8 +2468,7 @@
   <element name="gmd:specification" id="130.0" context="gmd:DQ_ConformanceResult">
     <condition>mandatory</condition>
     <label>Specification</label>
-    <description>Citation of product specification or user requirement against which data is
-      being evaluated
+    <description>Citation of the product specification or user requirement against which data resource is evaluated
     </description>
   </element>
   <element name="gmd:specification" id="288.0" context="gmd:MD_Format">
