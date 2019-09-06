@@ -1172,7 +1172,7 @@
   </element>
   <element name="gmd:explanation" id="131.0">
     <label>Explanation</label>
-    <description>Explanation of the meaning of conformance for this result</description>
+    <description>Meaning of conformance for this result</description>
     <condition>mandatory</condition>
   </element>
   <element name="gmd:extendedElementInformation" id="305.0">
@@ -2293,11 +2293,10 @@
     </description>
   </element>
   <element name="gmd:report" id="80.0">
-    <label>Report</label>
-    <description>Quantitative quality information for the data specified by the
-      scope
+    <label>Conformity</label>
+    <description>Statement of conformity with the product specification or user requirement against which the data is being evaluated
     </description>
-    <condition>conditional</condition>
+    <condition>mandatory</condition>
   </element>
   <element name="gmd:resolution" id="182.0">
     <label>Resolution</label>

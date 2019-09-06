@@ -98,9 +98,10 @@
   <endPosition>End</endPosition>
   <conformity>Conformity</conformity>
   <conformity_title>Title</conformity_title>
-  <conformity_date>Date</conformity_date>
+  <conformity_date>Reference Date</conformity_date>
   <explanation>Explanation</explanation>
-  <pass>Conformity</pass>
+  <conformity_explanation>Explanation</conformity_explanation>
+  <pass>Degree</pass>
   <indeterminatePosition>Indeterminate position</indeterminatePosition>
   <pointOfContact>Contact for the resource</pointOfContact>
   <metadataPointOfContact>Contact for the metadata</metadataPointOfContact>
@@ -185,8 +186,8 @@
     usage.
   </sds-add-tech-specHelp>
   <sds-tech-spec>Technical specification</sds-tech-spec>
-  <conformity_desc>Tech spec title</conformity_desc>
-  <conformity_linkage>Tech spec URL</conformity_linkage>
+  <conformity_desc>Specification Title</conformity_desc>
+  <conformity_linkage>Specification URL</conformity_linkage>
 
 
   <sds-section-qos>Quality of Service</sds-section-qos>

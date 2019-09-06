@@ -245,6 +245,7 @@
     <!--<name>gmd:verticalCRS</name>-->
     <name>gmd:geographicIdentifier</name>
     <name>srv:serviceType</name>
+    <name>gmd:report</name>
   </fieldsWithFieldset>
 
   <multilingualFields>
@@ -3494,7 +3495,85 @@
         <section xpath="/gmd:MD_Metadata/gmd:referenceSystemInfo"/>
         <section xpath="/gmd:MD_Metadata/gmd:spatialRepresentationInfo"/>
         <section xpath="/gmd:MD_Metadata/gmd:distributionInfo"/>
-        <section xpath="/gmd:MD_Metadata/gmd:dataQualityInfo"/>
+        <section name="gmd:dataQualityInfo">
+          <field xpath="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:scope"/>
+          <!-- <section name="gmd:DQ_DomainConsistency"> -->
+          <field name="gmd:DQ_DomainConsistency" templateModeOnly="true" xpath="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency">
+            <template>
+            <values>
+                <key label="conformity_desc"
+                     xpath="/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:title"
+                     tooltip="gmd:title">
+                  <helper name="gmd:title"
+                          context="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:title"/>
+                </key>
+                <key label="conformity_linkage"
+                     xpath="/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:title/gmx:Anchor/@xlink:href">
+                </key>
+                <key label="conformity_date"
+                     xpath="gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date/gco:Date"
+                     use="gn-date-picker"/>
+                <key label="conformity_explanation"
+                     xpath="/gmd:result/gmd:DQ_ConformanceResult/gmd:explanation"
+                     tooltip="gmd:explanation">
+                  <helper name="gmd:explanation"
+                          context="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:explanation"/>
+                </key>
+                <key label="pass"
+                     xpath="/gmd:result/gmd:DQ_ConformanceResult/gmd:pass/gco:Boolean"
+                     use="gn-checkbox-with-nilreason">
+                  <directiveAttributes
+                    data-tag-name="gmd:pass"
+                    data-nilreason="eval#gmd:result/gmd:DQ_ConformanceResult/gmd:pass/@gco:nilReason"
+                    data-labels='{"true": "conformant", "false": "notConformant", "unknown": "notEvaluated"}'/>
+                </key>
+              </values>
+              <snippet>
+                <gmd:result>
+                  <gmd:DQ_ConformanceResult>
+                    <gmd:specification>
+                      <gmd:CI_Citation>
+                        <gmd:title>
+                          <gmx:Anchor xlink:href="{{conformity_linkage}}">{{conformity_desc}}</gmx:Anchor>
+                        </gmd:title>
+                        <gn:copy select="gmd:alternateTitle"/>
+                        <gmd:date>
+                          <gmd:CI_Date>
+                            <gmd:date>
+                              {{conformity_date}}
+                            </gmd:date>
+                            <gmd:dateType>
+                              <gmd:CI_DateTypeCode
+                                codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode"
+                                codeListValue="publication"/>
+                            </gmd:dateType>
+                          </gmd:CI_Date>
+                        </gmd:date>
+                        <gn:copy select="gmd:edition"/>
+                        <gn:copy select="gmd:editionDate"/>
+                        <gn:copy select="gmd:identifier"/>
+                        <gn:copy select="gmd:citedResponsibleParty"/>
+                        <gn:copy select="gmd:presentationForm"/>
+                        <gn:copy select="gmd:series"/>
+                        <gn:copy select="gmd:otherCitationDetails"/>
+                        <gn:copy select="gmd:collectiveTitle"/>
+                        <gn:copy select="gmd:ISBN"/>
+                        <gn:copy select="gmd:ISSN"/>
+                      </gmd:CI_Citation>
+                    </gmd:specification>
+                    <gmd:explanation>
+                      {{conformity_explanation}}
+                    </gmd:explanation>
+                    {{pass}}
+                  </gmd:DQ_ConformanceResult>
+                </gmd:result>
+              </snippet>
+            </template>
+          </field>
+        <!-- </section> -->
+        <field name="gmd:DQ_TopologicalConsistency" xpath="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_TopologicalConsistency"/>
+          <field xpath="/gmd:MD_Metadata/gmd:dataQualityInfo//gmd:DQ_DataQuality/gmd:lineage"/>
+        </section>
         <section name="gmd:MD_Metadata">
           <field xpath="/gmd:MD_Metadata/gmd:fileIdentifier"/>
           <field xpath="/gmd:MD_Metadata/gmd:language" or="language" in="/gmd:MD_Metadata"/>
