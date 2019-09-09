@@ -1344,10 +1344,9 @@
       resource
     </description>
   </element>
-  <element name="gmd:hierarchyLevel" id="6.0">
+  <element name="gmd:hierarchyLevel" context="gmd:MD_Metadata" id="6.0">
     <label>Resource type</label>
-    <description>Scope to which the metadata applies (see annex H for more information about
-      metadata hierarchy levels)
+    <description>Scope to which metadata applies, to distinguish between datasets, series, and services
     </description>
     <condition>mandatory</condition>
   </element>
@@ -1464,8 +1463,8 @@
     </description>
   </element>
   <element name="gmd:level" id="139.0">
-    <label>Resource Type</label>
-    <description>Hierarchical level of the data specified by the scope</description>
+    <label>Quality Scope</label>
+    <description>The specific data to which the data quality information applies, to enable data quality to be reported on a subset of the data resource</description>
     <condition>mandatory</condition>
   </element>
   <element name="gmd:levelDescription" id="141.0">
@@ -2072,6 +2071,12 @@
     <label>Other</label>
     <description>Class of information that does not fall into the other categories to which the
       information applies
+    </description>
+    <condition/>
+  </element> 
+  <element name="gmd:other" context="gmd:MD_ScopeDescription" id="155.0">
+    <label>Scope Description</label>
+    <description>Desciription of the level of scope indicated by the Quality Scope element
     </description>
     <condition/>
   </element>

@@ -247,6 +247,7 @@
     <name>srv:serviceType</name>
     <name>gmd:report</name>
     <name>gmd:specification</name>
+    <name>gmd:scope</name>
   </fieldsWithFieldset>
 
   <multilingualFields>
@@ -3587,9 +3588,10 @@
                  in="/gmd:MD_Metadata"/>
           <field xpath="/gmd:MD_Metadata/gmd:hierarchyLevelName" or="hierarchyLevelName"
                  in="/gmd:MD_Metadata"/> -->
-          <field xpath="/gmd:MD_Metadata/gmd:parentIdentifier"/>
+          <field xpath="/gmd:MD_Metadata/gmd:parentIdentifier" or="parentIdentifier"
+                 in="/gmd:MD_Metadata"  if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
           <field xpath="/gmd:MD_Metadata/gmd:hierarchyLevel"/>
-          <field xpath="/gmd:MD_Metadata/gmd:hierarchyLevelName"/>
+          <field xpath="/gmd:MD_Metadata/gmd:hierarchyLevelName" if="gmd:MD_Metadata/gmd:hierarchyLevel !='dataset'"/>
           <field xpath="/gmd:MD_Metadata/gmd:dateStamp"/>
           <field xpath="/gmd:MD_Metadata/gmd:metadataStandardName"/>
           <field xpath="/gmd:MD_Metadata/gmd:metadataStandardVersion"/>
