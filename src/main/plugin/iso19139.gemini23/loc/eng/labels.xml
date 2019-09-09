@@ -3321,6 +3321,10 @@
       CharacterStrings
     </description>
   </element>
+  <element name="xlink:title">
+    <label>URL title</label>
+    <description></description>
+  </element>
   <element name="xlink:href">
     <label>Data Metadata URL</label>
     <description>The corresponding URL for the published data metadata record. This may be an OGC CSW GetRecordById request or an address of a metadata instance in a WAF
