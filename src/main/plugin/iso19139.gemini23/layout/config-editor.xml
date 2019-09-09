@@ -248,6 +248,7 @@
     <name>gmd:report</name>
     <name>gmd:specification</name>
     <name>gmd:scope</name>
+    <name>gmd:dataQualityInfo</name>
   </fieldsWithFieldset>
 
   <multilingualFields>
