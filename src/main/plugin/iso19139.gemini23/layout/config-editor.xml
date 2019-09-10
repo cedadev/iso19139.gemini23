@@ -3503,7 +3503,7 @@
           <section name="gmd:dataQualityInfo">
             <field xpath="/gmd:MD_Metadata/gmd:dataQualityInfo"/>
           </section>
-          <!-- Start dataQualitySection -->
+          <!-- End dataQualitySection -->
         
         <section name="gmd:MD_Metadata">
           <field xpath="/gmd:MD_Metadata/gmd:fileIdentifier"/>
