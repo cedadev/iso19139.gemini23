@@ -1645,7 +1645,7 @@
       <!-- ====================================================  Service-->
 
   <codelist name="gmd:MD_ScopeCode"
-            displayIf="/ancestor::node()[name()='gmd:MD_Metadata']/gmd:identificationInfo/srv:SV_ServiceIdentification">
+            displayIf="../srv:SV_ServiceIdentification">
     <entry>
       <code>service</code>
       <label>Service</label>
@@ -1657,7 +1657,7 @@
   </codelist>
     <!-- ====================================================  Hierarchy Level-->
   <codelist name="gmd:MD_ScopeCode"
-            displayIf="/ancestor::node()[name()='gmd:MD_Metadata']/gmd:hierarchyLevel">
+            displayIf="../gmd:hierarchyLevel">
     <entry>
       <code>service</code>
       <label>Service</label>
