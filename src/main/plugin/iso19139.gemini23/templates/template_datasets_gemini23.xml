@@ -1,5 +1,6 @@
-<gmd:MD_Metadata xmlns:gsr="http://www.isotc211.org/2005/gsr"
-                 xmlns:gmd="http://www.isotc211.org/2005/gmd"
+<?xml version="1.0" encoding="UTF-8"?>
+<gmd:MD_Metadata xmlns:gmd="http://www.isotc211.org/2005/gmd"
+                 xmlns:gsr="http://www.isotc211.org/2005/gsr"
                  xmlns:gml="http://www.opengis.net/gml/3.2"
                  xmlns:gmx="http://www.isotc211.org/2005/gmx"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -8,18 +9,18 @@
                  xmlns:gss="http://www.isotc211.org/2005/gss"
                  xmlns:gts="http://www.isotc211.org/2005/gts"
                  xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://www.isotc211.org/2005/gmd/gmd.xsd http://www.isotc211.org/2005/srv http://schemas.opengis.net/iso/19139/20060504/srv/srv.xsd http://www.isotc211.org/2005/gmx http://www.isotc211.org/2005/gmx/gmx.xsd">
-   <gmd:fileIdentifier>
+  <gmd:fileIdentifier>
       <gco:CharacterString>ae0e855d-f0a2-438e-855c-6ef5400f4ef3</gco:CharacterString>
-   </gmd:fileIdentifier>
-   <gmd:language>
+  </gmd:fileIdentifier>
+  <gmd:language>
       <gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/php/code_list.php"
                         codeListValue="eng">English</gmd:LanguageCode>
-   </gmd:language>
-   <gmd:hierarchyLevel>
+  </gmd:language>
+  <gmd:hierarchyLevel>
       <gmd:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_ScopeCode"
                         codeListValue="dataset">dataset</gmd:MD_ScopeCode>
-   </gmd:hierarchyLevel>
-   <gmd:contact>
+  </gmd:hierarchyLevel>
+  <gmd:contact>
       <gmd:CI_ResponsibleParty>
          <gmd:organisationName>
             <gco:CharacterString/>
@@ -58,38 +59,32 @@
             </gmd:CI_Contact>
          </gmd:contactInfo>
          <gmd:role>
-            <gmd:CI_RoleCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#CI_RoleCode"
-                             codeListValue="pointOfContact">pointOfContact</gmd:CI_RoleCode>
+            <gmd:CI_RoleCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_RoleCode"
+                             codeListValue="pointOfContact"/>
          </gmd:role>
       </gmd:CI_ResponsibleParty>
   </gmd:contact>
-   <gmd:dateStamp>
+  <gmd:dateStamp>
       <gco:DateTime/>
-   </gmd:dateStamp>
-   <gmd:metadataStandardName>
+  </gmd:dateStamp>
+  <gmd:metadataStandardName>
       <gco:CharacterString>UK GEMINI</gco:CharacterString>
-   </gmd:metadataStandardName>
-   <gmd:metadataStandardVersion>
+  </gmd:metadataStandardName>
+  <gmd:metadataStandardVersion>
       <gco:CharacterString>2.3</gco:CharacterString>
-   </gmd:metadataStandardVersion>
-   <gmd:referenceSystemInfo>
+  </gmd:metadataStandardVersion>
+  <gmd:referenceSystemInfo>
       <gmd:MD_ReferenceSystem>
          <gmd:referenceSystemIdentifier>
             <gmd:RS_Identifier>
                <gmd:code>
-                  <gco:CharacterString>OSGB 1936 / British National Grid (EPSG:27700)</gco:CharacterString>
+                  <gco:CharacterString>http://www.opengis.net/def/crs/EPSG/0/27700</gco:CharacterString>
                </gmd:code>
-               <gmd:codeSpace>
-                  <gco:CharacterString>EPSG</gco:CharacterString>
-               </gmd:codeSpace>
-               <gmd:version>
-                  <gco:CharacterString>8.6</gco:CharacterString>
-               </gmd:version>
             </gmd:RS_Identifier>
          </gmd:referenceSystemIdentifier>
       </gmd:MD_ReferenceSystem>
   </gmd:referenceSystemInfo>
-   <gmd:identificationInfo>
+  <gmd:identificationInfo>
       <gmd:MD_DataIdentification>
          <gmd:citation>
             <gmd:CI_Citation>
@@ -168,8 +163,8 @@
                   </gmd:CI_Contact>
                </gmd:contactInfo>
                <gmd:role>
-                  <gmd:CI_RoleCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#CI_RoleCode"
-                                   codeListValue="publisher">publisher</gmd:CI_RoleCode>
+                  <gmd:CI_RoleCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_RoleCode"
+                                   codeListValue="publisher"/>
                </gmd:role>
             </gmd:CI_ResponsibleParty>
          </gmd:pointOfContact>
@@ -181,24 +176,15 @@
                </gmd:maintenanceAndUpdateFrequency>
             </gmd:MD_MaintenanceInformation>
          </gmd:resourceMaintenance>
-         <gmd:graphicOverview>
-            <gmd:MD_BrowseGraphic>
-               <gmd:fileName>
-                  <gco:CharacterString/>
-               </gmd:fileName>
-               <gmd:fileDescription>
-                  <gco:CharacterString/>
-               </gmd:fileDescription>
-               <gmd:fileType>
-                  <gco:CharacterString/>
-               </gmd:fileType>
-            </gmd:MD_BrowseGraphic>
-         </gmd:graphicOverview>
          <gmd:descriptiveKeywords>
             <gmd:MD_Keywords>
-               <gmd:keyword>
+               <gmd:keyword gco:nilReason="missing">
                   <gco:CharacterString/>
                </gmd:keyword>
+               <gmd:type>
+                  <gmd:MD_KeywordTypeCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_KeywordTypeCode"
+                                          codeListValue="theme"/>
+               </gmd:type>
                <gmd:thesaurusName>
                   <gmd:CI_Citation>
                      <gmd:title>
@@ -210,11 +196,18 @@
                               <gco:Date>2008-06-01</gco:Date>
                            </gmd:date>
                            <gmd:dateType>
-                              <gmd:CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#CI_DateTypeCode"
-                                                   codeListValue="publication">publication</gmd:CI_DateTypeCode>
+                              <gmd:CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode"
+                                                   codeListValue="publication"/>
                            </gmd:dateType>
                         </gmd:CI_Date>
                      </gmd:date>
+                     <gmd:identifier>
+                        <gmd:MD_Identifier>
+                           <gmd:code>
+                              <gmx:Anchor xlink:href="http://localhost:8080/geonetwork/srv/eng/thesaurus.download?ref=external.theme.httpinspireeceuropaeutheme-theme">geonetwork.thesaurus.external.theme.httpinspireeceuropaeutheme-theme</gmx:Anchor>
+                           </gmd:code>
+                        </gmd:MD_Identifier>
+                     </gmd:identifier>
                   </gmd:CI_Citation>
                </gmd:thesaurusName>
             </gmd:MD_Keywords>
@@ -233,7 +226,7 @@
                                           codeListValue="otherRestrictions">otherRestrictions</gmd:MD_RestrictionCode>
                </gmd:accessConstraints>
                <gmd:otherConstraints>
-                  <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/noLimitations">no limitations</gmx:Anchor>
+                  <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1e"/>
                </gmd:otherConstraints>
                <gmd:otherConstraints>
                   <gco:CharacterString/>
@@ -247,14 +240,13 @@
                                           codeListValue="otherRestrictions">otherRestrictions</gmd:MD_RestrictionCode>
                </gmd:useConstraints>
                <gmd:otherConstraints>
-                  <gmx:Anchor xlink:href='http://inspire.ec.europa.eu/metadata-codelist/ConditionsApplyingToAccessAndUse/noConditionsApply'>no conditions apply</gmx:Anchor>
+                  <gmx:Anchor xlink:href="https://os.uk/business/licences/index.html">Use limitation dependent upon licence</gmx:Anchor>
                </gmd:otherConstraints>
             </gmd:MD_LegalConstraints>
          </gmd:resourceConstraints>
          <gmd:spatialRepresentationType>
-            <gmd:MD_SpatialRepresentationTypeCode 
-            codeList='http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_SpatialRepresentationTypeCode' 
-            codeListValue='textTable' />
+            <gmd:MD_SpatialRepresentationTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_SpatialRepresentationTypeCode"
+                                                  codeListValue="textTable"/>
          </gmd:spatialRepresentationType>
          <gmd:spatialResolution>
             <gmd:MD_Resolution>
@@ -296,7 +288,7 @@
                <gmd:temporalElement>
                   <gmd:EX_TemporalExtent>
                      <gmd:extent>
-                        <gml:TimePeriod gml:id="T1">
+                        <gml:TimePeriod gml:id="">
                            <gml:beginPosition/>
                            <gml:endPosition/>
                         </gml:TimePeriod>
@@ -304,23 +296,28 @@
                   </gmd:EX_TemporalExtent>
                </gmd:temporalElement>
                <gmd:verticalElement>
-            <gmd:EX_VerticalExtent>
-              <gmd:minimumValue>
-                <gco:Real/>
-              </gmd:minimumValue>
-              <gmd:maximumValue>
-                <gco:Real/>
-              </gmd:maximumValue>
-              <gmd:verticalCRS xlink:href='http://www.opengis.net/def/crs/EPSG/0/5701'/>
-            </gmd:EX_VerticalExtent>
-          </gmd:verticalElement>
+                  <gmd:EX_VerticalExtent>
+                     <gmd:minimumValue>
+                        <gco:Real/>
+                     </gmd:minimumValue>
+                     <gmd:maximumValue>
+                        <gco:Real/>
+                     </gmd:maximumValue>
+                     <gmd:verticalElement>
+                        <gmd:EX_VerticalExtent>
+                           <gmd:verticalCRS xlink:href="http://www.opengis.net/def/crs/EPSG/0/5701"/>
+                        </gmd:EX_VerticalExtent>
+                     </gmd:verticalElement>
+                  </gmd:EX_VerticalExtent>
+               </gmd:verticalElement>
             </gmd:EX_Extent>
          </gmd:extent>
       </gmd:MD_DataIdentification>
-   </gmd:identificationInfo>
-   <gmd:distributionInfo>
+  </gmd:identificationInfo>
+  <gmd:distributionInfo>
       <gmd:MD_Distribution>
-         <gmd:distributionFormat>
+         <gmd:distributionFormat xmlns:gn="http://www.fao.org/geonetwork"
+                                 xmlns:srv="http://www.isotc211.org/2005/srv">
             <gmd:MD_Format>
                <gmd:name>
                   <gco:CharacterString/>
@@ -328,6 +325,9 @@
                <gmd:version>
                   <gco:CharacterString/>
                </gmd:version>
+               <gmd:specification>
+                  <gco:CharacterString/>
+               </gmd:specification>
             </gmd:MD_Format>
          </gmd:distributionFormat>
          <gmd:transferOptions>
@@ -347,7 +347,7 @@
          </gmd:transferOptions>
       </gmd:MD_Distribution>
   </gmd:distributionInfo>
-   <gmd:dataQualityInfo>
+  <gmd:dataQualityInfo>
       <gmd:DQ_DataQuality>
          <gmd:scope>
             <gmd:DQ_Scope>
@@ -357,44 +357,32 @@
                </gmd:level>
             </gmd:DQ_Scope>
          </gmd:scope>
-         <gmd:report 
-    xmlns:gmd="http://www.isotc211.org/2005/gmd" 
-    xmlns:gco="http://www.isotc211.org/2005/gco" 
-    xmlns:gmx="http://www.isotc211.org/2005/gmx" 
-    xmlns:xlink="http://www.w3.org/1999/xlink">
-    <gmd:DQ_DomainConsistency>
-        <gmd:result>
-            <gmd:DQ_ConformanceResult>
-                <gmd:specification>
-                    <gmd:CI_Citation>
+         <gmd:report>
+            <gmd:DQ_DomainConsistency>
+               <gmd:DQ_ConformanceResult>
+                  <gmd:specification>
+                     <gmd:CI_Citation>
                         <gmd:title>
-                            <gmx:Anchor xlink:href="http://data.europa.eu/eli/reg/2010/1089">
-                                Commission Regulation (EU) No 1089/2010 of 23 November 2010 implementing Directive 
-                                2007/2/EC of the European Parliament and of the Council as regards interoperability 
-                                of spatial datasets and services</gmx:Anchor>
+                           <gmx:Anchor xlink:href=""/>
                         </gmd:title>
                         <gmd:date>
-                            <gmd:CI_Date>
-                                <gmd:date>
-                                    <gco:Date>2010-12-08</gco:Date>
-                                </gmd:date>
-                                <gmd:dateType>
-                                    <gmd:CI_DateTypeCode 
-                                        codeList='http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#CI_DateTypeCode' 
-                                        codeListValue='publication' />
-                                </gmd:dateType>
-                            </gmd:CI_Date>
+                           <gmd:CI_Date>
+                              <gmd:date/>
+                              <gmd:dateType>
+                                 <gmd:CI_DateTypeCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode"
+                                                      codeListValue="publication"/>
+                              </gmd:dateType>
+                           </gmd:CI_Date>
                         </gmd:date>
-                    </gmd:CI_Citation>
-                </gmd:specification>
-                <!-- Explanation is a required element but can be empty -->
-                <gmd:explanation gco:nilReason="inapplicable"/>
-                <!-- Conformance has no been evaluated -->
-                <gmd:pass gco:nilReason="unknown" />
-            </gmd:DQ_ConformanceResult>
-        </gmd:result>
-    </gmd:DQ_DomainConsistency>
-</gmd:report>
+                     </gmd:CI_Citation>
+                  </gmd:specification>
+                  <gmd:explanation gco:nilReason="inapplicable"/>
+                  <gmd:pass>
+                     <gco:Boolean/>
+                  </gmd:pass>
+               </gmd:DQ_ConformanceResult>
+            </gmd:DQ_DomainConsistency>
+         </gmd:report>
          <gmd:lineage>
             <gmd:LI_Lineage>
                <gmd:statement>
