@@ -3272,6 +3272,7 @@
           <field name="accessConstraints" del="."
                  xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints[gmd:MD_LegalConstraints/gmd:accessConstraints]">
           </field>
+          <text ref="limitations_help"/>
 
           <action type="add" btnLabel="addAccessConstraints" name="addAccessConstraints" or="resourceConstraints"
                   in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification">
@@ -3319,6 +3320,8 @@
           <field name="useConstraints" del="."
                  xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints[gmd:MD_LegalConstraints/gmd:useConstraints]">
           </field>
+
+          <text ref="use_help"/>
 
           <action type="add" btnLabel="addUseConstraints" name="addUseConstraints" or="resourceConstraints"
                   in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification">

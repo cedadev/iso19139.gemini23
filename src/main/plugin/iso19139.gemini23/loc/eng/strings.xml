@@ -235,4 +235,30 @@
   <addUseConstraints>Add use contraints</addUseConstraints>
   <addContact>Add contact</addContact>
   <addVerticalExtent>Vertical Extent</addVerticalExtent>
+  <!-- Custom help for Gemini 2.3 elements -->
+  <limitations_help>
+    <div class="row">
+    <div class="col-xs-offset-2 col-xs-8">
+      <p class="help-block">The purpose of this element is to identify any external restrictions on access to the data such as licence arrangements.</p>
+      <ol>
+        <li>Provide information on any limitations.</li>
+        <li>The most common access restriction should be identified.</li>
+        <li>Where there are no limitations on public access, this should be stated.</li>
+        <li>More than one value may be included.</li>
+        <li>For INSPIRE: If no limitations apply, enter 'No limitations'.</li>
+      </ol>
+      </div>
+  </div>
+</limitations_help>
+  <use_help>
+    <div class="row">
+    <div class="col-xs-offset-2 col-xs-8">
+      <p class="help-block">The purpose of this element is to describe any restrictions on usage of the data (as opposed to access).</p>
+      <ol>
+        <li>Provide information on any constraints to using the resource, e.g. licensing, fees, usage restrictions, or refer to a URL where this information is available, e.g. a licence document. If entering a URL, enter this as a sub-element, not as part of free text. Where relevant, Data Provider licence information should be provided in the form of a Licence Title, and where possible, a licence URL. If more than one type of licence is included then the URL should point to a Data Providers page.</li>
+        <li>Any known constraints should be identified. If no conditions apply, then 'no conditions apply' should be recorded.</li>
+      </ol>
+      </div>
+  </div>
+</use_help>
 </strings>
