@@ -2354,9 +2354,10 @@
 
 
           <field xpath="/gmd:MD_Metadata/gmd:dateStamp"/>
-
+            <text ref="metadatadate_help"/>
 
           <field xpath="/gmd:MD_Metadata/gmd:language" />
+          <text ref="metadatalanguage_help"/>
           <action type="add" btnLabel="metadataLanguage"
                   name="language" or="language"
                   in="/gmd:MD_Metadata">
@@ -3296,6 +3297,7 @@
           <field name="accessConstraints" del="."
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:resourceConstraints[gmd:MD_LegalConstraints/gmd:accessConstraints]">
           </field>
+          <text ref="limitations_help"/>
 
           <action type="add" btnLabel="addAccessConstraints" name="addAccessConstraints" or="resourceConstraints"
             in="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification">
@@ -3349,7 +3351,7 @@
           <field name="useConstraints" del="."
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:resourceConstraints[gmd:MD_LegalConstraints/gmd:useConstraints]">
           </field>
-
+          <text ref="use_help"/>
           <action type="add" btnLabel="addUseConstraints" name="addUseConstraints" or="resourceConstraints"
             in="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification">
             <template>
@@ -3583,7 +3585,9 @@
         </section>
         <section name="gmd:MD_Metadata">
           <field xpath="/gmd:MD_Metadata/gmd:fileIdentifier"/>
+          <text ref="fileidentifier_help" />
           <field xpath="/gmd:MD_Metadata/gmd:language" or="language" in="/gmd:MD_Metadata"/>
+          <ref text="metadatalanguage_help"/>
           <field xpath="/gmd:MD_Metadata/gmd:characterSet"/>
           <!-- <field xpath="/gmd:MD_Metadata/gmd:parentIdentifier" or="parentIdentifier"
                  in="/gmd:MD_Metadata"/>
@@ -3595,10 +3599,13 @@
                  in="/gmd:MD_Metadata"  if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
           <field xpath="/gmd:MD_Metadata/gmd:hierarchyLevel"/>
           <field xpath="/gmd:MD_Metadata/gmd:hierarchyLevelName" if="gmd:MD_Metadata/gmd:hierarchyLevel !='dataset'"/>
+          <text ref="hierachylevelname_help" if="gmd:MD_Metadata/gmd:hierarchyLevel !='dataset'"/>
           <field xpath="/gmd:MD_Metadata/gmd:dateStamp"/>
+          <text ref="metadatadate_help"/>
           <field xpath="/gmd:MD_Metadata/gmd:metadataStandardName"/>
           <field xpath="/gmd:MD_Metadata/gmd:metadataStandardVersion"/>
           <field xpath="/gmd:MD_Metadata/gmd:contact" or="contact" in="/gmd:MD_Metadata"/>
+          <text ref="metadatacontact_help"/>
 <!--           <field xpath="/gmd:MD_Metadata/gmd:dataSetURI" or="dataSetURI" in="/gmd:MD_Metadata"/> -->
 <!-- <field xpath="/gmd:MD_Metadata/gmd:locale" or="locale" in="/gmd:MD_Metadata"/> -->
           <field xpath="/gmd:MD_Metadata/gmd:series"/>
