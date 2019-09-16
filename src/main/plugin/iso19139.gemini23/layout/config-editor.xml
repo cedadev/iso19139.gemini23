@@ -2357,7 +2357,6 @@
             <text ref="metadatadate_help"/>
 
           <field xpath="/gmd:MD_Metadata/gmd:language" />
-          <text ref="metadatalanguage_help"/>
           <action type="add" btnLabel="metadataLanguage"
                   name="language" or="language"
                   in="/gmd:MD_Metadata">
@@ -2369,6 +2368,7 @@
               </snippet>
             </template>
           </action>
+          <text ref="metadatalanguage_help"/>
 
           <field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:characterSet"></field>
@@ -3099,6 +3099,7 @@
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:title"
             if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0">
           </field>
+          <text ref="title_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
 
           <field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:alternateTitle"
@@ -3109,6 +3110,7 @@
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation/gmd:title"
             if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0">
           </field>
+          <text ref="titlesrv_help"  if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
 
           <field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation/gmd:alternateTitle"
@@ -3118,19 +3120,22 @@
           <field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:abstract"
             if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          <text ref="abstract_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
           <field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:abstract"
             if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
-
+            <text ref="abstractsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
           <field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:language"
             if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0">
           </field>
+          <text ref="datasetlang_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
 
           <field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:characterSet"
             if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0">
           </field>
+          <text ref="charset_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
 
           <field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:date"
@@ -3152,6 +3157,7 @@
           <field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier">
           </field>
+          <text ref="resourceidentifier_help"/>
 
           <field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:citedResponsibleParty">
@@ -3210,6 +3216,7 @@
               data-element-name="gmd:pointOfContact"
               data-variables="gmd:role/gmd:CI_RoleCode/@codeListValue~{role}"/>
           </action>
+          <text ref="responsibleparty_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
 
           <field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:pointOfContact"
@@ -3229,9 +3236,12 @@
               data-variables="gmd:role/gmd:CI_RoleCode/@codeListValue~{role}"/>
           </action>
 
+          <text ref="responsiblepartysrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+
           <field
-            xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceMaintenance">
+            xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceMaintenance" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0">
           </field>
+          <text ref="maintenance_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
 
           <field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:graphicOverview">
@@ -3244,10 +3254,12 @@
           <field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords" or="descriptiveKeywords"
             in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          <text ref="keyword_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
 
           <field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:descriptiveKeywords" or="descriptiveKeywords"
             in="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+            <text ref="keywordsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
 
           <field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceSpecificUsage">
@@ -3273,7 +3285,6 @@
           <field name="accessConstraints" del="."
                  xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints[gmd:MD_LegalConstraints/gmd:accessConstraints]">
           </field>
-          <text ref="limitations_help"/>
 
           <action type="add" btnLabel="addAccessConstraints" name="addAccessConstraints" or="resourceConstraints"
                   in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification">
@@ -3293,11 +3304,12 @@
             </template>
           </action>
 
+          <text ref="limitations_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+
           <!-- legal access constraints services -->
           <field name="accessConstraints" del="."
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:resourceConstraints[gmd:MD_LegalConstraints/gmd:accessConstraints]">
           </field>
-          <text ref="limitations_help"/>
 
           <action type="add" btnLabel="addAccessConstraints" name="addAccessConstraints" or="resourceConstraints"
             in="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification">
@@ -3316,6 +3328,8 @@
               </snippet>
             </template>
           </action>
+
+          <text ref="limitationssrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
 
 
           <!-- use  constraints -->
@@ -3323,8 +3337,6 @@
                  xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints[gmd:MD_LegalConstraints/gmd:useConstraints]">
           </field>
 
-          <text ref="use_help"/>
-
           <action type="add" btnLabel="addUseConstraints" name="addUseConstraints" or="resourceConstraints"
                   in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification">
             <template>
@@ -3347,11 +3359,13 @@
             </template>
           </action>
 
+          <text ref="use_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+
           <!-- use  constraints services -->
           <field name="useConstraints" del="."
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:resourceConstraints[gmd:MD_LegalConstraints/gmd:useConstraints]">
           </field>
-          <text ref="use_help"/>
+
           <action type="add" btnLabel="addUseConstraints" name="addUseConstraints" or="resourceConstraints"
             in="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification">
             <template>
@@ -3373,6 +3387,8 @@
               </snippet>
             </template>
           </action>
+
+          <text ref="usesrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
 
           <field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo">
@@ -3381,10 +3397,12 @@
           <field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialRepresentationType">
           </field>
+          <text ref="spatialrep_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
 
           <field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialResolution">
           </field>
+          <text ref="spatialresolution_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
 
           <!--<field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:characterSet" notDisplayedIfMissing="true">
@@ -3394,42 +3412,50 @@
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:topicCategory"
             notDisplayedIfMissing="true">
           </field>
+          <text ref="topic_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
 
           <field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:environmentDescription">
           </field>
 
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:serviceType"></field>
+          <text ref="servicetype_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
 
           <field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription"
             if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0">
           </field>
+          <text ref="extent_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
 
           <field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription"
             if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0">
           </field>
+          <text ref="extentsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
 
           <field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox"
             if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0">
           </field>
+          <text ref="bbox_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
 
           <field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox"
             if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0">
           </field>
+          <text ref="bboxsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
 
           <field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:temporalElement"
             if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0">
           </field>
+          <text ref="tempextent_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
 
           <field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:extent/gmd:EX_Extent/gmd:temporalElement"
             if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0">
           </field>
+          <text ref="tempextentsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
 
           <field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:verticalElement"
@@ -3487,25 +3513,34 @@
             </template>
           </action>
 
+          <text ref="verticalextent_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+
+          <text ref="verticalextentsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+
 
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:operatesOn"
             if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0">
           </field>
+           <text ref="coupledresource_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
 
 
 
-          <field
-            xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:supplementalInformation">
-          </field>
-        </section>
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:supplementalInformation"/>
+          <text ref="supplemental_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+            </section>
 
         <section
             xpath="/gmd:MD_Metadata/gmd:referenceSystemInfo"  or="referenceSystemInfo" in="/gmd:MD_Metadata" />
+        <text ref="spatialref_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+        <text ref="spatialrefsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
 
-        <section xpath="/gmd:MD_Metadata/gmd:spatialRepresentationInfo"/>
+        <!-- <section xpath="/gmd:MD_Metadata/gmd:spatialRepresentationInfo"/> -->
         <section xpath="/gmd:MD_Metadata/gmd:distributionInfo"/>
+
         <section name="gmd:dataQualityInfo">
           <field xpath="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:scope"/>
+          <text ref="scope_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          <text ref="scopesrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
           <!-- <section name="gmd:DQ_DomainConsistency"> -->
           <field name="gmd:DQ_DomainConsistency" templateModeOnly="true" xpath="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency">
             <template>
@@ -3581,13 +3616,16 @@
           </field>
         <!-- </section> -->
         <field name="gmd:DQ_TopologicalConsistency" xpath="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_TopologicalConsistency"/>
+        <text ref="conformity_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
           <field xpath="/gmd:MD_Metadata/gmd:dataQualityInfo//gmd:DQ_DataQuality/gmd:lineage"/>
+          <text ref="lineage_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
         </section>
         <section name="gmd:MD_Metadata">
           <field xpath="/gmd:MD_Metadata/gmd:fileIdentifier"/>
-          <text ref="fileidentifier_help" />
+          <text ref="fileidentifier_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          <text ref="fileidentifiersrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
           <field xpath="/gmd:MD_Metadata/gmd:language" or="language" in="/gmd:MD_Metadata"/>
-          <ref text="metadatalanguage_help"/>
+          <text ref="metadatalanguage_help"/>
           <field xpath="/gmd:MD_Metadata/gmd:characterSet"/>
           <!-- <field xpath="/gmd:MD_Metadata/gmd:parentIdentifier" or="parentIdentifier"
                  in="/gmd:MD_Metadata"/>
@@ -3596,16 +3634,22 @@
           <field xpath="/gmd:MD_Metadata/gmd:hierarchyLevelName" or="hierarchyLevelName"
                  in="/gmd:MD_Metadata"/> -->
           <field xpath="/gmd:MD_Metadata/gmd:parentIdentifier" or="parentIdentifier"
-                 in="/gmd:MD_Metadata"  if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+                 in="/gmd:MD_Metadata" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          <text ref="parentidentifier_help"/>
           <field xpath="/gmd:MD_Metadata/gmd:hierarchyLevel"/>
+          <text ref="hierarchylevel_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          <text ref="hierarchylevelsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
           <field xpath="/gmd:MD_Metadata/gmd:hierarchyLevelName" if="gmd:MD_Metadata/gmd:hierarchyLevel !='dataset'"/>
-          <text ref="hierachylevelname_help" if="gmd:MD_Metadata/gmd:hierarchyLevel !='dataset'"/>
+          <text ref="hierachylevelname_help" if="gmd:MD_Metadata/gmd:hierarchyLeve/gmd:MD_ScopeCode !='dataset'"/>
+          <text ref="hierachylevelnamesrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
           <field xpath="/gmd:MD_Metadata/gmd:dateStamp"/>
-          <text ref="metadatadate_help"/>
+          <text ref="metadatadate_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          <text ref="metadatadatesrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
           <field xpath="/gmd:MD_Metadata/gmd:metadataStandardName"/>
           <field xpath="/gmd:MD_Metadata/gmd:metadataStandardVersion"/>
           <field xpath="/gmd:MD_Metadata/gmd:contact" or="contact" in="/gmd:MD_Metadata"/>
-          <text ref="metadatacontact_help"/>
+          <text ref="metadatacontact_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          <text ref="metadatacontactsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
 <!--           <field xpath="/gmd:MD_Metadata/gmd:dataSetURI" or="dataSetURI" in="/gmd:MD_Metadata"/> -->
 <!-- <field xpath="/gmd:MD_Metadata/gmd:locale" or="locale" in="/gmd:MD_Metadata"/> -->
           <field xpath="/gmd:MD_Metadata/gmd:series"/>
