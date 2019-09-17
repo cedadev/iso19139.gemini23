@@ -3140,10 +3140,12 @@
           <field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:date"
             if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          <text ref="refdate_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
 
           <field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation/gmd:date"
             if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+          <text ref="refdatesrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
 
 
           <field
@@ -3157,7 +3159,7 @@
           <field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier">
           </field>
-          <text ref="resourceidentifier_help"/>
+          <text ref="resourceidentifier_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
 
           <field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:citedResponsibleParty">
@@ -3425,7 +3427,7 @@
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription"
             if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0">
           </field>
-          <text ref="extent_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          <text ref="extent_help" if="count(/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription) > 0"/>
 
           <field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription"
@@ -3526,7 +3528,7 @@
 
 
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:supplementalInformation"/>
-          <text ref="supplemental_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          <text ref="supplemental_help" if="count(/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:supplementalInformation) > 0"/>
             </section>
 
         <section
@@ -3535,7 +3537,20 @@
         <text ref="spatialrefsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
 
         <!-- <section xpath="/gmd:MD_Metadata/gmd:spatialRepresentationInfo"/> -->
-        <section xpath="/gmd:MD_Metadata/gmd:distributionInfo"/>
+        <section xpath="gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat">
+        </section>
+        <text ref="distribution_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+        <text ref="distributionsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+
+        <section xpath="gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"> 
+        </section>
+        <text ref="resourcelocator_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/> 
+
+
+        <section xpath="gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"> 
+        </section>
+        <text ref="resourcelocatorsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+
 
         <section name="gmd:dataQualityInfo">
           <field xpath="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:scope"/>
@@ -3618,7 +3633,7 @@
         <field name="gmd:DQ_TopologicalConsistency" xpath="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_TopologicalConsistency"/>
         <text ref="conformity_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
           <field xpath="/gmd:MD_Metadata/gmd:dataQualityInfo//gmd:DQ_DataQuality/gmd:lineage"/>
-          <text ref="lineage_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          <text ref="lineage_help"/>
         </section>
         <section name="gmd:MD_Metadata">
           <field xpath="/gmd:MD_Metadata/gmd:fileIdentifier"/>
@@ -3635,7 +3650,7 @@
                  in="/gmd:MD_Metadata"/> -->
           <field xpath="/gmd:MD_Metadata/gmd:parentIdentifier" or="parentIdentifier"
                  in="/gmd:MD_Metadata" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
-          <text ref="parentidentifier_help"/>
+          <text ref="parentidentifier_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
           <field xpath="/gmd:MD_Metadata/gmd:hierarchyLevel"/>
           <text ref="hierarchylevel_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
           <text ref="hierarchylevelsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>

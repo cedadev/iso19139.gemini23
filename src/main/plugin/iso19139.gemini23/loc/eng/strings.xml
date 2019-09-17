@@ -341,7 +341,7 @@
       </div>
   </div>
 </hierarchylevel_help>
-<hierarchylevel_help>
+<hierarchylevelsrv_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
       <p class="help-block">Scope to which metadata applies. To distinguish between datasets, series, and services</p>
@@ -351,7 +351,7 @@
       </ol>
       </div>
   </div>
-</hierarchylevel_help>
+</hierarchylevelsrv_help>
   <limitations_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
@@ -550,6 +550,7 @@
       <p class="help-block">The purpose of this element is to give an indication of how the data resource was created. It is useful in determining its fitness for purpose.</p>
       <ol class="help-block">
         <li>Include information on source material, processes, method of updating, and quality control processes</li>
+        <li>Not required for services.</li>
         <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1062-gemini-datasets-and-data-series#10">Gemini Guidance</a></li>
       </ol>
       </div>
@@ -690,9 +691,10 @@
 <servicetype_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">The purpose of this element is to provide a readily recognisable name for the resource.</p>
+      <p class="help-block">This identifies the type of service.</p>
       <ol class="help-block">
-        <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1063-gemini-services#1">Gemini Guidance</a></li>
+        <li>Choose from the dropdown list.</li>
+        <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1063-gemini-services#37">Gemini Guidance</a></li>
       </ol>
       </div>
   </div>
@@ -700,10 +702,10 @@
 <topic_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">This identifies the type of service.</p>
+      <p class="help-block">The purpose of this element is to provide a basic classification for the data resource.</p>
       <ol class="help-block">
-        <li>Choose from the dropdown list.</li>
-        <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1063-gemini-services#37">Gemini Guidance</a></li>
+        <li>Choose from the search options</li>
+        <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1062-gemini-datasets-and-data-series#5">Gemini Guidance</a></li>
       </ol>
       </div>
   </div>
@@ -767,4 +769,69 @@
       </div>
   </div>
 </charset_help>
+<refdate_help>
+    <div class="row">
+    <div class="col-xs-offset-2 col-xs-8">
+      <p class="help-block">The reference date for the data resource.</p>
+      <ol class="help-block">
+        <li>Dataset reference date is a notional date of 'publication' of the data resource. It is different from Temporal extent which is the actual date of the currency of the data.</li>
+        <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1062-gemini-datasets-and-data-series#58">Gemini Guidance</a></li>
+      </ol>
+      </div>
+  </div>
+</refdate_help>
+<refdatesrv_help>
+    <div class="row">
+    <div class="col-xs-offset-2 col-xs-8">
+      <p class="help-block">The reference date for the data resource.</p>
+      <ol class="help-block">
+        <li>Dataset reference date is a notional date of 'publication' of the data resource. It is different from Temporal extent which is the actual date of the currency of the data.</li>
+        <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1063-gemini-services#58">Gemini Guidance</a></li>
+      </ol>
+      </div>
+  </div>
+</refdatesrv_help>
+<distribution_help>
+    <div class="row">
+    <div class="col-xs-offset-2 col-xs-8">
+      <p class="help-block">The format in which the digital data is provided.</p>
+      <ol class="help-block">
+        <li>Record the format from the dropdown list, and the version (if known).</li>
+        <li>If the version is not known, record it as "unknown"</li>
+        <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1062-gemini-datasets-and-data-series#21">Gemini Guidance</a></li>
+      </ol>
+      </div>
+  </div>
+</distribution_help>
+<distributionsrv_help>
+    <div class="row">
+    <div class="col-xs-offset-2 col-xs-8">
+      <p class="help-block">Optional for services.</p>
+      </div>
+  </div>
+</distributionsrv_help>
+<resourcelocator_help>
+    <div class="row">
+    <div class="col-xs-offset-2 col-xs-8">
+      <p class="help-block">The purpose of this element is to point to where the dataset or dataset series may be directly accessed online, or to an online resource providing more information about accessing the dataset or dataset series.</p>
+      <ol class="help-block">
+        <li>Use the associated resource wizard.</li>
+        <li>Record at least the URL and the function.</li>
+        <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1062-gemini-datasets-and-data-series#19">Gemini Guidance</a></li>
+      </ol>
+      </div>
+  </div>
+</resourcelocator_help>
+<resourcelocatorsrv_help>
+    <div class="row">
+    <div class="col-xs-offset-2 col-xs-8">
+      <p class="help-block">The purpose of this element is to point to where the service may be directly accessed online, or to an online resource providing more information about accessing the service.</p>
+      <ol class="help-block">
+        <li>Use the associated resource wizard.</li>
+        <li>Record at least the protocol, URL and name.</li>
+        <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1063-gemini-services#19">Gemini Guidance</a></li>
+      </ol>
+      </div>
+  </div>
+</resourcelocatorsrv_help>
 </strings>
