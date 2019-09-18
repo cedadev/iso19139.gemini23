@@ -69,7 +69,7 @@
           <gmd:MD_CharacterSetCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_CharacterSetCode"
                                      codeListValue="utf8">UTF-8</gmd:MD_CharacterSetCode>
         </gmd:characterSet>
-      </xsl:if>      
+      </xsl:if>
       <xsl:copy-of select="gmd:topicCategory" />
       <!-- Add gmd:topicCategory if missing -->
       <xsl:if test="not(gmd:topicCategory)">
@@ -128,7 +128,7 @@
                           <xsl:apply-templates select="gmd:temporalElement" />
                         </xsl:otherwise>
                       </xsl:choose>
-                      
+
 
                       <xsl:choose>
                         <!-- add vertical CRS if it's missing-->
@@ -170,8 +170,8 @@
 
                   </xsl:for-each>
                 </xsl:when>
-            
-                
+
+
 
 
 
@@ -188,7 +188,7 @@
           <xsl:copy-of select="gmd:extent" />
         </xsl:otherwise>
       </xsl:choose>
-      
+
       <xsl:copy-of select="gmd:supplementalInformation" />
     </xsl:copy>
   </xsl:template>
@@ -233,6 +233,16 @@
          <gmd:verticalCRS xlink:href='http://www.opengis.net/def/crs/EPSG/0/5701'/>
        </gmd:EX_VerticalExtent>
      </gmd:verticalElement>
+  </xsl:template>
+
+  <!-- Add gco:Boolean to gmd:pass with nilReason to work nicely in the editor,
+    update-fixed-info.xsl should removed if empty to avoid xsd errors  -->
+  <xsl:template match="gmd:pass[@gco:nilReason and not(gco:Boolean)]">
+    <xsl:copy>
+      <xsl:copy-of select="@*" />
+
+      <gco:Boolean></gco:Boolean>
+    </xsl:copy>
   </xsl:template>
 
   <xsl:template match="@*|node()">
