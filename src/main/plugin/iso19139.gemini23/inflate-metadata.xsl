@@ -32,7 +32,7 @@
 
 
   <xsl:template match="/root">
-    <xsl:apply-templates select="gmd:MD_Metadata"/>
+    <xsl:apply-templates select="gmd:*"/>
   </xsl:template>
 
   <xsl:template match="gmd:MD_DataIdentification">
