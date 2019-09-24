@@ -268,6 +268,8 @@
     <name>gmd:geographicIdentifier</name>
     <name>srv:serviceType</name>
     <name>gmd:report</name>
+    <!-- <name>gmd:onLine</name> -->
+    <!-- <name>gmd:CI_OnlineResource</name> -->
 <!--     <name>gmd:specification</name> -->
 <!--     <name>gmd:dataQualityInfo</name> -->
   </fieldsWithFieldset>
@@ -385,6 +387,18 @@
         <col xpath="gmd:protocol"/>
         <col xpath="gmd:linkage"/>
         <col xpath="gmd:name"/>
+        <col del=".."/>
+      </row>
+    </table>
+     <table for="gmd:DistributionFormat">
+      <header>
+        <col label="gmd:name"/>
+        <col label="gmd:version"/>
+        <col/>
+      </header>
+      <row>
+        <col xpath="gmd:MD_Format/gmd:name"/>
+        <col xapth="gmd:MD_Format/gmd:version"/>
         <col del=".."/>
       </row>
     </table>
@@ -3558,33 +3572,9 @@
         <text ref="spatialref_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
         <text ref="spatialrefsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
 
-        <section name="gmd:distributionFormat">
-        <field xpath="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat/gmd:MD_Format" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) = 0"
-                 del=".">
-          <template>
-            <values>
-              <key label="format"
-                   xpath="gmd:MD_Format/gmd:name/gco:CharacterString"
-                   tooltip="gmd:name|gmd:MD_Format">
-                <helper name="gmd:name" context="gmd:MD_Format"/>
-              </key>
-              <key label="format_version" xpath="gmd:MD_Format/gmd:version/gco:CharacterString" />
-              <key label="format_specification" xpath="gmd:MD_Format/gmd:specification/gco:CharacterString" />
-            </values>
-            <snippet>
-              <gmd:distributionFormat>
-                <gmd:MD_Format>
-                  <gmd:name>
-                    <gco:CharacterString>{{format}}</gco:CharacterString>
-                  </gmd:name>
-                  <gmd:version>
-                    <gco:CharacterString>{{format_version}}</gco:CharacterString>
-                  </gmd:version>
-                </gmd:MD_Format>
-              </gmd:distributionFormat>
-            </snippet>
-          </template>
-        </field>
+        <section name="gmd:distributionInfo">
+          <field xpath="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) = 0"
+                 del="."/>
         
         <action type="add" name="addDistributionFormat" or="distributionFormat" btnLabel="distributionFormat"
                   in="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution"
@@ -3605,27 +3595,22 @@
             </template>
           </action>
 
-        </section>
+
         <text ref="distribution_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
         <text ref="distributionsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
 
-        <section xpath="gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"> 
-        </section>
+        <section xpath="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions
+            /gmd:MD_DigitalTransferOptions/gmd:onLine"/>      
+
         <text ref="resourcelocator_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/> 
 
 
         <section xpath="gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"> 
         </section>
         <text ref="resourcelocatorsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
-
-<!--         <section name="gmd:distributionInfo">
-        <section xpath="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat"/>
-        <section xpath="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions"/>
-      </section> -->
-
-      <!-- <text ref="distribution_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
-        <text ref="distributionsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/> -->
-
+                </section>
+        
+        
         <!-- Start dataQualitySection -->
           <section name="gmd:dataQualityInfo">
             <field xpath="/gmd:MD_Metadata/gmd:dataQualityInfo"/>

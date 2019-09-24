@@ -311,7 +311,7 @@
   </xsl:template>
 
   <!-- spatial representation type boxed -->
-    <xsl:template mode="mode-iso19139"
+    <!-- <xsl:template mode="mode-iso19139"
                 match="gmd:spatialRepresentationType[$schema='iso19139.gemini23']"
                 priority="2200">
 
@@ -365,7 +365,7 @@
         </xsl:call-template>
       </xsl:with-param>
     </xsl:call-template>
-  </xsl:template>
+  </xsl:template> -->
 
 <!-- Template to handled gmd:verticalCRS without children, just xlink:href -->
  <xsl:template mode="mode-iso19139"
