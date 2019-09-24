@@ -57,7 +57,7 @@
       <xsl:if test="not(gmd:spatialRepresentationType)">
         <gmd:spatialRepresentationType>
             <gmd:MD_SpatialRepresentationTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_SpatialRepresentationTypeCode"
-                                                  codeListValue="textTable"/>
+                                                  codeListValue="vector"/>
          </gmd:spatialRepresentationType>
        </xsl:if>
       <xsl:copy-of select="gmd:spatialResolution" />

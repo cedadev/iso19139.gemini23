@@ -119,17 +119,17 @@
               data-template-type="format"
               data-filter='{"_root": "gmd:MD_Format"}'
               data-insert-modes="xlink"/>
-    </for>
+    </for>     -->
     <for name="gmd:distributionFormat" addDirective="data-gn-directory-entry-selector">
       <directiveAttributes
-              data-template-add-action="false"
+              data-template-add-action="true"
               data-search-action="true"
               data-popup-action="true"
               data-template-type="format"
-              data-filter='{"_root": "gmd:MD_Format"}'
-              data-insert-modes="xlink"/>
+              data-insert-modes=""
+              data-variables="gmd:name/@codeListValue~{name}"/>
     </for>
-    -->
+
 
     <for name="gmd:contact" addDirective="data-gn-directory-entry-selector">
       <directiveAttributes
@@ -3572,9 +3572,14 @@
         </section>
         <text ref="resourcelocatorsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
 
+<!--         <section name="gmd:distributionInfo">
+        <section xpath="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat"/>
+        <section xpath="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions"/>
+      </section> -->
 
-        <section xpath="/gmd:MD_Metadata/gmd:spatialRepresentationInfo"/>
-        <section xpath="/gmd:MD_Metadata/gmd:distributionInfo"/>
+      <!-- <text ref="distribution_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+        <text ref="distributionsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/> -->
+
         <!-- Start dataQualitySection -->
           <section name="gmd:dataQualityInfo">
             <field xpath="/gmd:MD_Metadata/gmd:dataQualityInfo"/>
