@@ -616,7 +616,7 @@
     <div class="col-xs-offset-2 col-xs-8">
       <p class="help-block">The purpose of this element is to identify the way in which the data is spatially referenced in the data resource. This may be by coordinates or geographic identifiers.</p>
       <ol class="help-block">
-        <li>Only coordinate reference system identifiers specified in a well-known common register may be used.</li>
+        <li>For INSPIRE compliance at least EPSG 4258 should be included.</li>
         <li>Pick an EPSG Code from the list.</li>
         <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1062-gemini-datasets-and-data-series#17">Gemini Guidance</a></li>
       </ol>
