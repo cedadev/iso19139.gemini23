@@ -120,15 +120,16 @@
               data-filter='{"_root": "gmd:MD_Format"}'
               data-insert-modes="xlink"/>
     </for>     -->
-    <for name="gmd:distributionFormat" addDirective="data-gn-directory-entry-selector">
+<!--     <for name="gmd:distributionFormat" addDirective="data-gn-directory-entry-selector">
       <directiveAttributes
-              data-template-add-action="true"
+              data-template-add-action="false"
               data-search-action="true"
               data-popup-action="true"
               data-template-type="format"
               data-insert-modes=""
-              data-variables="gmd:name/@codeListValue~{name}"/>
-    </for>
+              data-filter='{"_root": "gmd:MD_Format"}'
+              data-insert-modes="xlink"/>
+    </for> -->
 
 
     <for name="gmd:contact" addDirective="data-gn-directory-entry-selector">
@@ -3557,8 +3558,53 @@
         <text ref="spatialref_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
         <text ref="spatialrefsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
 
-        <!-- <section xpath="/gmd:MD_Metadata/gmd:spatialRepresentationInfo"/> -->
-        <section xpath="gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat">
+        <section name="gmd:distributionFormat">
+        <field xpath="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat/gmd:MD_Format" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) = 0"
+                 del=".">
+          <template>
+            <values>
+              <key label="format"
+                   xpath="gmd:MD_Format/gmd:name/gco:CharacterString"
+                   tooltip="gmd:name|gmd:MD_Format">
+                <helper name="gmd:name" context="gmd:MD_Format"/>
+              </key>
+              <key label="format_version" xpath="gmd:MD_Format/gmd:version/gco:CharacterString" />
+              <key label="format_specification" xpath="gmd:MD_Format/gmd:specification/gco:CharacterString" />
+            </values>
+            <snippet>
+              <gmd:distributionFormat>
+                <gmd:MD_Format>
+                  <gmd:name>
+                    <gco:CharacterString>{{format}}</gco:CharacterString>
+                  </gmd:name>
+                  <gmd:version>
+                    <gco:CharacterString>{{format_version}}</gco:CharacterString>
+                  </gmd:version>
+                </gmd:MD_Format>
+              </gmd:distributionFormat>
+            </snippet>
+          </template>
+        </field>
+        
+        <action type="add" name="addDistributionFormat" or="distributionFormat" btnLabel="distributionFormat"
+                  in="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution"
+                  if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) = 0">
+            <template>
+              <snippet>
+                <gmd:distributionFormat>
+                  <gmd:MD_Format>
+                    <gmd:name>
+                      <gco:CharacterString></gco:CharacterString>
+                    </gmd:name>
+                    <gmd:version>
+                      <gco:CharacterString></gco:CharacterString>
+                    </gmd:version>
+                  </gmd:MD_Format>
+                </gmd:distributionFormat>
+              </snippet>
+            </template>
+          </action>
+
         </section>
         <text ref="distribution_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
         <text ref="distributionsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
@@ -3636,7 +3682,7 @@
         <for name="gmd:referenceSystemInfo"/>
         <for name="gmd:pointOfContact"/>
         <for name="gmd:distributor"/>
-        <for name="gmd:distributionFormat"/>
+        <!-- <for name="gmd:distributionFormat"/> -->
         <for name="gmd:contact"/>
         <for name="gmd:processor"/>
         <for name="gmd:topicCategory"/>
