@@ -24,6 +24,7 @@
 
 <xsl:stylesheet xmlns:gmd="http://www.isotc211.org/2005/gmd"
                 xmlns:gco="http://www.isotc211.org/2005/gco"
+                xmlns:gmx="http://www.isotc211.org/2005/gmx"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:util="java:org.fao.geonet.util.XslUtil"
                 version="2.0"
@@ -33,14 +34,20 @@
 
    <!-- conformity directory entries -->
 
-    <!-- <xsl:template mode="index" match="gmd:DQ_ConformanceResult[count(ancestor::node()) =  1]">
+    <xsl:template mode="index" match="gmd:DQ_ConformanceResult[count(ancestor::node()) =  1]">
         <Field name="_title"
                string="{if ($title != '') then $title
-                        else gmd:specification/gmd:CI_Citation/gmd:title/gco:CharacterString}"
+                        else gmd:explanation/gco:CharacterString}"
                store="true" index="true"/>
 
         <xsl:call-template name="subtemplate-common-fields"/>
-    </xsl:template> -->
+    </xsl:template>
+
+
+    <xsl:template name="subtemplate-common-fields">
+        <Field name="any" string="{normalize-space(string(.))}" store="false" index="true"/>
+        <Field name="_root" string="{name(.)}" store="true" index="true"/>
+    </xsl:template>
 
 
 </xsl:stylesheet>
