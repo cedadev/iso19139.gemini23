@@ -3579,6 +3579,8 @@
           <section name="gmd:dataQualityInfo">
             <field xpath="/gmd:MD_Metadata/gmd:dataQualityInfo"/>
           </section>
+          <text ref="dataquality_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          <text ref="dataqualitysrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
           <!-- End dataQualitySection -->
 
         <section name="gmd:MD_Metadata">
