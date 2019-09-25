@@ -326,7 +326,7 @@
       </xsl:copy>
     </xsl:template>
 
-
+<!-- elements to add -->
 
   <xsl:template name="addBboxElement">
     <gmd:geographicElement>
@@ -377,6 +377,8 @@
       <gco:Boolean></gco:Boolean>
     </xsl:copy>
   </xsl:template>
+
+  <!-- copy everything else -->
 
   <xsl:template match="@*|node()">
     <xsl:copy>
