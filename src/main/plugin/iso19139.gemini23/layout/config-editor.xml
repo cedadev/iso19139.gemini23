@@ -3469,7 +3469,7 @@
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription"
             if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0">
           </field>
-          <text ref="extentsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+          <text ref="extentsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription) > 0"/>
 
           <field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox"
@@ -3493,7 +3493,7 @@
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:extent/gmd:EX_Extent/gmd:temporalElement"
             if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0">
           </field>
-          <text ref="tempextentsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+          <text ref="tempextentsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:extent/gmd:EX_Extent/gmd:temporalElement) > 0"/>
 
           <field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:verticalElement"
@@ -3626,15 +3626,13 @@
           <field xpath="/gmd:MD_Metadata/gmd:language" or="language" in="/gmd:MD_Metadata"/>
           <text ref="metadatalanguage_help"/>
           <field xpath="/gmd:MD_Metadata/gmd:characterSet"/>
-          <!-- <field xpath="/gmd:MD_Metadata/gmd:parentIdentifier" or="parentIdentifier"
-                 in="/gmd:MD_Metadata"/>
-          <field xpath="/gmd:MD_Metadata/gmd:hierarchyLevel" or="hierarchyLevel"
-                 in="/gmd:MD_Metadata"/>
-          <field xpath="/gmd:MD_Metadata/gmd:hierarchyLevelName" or="hierarchyLevelName"
-                 in="/gmd:MD_Metadata"/> -->
+
           <field xpath="/gmd:MD_Metadata/gmd:parentIdentifier" or="parentIdentifier"
-                 in="/gmd:MD_Metadata" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
-          <text ref="parentidentifier_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+                 in="/gmd:MD_Metadata" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0">
+          </field>
+          <text ref="parentidentifier_help"/>
+          <text ref="parentidentifiernil_help" if="string(/gmd:parentIdentifier/@gco:nilReason)='inapplicable'"/>
+
           <field xpath="/gmd:MD_Metadata/gmd:hierarchyLevel"/>
           <text ref="hierarchylevel_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
           <text ref="hierarchylevelsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>

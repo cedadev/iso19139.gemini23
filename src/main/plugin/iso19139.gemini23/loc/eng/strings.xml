@@ -408,6 +408,17 @@
       </div>
   </div>
 </parentidentifier_help>
+ <parentidentifiernil_help>
+    <div class="row">
+    <div class="col-xs-offset-2 col-xs-8">
+      <p class="help-block"><b>The parent identifier block has been marked as 'inapplicable' so will not be shown/</b></p>
+      <ol class="help-block">
+        <li>To add a parent identifier switch to the metadata tab in full view</li>
+        <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1062-gemini-datasets-and-data-series#49">Gemini Guidance</a></li>
+      </ol>
+      </div>
+  </div>
+</parentidentifiernil_help>
 <metadatalanguage_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
@@ -815,7 +826,7 @@
     <div class="col-xs-offset-2 col-xs-8">
       <p class="help-block">The purpose of this element is to point to where the dataset or dataset series may be directly accessed online, or to an online resource providing more information about accessing the dataset or dataset series.</p>
       <ol class="help-block">
-        <li>Use the associated resource wizard.</li>
+        <li>Use the associated resource wizard for adding new resource locators.</li>
         <li>Record at least the URL and the function.</li>
         <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1062-gemini-datasets-and-data-series#19">Gemini Guidance</a></li>
       </ol>
@@ -861,5 +872,6 @@
   </div>
 </dataqualitysrv_help>
 <distributionFormat>Add Distribution Format</distributionFormat>
+<parentidentifier>Parent Identifier</parentidentifier>
 
 </strings>
