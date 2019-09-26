@@ -59,6 +59,27 @@
     <for name="gco:Real" use="number"/>
     <for name="gco:Boolean" use="checkbox"/>
 
+    <!-- Use data-gn-checkbox-with-nilreason for INSPIRE conformity, using xpath attribute.Similar configuration can be
+         applied to other boolean fields that require to handle nilreason value.
+         And additional change is required in inflate-metadata.xsl, for the elements to handle with this directive to add gco:Boolean
+         when missing due to nilreason attribute and work nicely with the metadata editor.
+         Example with gmd:pass:
+           <xsl:template match="gmd:pass[@gco:nilReason and not(gco:Boolean)]">
+            <xsl:copy>
+              <xsl:copy-of select="@*" />
+              <gco:Boolean></gco:Boolean>
+            </xsl:copy>
+          </xsl:template>
+          Update-fixed-info.xsl already removes gco:Boolean when empty due to nilreason attribute, to avoid xsd errors. No need to change it.
+    -->
+    <for name="gco:Boolean"
+         xpath="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:pass"
+         use="data-gn-checkbox-with-nilreason">
+      <directiveAttributes
+        data-tag-name="gmd:pass"
+        data-nilreason="eval#@gco:nilReason"
+        data-labels='{"true": "conformant", "false": "notConformant", "unknown": "notEvaluated"}'/>
+    </for>
 
     <for name="gco:Date" use="data-gn-date-picker"/>
     <for name="gco:DateTime" use="data-gn-date-picker"/>
@@ -98,17 +119,18 @@
               data-template-type="format"
               data-filter='{"_root": "gmd:MD_Format"}'
               data-insert-modes="xlink"/>
-    </for>
-    <for name="gmd:distributionFormat" addDirective="data-gn-directory-entry-selector">
+    </for>     -->
+<!--     <for name="gmd:distributionFormat" addDirective="data-gn-directory-entry-selector">
       <directiveAttributes
               data-template-add-action="false"
               data-search-action="true"
               data-popup-action="true"
               data-template-type="format"
+              data-insert-modes=""
               data-filter='{"_root": "gmd:MD_Format"}'
               data-insert-modes="xlink"/>
-    </for>
-    -->
+    </for> -->
+
 
     <for name="gmd:contact" addDirective="data-gn-directory-entry-selector">
       <directiveAttributes
@@ -246,8 +268,10 @@
     <name>gmd:geographicIdentifier</name>
     <name>srv:serviceType</name>
     <name>gmd:report</name>
-    <name>gmd:specification</name>
-    <name>gmd:scope</name>
+    <!-- <name>gmd:onLine</name> -->
+    <!-- <name>gmd:CI_OnlineResource</name> -->
+<!--     <name>gmd:specification</name> -->
+<!--     <name>gmd:dataQualityInfo</name> -->
   </fieldsWithFieldset>
 
   <multilingualFields>
@@ -363,6 +387,18 @@
         <col xpath="gmd:protocol"/>
         <col xpath="gmd:linkage"/>
         <col xpath="gmd:name"/>
+        <col del=".."/>
+      </row>
+    </table>
+     <table for="gmd:DistributionFormat">
+      <header>
+        <col label="gmd:name"/>
+        <col label="gmd:version"/>
+        <col/>
+      </header>
+      <row>
+        <col xpath="gmd:MD_Format/gmd:name"/>
+        <col xapth="gmd:MD_Format/gmd:version"/>
         <col del=".."/>
       </row>
     </table>
@@ -3433,7 +3469,7 @@
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription"
             if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0">
           </field>
-          <text ref="extentsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+          <text ref="extentsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription) > 0"/>
 
           <field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox"
@@ -3457,7 +3493,7 @@
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:extent/gmd:EX_Extent/gmd:temporalElement"
             if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0">
           </field>
-          <text ref="tempextentsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+          <text ref="tempextentsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:extent/gmd:EX_Extent/gmd:temporalElement) > 0"/>
 
           <field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:verticalElement"
@@ -3536,105 +3572,53 @@
         <text ref="spatialref_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
         <text ref="spatialrefsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
 
-        <!-- <section xpath="/gmd:MD_Metadata/gmd:spatialRepresentationInfo"/> -->
-        <section xpath="gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat">
-        </section>
+        <section name="gmd:distributionInfo">
+          <field xpath="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) = 0"
+                 del="."/>
+        
+        <action type="add" name="addDistributionFormat" or="distributionFormat" btnLabel="distributionFormat"
+                  in="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution"
+                  if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) = 0">
+            <template>
+              <snippet>
+                <gmd:distributionFormat>
+                  <gmd:MD_Format>
+                    <gmd:name>
+                      <gco:CharacterString></gco:CharacterString>
+                    </gmd:name>
+                    <gmd:version>
+                      <gco:CharacterString></gco:CharacterString>
+                    </gmd:version>
+                  </gmd:MD_Format>
+                </gmd:distributionFormat>
+              </snippet>
+            </template>
+          </action>
+
+
         <text ref="distribution_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
         <text ref="distributionsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
 
-        <section xpath="gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"> 
-        </section>
+        <section xpath="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions
+            /gmd:MD_DigitalTransferOptions/gmd:onLine"/>      
+
         <text ref="resourcelocator_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/> 
 
 
         <section xpath="gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"> 
         </section>
         <text ref="resourcelocatorsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+                </section>
+        
+        
+        <!-- Start dataQualitySection -->
+          <section name="gmd:dataQualityInfo">
+            <field xpath="/gmd:MD_Metadata/gmd:dataQualityInfo"/>
+          </section>
+          <text ref="dataquality_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          <text ref="dataqualitysrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+          <!-- End dataQualitySection -->
 
-
-        <section name="gmd:dataQualityInfo">
-          <field xpath="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:scope"/>
-          <text ref="scope_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
-          <text ref="scopesrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
-          <!-- <section name="gmd:DQ_DomainConsistency"> -->
-          <field name="gmd:DQ_DomainConsistency" templateModeOnly="true" xpath="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency">
-            <template>
-            <values>
-                <key label="conformity_desc"
-                     xpath="/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:title"
-                     tooltip="gmd:title">
-                  <helper name="gmd:title"
-                          context="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:title"/>
-                </key>
-                <key label="conformity_linkage"
-                     xpath="/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:title/gmx:Anchor/@xlink:href">
-                </key>
-                <key label="conformity_date"
-                     xpath="gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date/gco:Date"
-                     use="gn-date-picker"/>
-                <key label="conformity_explanation"
-                     xpath="/gmd:result/gmd:DQ_ConformanceResult/gmd:explanation"
-                     tooltip="gmd:explanation">
-                  <helper name="gmd:explanation"
-                          context="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:explanation"/>
-                </key>
-                <key label="pass"
-                     xpath="/gmd:result/gmd:DQ_ConformanceResult/gmd:pass/gco:Boolean"
-                     use="gn-checkbox-with-nilreason">
-                  <directiveAttributes
-                    data-tag-name="gmd:pass"
-                    data-nilreason="eval#gmd:result/gmd:DQ_ConformanceResult/gmd:pass/@gco:nilReason"
-                    data-labels='{"true": "conformant", "false": "notConformant", "unknown": "notEvaluated"}'/>
-                </key>
-              </values>
-              <snippet>
-                <gmd:result>
-                  <gmd:DQ_ConformanceResult>
-                    <gmd:specification>
-                      <gmd:CI_Citation>
-                        <gmd:title>
-                          <gmx:Anchor xlink:href="{{conformity_linkage}}">{{conformity_desc}}</gmx:Anchor>
-                        </gmd:title>
-                        <gn:copy select="gmd:alternateTitle"/>
-                        <gmd:date>
-                          <gmd:CI_Date>
-                            <gmd:date>
-                              {{conformity_date}}
-                            </gmd:date>
-                            <gmd:dateType>
-                              <gmd:CI_DateTypeCode
-                                codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode"
-                                codeListValue="publication"/>
-                            </gmd:dateType>
-                          </gmd:CI_Date>
-                        </gmd:date>
-                        <gn:copy select="gmd:edition"/>
-                        <gn:copy select="gmd:editionDate"/>
-                        <gn:copy select="gmd:identifier"/>
-                        <gn:copy select="gmd:citedResponsibleParty"/>
-                        <gn:copy select="gmd:presentationForm"/>
-                        <gn:copy select="gmd:series"/>
-                        <gn:copy select="gmd:otherCitationDetails"/>
-                        <gn:copy select="gmd:collectiveTitle"/>
-                        <gn:copy select="gmd:ISBN"/>
-                        <gn:copy select="gmd:ISSN"/>
-                      </gmd:CI_Citation>
-                    </gmd:specification>
-                    <gmd:explanation>
-                      {{conformity_explanation}}
-                    </gmd:explanation>
-                    {{pass}}
-                  </gmd:DQ_ConformanceResult>
-                </gmd:result>
-              </snippet>
-            </template>
-          </field>
-        <!-- </section> -->
-        <field name="gmd:DQ_TopologicalConsistency" xpath="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_TopologicalConsistency"/>
-        <text ref="conformity_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
-          <field xpath="/gmd:MD_Metadata/gmd:dataQualityInfo//gmd:DQ_DataQuality/gmd:lineage"/>
-          <text ref="lineage_help"/>
-        </section>
         <section name="gmd:MD_Metadata">
           <field xpath="/gmd:MD_Metadata/gmd:fileIdentifier"/>
           <text ref="fileidentifier_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
@@ -3642,15 +3626,13 @@
           <field xpath="/gmd:MD_Metadata/gmd:language" or="language" in="/gmd:MD_Metadata"/>
           <text ref="metadatalanguage_help"/>
           <field xpath="/gmd:MD_Metadata/gmd:characterSet"/>
-          <!-- <field xpath="/gmd:MD_Metadata/gmd:parentIdentifier" or="parentIdentifier"
-                 in="/gmd:MD_Metadata"/>
-          <field xpath="/gmd:MD_Metadata/gmd:hierarchyLevel" or="hierarchyLevel"
-                 in="/gmd:MD_Metadata"/>
-          <field xpath="/gmd:MD_Metadata/gmd:hierarchyLevelName" or="hierarchyLevelName"
-                 in="/gmd:MD_Metadata"/> -->
+
           <field xpath="/gmd:MD_Metadata/gmd:parentIdentifier" or="parentIdentifier"
-                 in="/gmd:MD_Metadata" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
-          <text ref="parentidentifier_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+                 in="/gmd:MD_Metadata" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0">
+          </field>
+          <text ref="parentidentifier_help"/>
+          <text ref="parentidentifiernil_help" if="string(/gmd:parentIdentifier/@gco:nilReason)='inapplicable'"/>
+
           <field xpath="/gmd:MD_Metadata/gmd:hierarchyLevel"/>
           <text ref="hierarchylevel_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
           <text ref="hierarchylevelsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
@@ -3683,7 +3665,7 @@
         <for name="gmd:referenceSystemInfo"/>
         <for name="gmd:pointOfContact"/>
         <for name="gmd:distributor"/>
-        <for name="gmd:distributionFormat"/>
+        <!-- <for name="gmd:distributionFormat"/> -->
         <for name="gmd:contact"/>
         <for name="gmd:processor"/>
         <for name="gmd:topicCategory"/>
