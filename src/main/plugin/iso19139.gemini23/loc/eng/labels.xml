@@ -170,7 +170,7 @@
     <description>Adherence to rules of the conceptual schema</description>
   </element>
   <element name="gmd:DQ_ConformanceResult" id="129.0">
-    <label>Conformity</label>
+    <label>Report</label>
     <description>Statement of conformity with the product specification or user requirement against which the data is being evaluated
     </description>
     <condition>mandatory</condition>
@@ -182,8 +182,8 @@
     </description>
   </element>
   <element name="gmd:DQ_DomainConsistency" id="113.0">
-    <label>Domain consistency</label>
-    <description>Adherence of values to the value domains</description>
+    <label>Conformity</label>
+    <description>Statement of conformity with the product specification or user requirement against which the data is being evaluated</description>
   </element>
   <element name="gmd:DQ_FormatConsistency" id="114.0">
     <label>Format consistency</label>
@@ -1172,7 +1172,7 @@
   </element>
   <element name="gmd:explanation" id="131.0">
     <label>Explanation</label>
-    <description>Explanation of the meaning of conformance for this result</description>
+    <description>Meaning of conformance for this result</description>
     <condition>mandatory</condition>
   </element>
   <element name="gmd:extendedElementInformation" id="305.0">
@@ -1344,10 +1344,9 @@
       resource
     </description>
   </element>
-  <element name="gmd:hierarchyLevel" id="6.0">
+  <element name="gmd:hierarchyLevel" context="gmd:MD_Metadata" id="6.0">
     <label>Resource type</label>
-    <description>Scope to which the metadata applies (see annex H for more information about
-      metadata hierarchy levels)
+    <description>Scope to which metadata applies, to distinguish between datasets, series, and services
     </description>
     <condition>mandatory</condition>
   </element>
@@ -1464,8 +1463,8 @@
     </description>
   </element>
   <element name="gmd:level" id="139.0">
-    <label>Resource Type</label>
-    <description>Hierarchical level of the data specified by the scope</description>
+    <label>Quality Scope</label>
+    <description>The specific data to which the data quality information applies, to enable data quality to be reported on a subset of the data resource</description>
     <condition>mandatory</condition>
   </element>
   <element name="gmd:levelDescription" id="141.0">
@@ -2074,6 +2073,12 @@
       information applies
     </description>
     <condition/>
+  </element> 
+  <element name="gmd:other" context="gmd:MD_ScopeDescription" id="155.0">
+    <label>Scope Description</label>
+    <description>Desciription of the level of scope indicated by the Quality Scope element
+    </description>
+    <condition/>
   </element>
   <element name="gmd:otherCitationDetails" id="370.0">
     <label>Other citation details</label>
@@ -2114,8 +2119,8 @@
     </description>
   </element>
   <element name="gmd:pass" id="132.0">
-    <label>Pass</label>
-    <description>Indication of the conformance result where 0 = fail and 1 = pass</description>
+    <label>Degree</label>
+    <description>The purpose of this element is to identify the conformity of the data resource to the cited specification</description>
     <condition>mandatory</condition>
   </element>
   <element name="gmd:peakResponse" id="263.0">
@@ -2293,11 +2298,10 @@
     </description>
   </element>
   <element name="gmd:report" id="80.0">
-    <label>Report</label>
-    <description>Quantitative quality information for the data specified by the
-      scope
+    <label>Conformity</label>
+    <description>Statement of conformity with the product specification or user requirement against which the data is being evaluated
     </description>
-    <condition>conditional</condition>
+    <condition>mandatory</condition>
   </element>
   <element name="gmd:resolution" id="182.0">
     <label>Resolution</label>
@@ -2469,8 +2473,7 @@
   <element name="gmd:specification" id="130.0" context="gmd:DQ_ConformanceResult">
     <condition>mandatory</condition>
     <label>Specification</label>
-    <description>Citation of product specification or user requirement against which data is
-      being evaluated
+    <description>Citation of the product specification or user requirement against which data resource is evaluated
     </description>
   </element>
   <element name="gmd:specification" id="288.0" context="gmd:MD_Format">
@@ -3288,6 +3291,26 @@
     <description>Provides information about the origin from which the maximum and minimum elevation
       values are measured
     </description>
+    <helper relAtt="xlink:href">
+      <option value="http://www.opengis.net/def/crs/EPSG/0/5701">ODN height (United Kingdom) - EPSG:5701</option>
+      <option value="http://www.opengis.net/def/crs/EPSG/0/7707">ODN (Offshore) height (United Kingdom) - EPSG:7707</option>
+      <option value="http://www.opengis.net/def/crs/EPSG/0/5730">EVRF2000 height (Europe) - EPSG:5730</option>
+      <option value="http://www.opengis.net/def/crs/EPSG/0/5621">EVRF2000 height (Europe) - EPSG:5621</option>
+      <option value="http://www.opengis.net/def/crs/EPSG/0/5732">Belfast height - EPSG:5732</option>
+      <option value="http://www.opengis.net/def/crs/EPSG/0/5741">Fair Isle height - EPSG:5741</option>
+      <option value="http://www.opengis.net/def/crs/EPSG/0/5748">Flannan Isles height - EPSG:5748</option>
+      <option value="http://www.opengis.net/def/crs/EPSG/0/5743">Foula height - EPSG:5743</option>
+      <option value="http://www.opengis.net/def/crs/EPSG/0/5731">Malin Head height - EPSG:5731</option>
+      <option value="http://www.opengis.net/def/crs/EPSG/0/5745">North Rona height - EPSG:5745</option>
+      <option value="http://www.opengis.net/def/crs/EPSG/0/5742">Lerwick height - EPSG:5742</option>
+      <option value="http://www.opengis.net/def/crs/EPSG/0/5740">ODN Orkney height - EPSG:5740</option>
+      <option value="http://www.opengis.net/def/crs/EPSG/0/7962">Poolbeg height (m) - EPSG:7962</option>
+      <option value="http://www.opengis.net/def/crs/EPSG/0/5754">Poolbeg height (ft(Br36)) - EPSG:5754</option>
+      <option value="http://www.opengis.net/def/crs/EPSG/0/5749">St Marys height - EPSG:5749</option>
+      <option value="http://www.opengis.net/def/crs/EPSG/0/5747">St Kilda height - EPSG:5747</option>
+      <option value="http://www.opengis.net/def/crs/EPSG/0/5746">Stornoway height - EPSG:5746</option>
+      <option value="http://www.opengis.net/def/crs/EPSG/0/5744">Sule Skerry height - EPSG:5744</option>
+    </helper>
   </element>
   <element name="gmx:FileName">
     <label>File name</label>
@@ -3302,6 +3325,10 @@
     <description>Supports hyper-linking capabilities and ensures a web-like implementation of
       CharacterStrings
     </description>
+  </element>
+  <element name="xlink:title">
+    <label>URL title</label>
+    <description></description>
   </element>
   <element name="xlink:href">
     <label>Data Metadata URL</label>

@@ -37,6 +37,8 @@
     </xsl:variable>
 
 
+    <xsl:variable name="xpath" select="gn-fn-metadata:getXPath(.)" />
+
     <xsl:call-template name="render-element">
       <xsl:with-param name="label"
                       select="$labelConfig/*"/>
@@ -287,9 +289,6 @@
     <xsl:variable name="labelConfig" select="gn-fn-metadata:getLabel($schema, name(), $labels, name(..), $isoType, $xpath)"/>
 
     <xsl:variable name="helper" select="gn-fn-metadata:getHelper($labelConfig/helper, .)"/>
-    <xsl:message>
-      <xsl:copy-of select="$helper" />
-    </xsl:message>
 
     <xsl:variable name="labelConfig">
       <xsl:choose>
@@ -332,7 +331,8 @@
     </xsl:call-template>
   </xsl:template>
 
-  <!-- Template to handled gmd:verticalCRS without children, just xlink:href -->
+
+
  <xsl:template mode="mode-iso19139"
                match="gmd:verticalCRS[(count(gml:*) = 0) and $schema='iso19139.gemini23']"
                priority="2200">
@@ -346,6 +346,7 @@
 
    <xsl:variable name="labelConfig" select="gn-fn-metadata:getLabel($schema, name(), $labels, name(..), $isoType, $xpath)"/>
 
+
    <xsl:call-template name="render-element">
      <xsl:with-param name="label" select="$labelConfig"/>
      <xsl:with-param name="value"
@@ -355,6 +356,7 @@
      <xsl:with-param name="cls" select="local-name()"/>
      <xsl:with-param name="editInfo" select="gn:element"/>
      <xsl:with-param name="isDisabled" select="false()"/>
+
    </xsl:call-template>
 
 
