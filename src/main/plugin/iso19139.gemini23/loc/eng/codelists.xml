@@ -29,7 +29,7 @@
  to any entries.
 
  eg.
-	<entry hideInEditMode="true">
+  <entry hideInEditMode="true">
 
  This will restrict the number of available entries for end
  user editors and keep all records ISO compatible when using
@@ -1498,8 +1498,9 @@
     </entry>
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
   </codelist>
-  <!-- ==================================================== -->
-  <codelist name="gmd:MD_ScopeCode">
+
+   <!-- ==================================================== Quality Scope -->
+   <codelist name="gmd:MD_ScopeCode">
     <entry>
       <code>attribute</code>
       <label>Attribute</label>
@@ -1641,8 +1642,10 @@
       <description></description>
     </entry>
   </codelist>
+      <!-- ====================================================  Service-->
+
   <codelist name="gmd:MD_ScopeCode"
-            displayIf="/ancestor::node()[name()='gmd:MD_Metadata']/gmd:identificationInfo/srv:SV_ServiceIdentification">
+            displayIf="../gmd:identificationInfo/srv:SV_ServiceIdentification">
     <entry>
       <code>service</code>
       <label>Service</label>
@@ -1652,6 +1655,25 @@
       </description>
     </entry>
   </codelist>
+    <!-- ====================================================  Hierarchy Level-->
+  <codelist name="gmd:MD_ScopeCode"
+            displayIf="../gmd:identificationInfo/gmd:MD_DataIdentification">
+    <entry>
+      <code>service</code>
+      <label>Service</label>
+      <description>Service</description>
+    </entry>
+    <entry>
+      <code>series</code>
+      <label>Series</label>
+      <description>Series</description>
+    </entry>
+    <entry>
+      <code>dataset</code>
+      <label>Dataset</label>
+      <description>Dataset</description>
+    </entry>
+  </codelist> 
   <!-- ==================================================== -->
   <codelist name="gmd:MD_SpatialRepresentationTypeCode">
     <entry>
@@ -2314,22 +2336,22 @@
     </entry>
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
   </codelist>
-  <codelist name="gmd:hierarchyLevelName">
-    <entry>
-      <code>service</code>
-      <label>Service</label>
-      <description>Service</description>
-    </entry>
-    <entry>
-      <code>series</code>
-      <label>Series</label>
-      <description>Series</description>
-    </entry>
-    <entry>
-      <code>dataset</code>
-      <label>Dataset</label>
-      <description>Dataset</description>
-    </entry>
-  </codelist>
-  
-</codelists>
+  <codelist name="gmd:name">
+    <entry><code>Text</code><label>Text</label><description></description></entry>
+      <entry><code>ESRI Shapefile</code><label>ESRI Shapefile</label><description></description></entry>
+      <entry><code>Mapinfo MIF/MID</code><label>Mapinfo MIF/MID</label><description></description></entry>
+      <entry><code>Mapinfo TAB</code><label>Mapinfo TAB</label><description></description></entry>
+      <entry><code>KML</code><label>KML</label><description></description></entry>
+      <entry><code>GML</code><label>GML</label><description></description></entry>
+      <entry><code>GeoTIFF</code><label>GeoTIFF</label><description></description></entry>
+      <entry><code>TIFF</code><label>TIFF</label><description></description></entry>
+      <entry><code>ECW</code><label>ECW</label><description></description></entry>
+      <entry><code>JPEG2000</code><label>JPEG2000</label><description></description></entry>
+      <entry><code>ZIP</code><label>ZIP</label><description></description></entry>
+      <entry><code>PDF</code><label>PDF</label><description></description></entry>
+      <entry><code>PNG</code><label>PNG</label><description></description></entry>
+      <entry><code>JPEG</code><label>JPEG</label><description></description></entry>
+      <entry><code>OGC:WMC</code><label>OGC:WMC</label><description></description></entry>
+      <entry><code>OGC:OWS-C</code><label>OGC OWS Context</label><description></description></entry>
+    </codelist>
+  </codelists>
