@@ -401,6 +401,16 @@
     </xsl:copy>
   </xsl:template>
 
+    <!-- Add gco:CharacterString child nodes to elements with gco:nilReason attributes so they display
+    in the editor, then use update-fixed-info.xsl to get rid of them if not required -->
+
+    <!-- <xsl:template match="//*[@gco:nilReason]">
+        <xsl:copy>
+            <xsl:apply-templates select="@* | *"/>
+            <xsl:element name="gco:CharacterString"/>
+        </xsl:copy>
+    </xsl:template> -->
+
   <!-- copy everything else -->
 
   <xsl:template match="@*|node()">
