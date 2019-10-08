@@ -189,7 +189,7 @@
   <xs:element name="MD_Format" type="gmd:MD_Format_Type"/>
   <!-- ........................................................................ -->
   <xs:complexType name="MD_Format_PropertyType">
-    <xs:sequence minOccurs="0">
+    <xs:sequence minOccurs="1">
       <xs:element ref="gmd:MD_Format"/>
     </xs:sequence>
     <xs:attributeGroup ref="gco:ObjectReference"/>
