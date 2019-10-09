@@ -1592,7 +1592,8 @@
     <description>Name of reference system used</description>
     <condition>mandatory</condition>
   </element>
-  <element name="gmd:name" context="gmd:MD_Format" id="285.0">
+  <!-- <element name="gmd:name" context="gmd:MD_Format" id="285.0"> -->
+  <element name="gmd:name" context="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat/gmd:MD_Format/gmd:name" id="285.0" >
     <label>Name</label>
     <description>Name of the data transfer format(s)</description>
     <help>name of the data transfer format(s)</help>
