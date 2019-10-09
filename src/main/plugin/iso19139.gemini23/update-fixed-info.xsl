@@ -36,6 +36,23 @@
 
   <xsl:import href="../iso19139/update-fixed-info.xsl"/>
 
+  <!-- remove empty gco:CharacterString child nodes that have been added by inflate-metadata -->
+
+<!-- <xsl:template match="//*[@gco:nilReason]/gco:CharacterString">
+        <xsl:choose>
+            <xsl:when test="not(text())">
+                <xsl:message>Empty</xsl:message>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:message>Not Empty</xsl:message>
+                <xsl:copy>
+                    <xsl:apply-templates select="@*|node()"/>
+                </xsl:copy>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template> -->
+
+
 
   <xsl:template match="gmd:LanguageCode[@codeListValue]" priority="10">
 

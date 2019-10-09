@@ -196,6 +196,29 @@
     </xsl:copy>
   </xsl:template>
 
+  <xsl:template match="gmd:MD_Distribution">
+    <xsl:copy>
+      <xsl:copy-of select="@*" />
+
+      <xsl:copy-of select="gmd:distributionFormat" />
+      <xsl:if test="not(gmd:distributionFormat)" >
+        <gmd:distributionFormat>
+            <gmd:MD_Format>
+               <gmd:name>
+                  <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco"></gco:CharacterString>
+               </gmd:name>
+               <gmd:version>
+                  <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco"></gco:CharacterString>
+               </gmd:version>
+            </gmd:MD_Format>
+         </gmd:distributionFormat>
+      </xsl:if>
+      <xsl:copy-of select="gmd:transferOptions" />
+
+    </xsl:copy>
+
+  </xsl:template>
+
   <!-- servicees -->
 
     <xsl:template match="srv:SV_ServiceIdentification">
@@ -377,6 +400,16 @@
       <gco:Boolean></gco:Boolean>
     </xsl:copy>
   </xsl:template>
+
+    <!-- Add gco:CharacterString child nodes to elements with gco:nilReason attributes so they display
+    in the editor, then use update-fixed-info.xsl to get rid of them if not required -->
+
+    <!-- <xsl:template match="//*[@gco:nilReason]">
+        <xsl:copy>
+            <xsl:apply-templates select="@* | *"/>
+            <xsl:element name="gco:CharacterString"/>
+        </xsl:copy>
+    </xsl:template> -->
 
   <!-- copy everything else -->
 

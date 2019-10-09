@@ -309,6 +309,7 @@
          </gmd:scope>
          <gmd:report>
             <gmd:DQ_DomainConsistency>
+               <gmd:result>
                <gmd:DQ_ConformanceResult>
                   <gmd:specification>
                      <gmd:CI_Citation>
@@ -333,6 +334,7 @@
                      <gco:Boolean/>
                   </gmd:pass>
                </gmd:DQ_ConformanceResult>
+            </gmd:result>
             </gmd:DQ_DomainConsistency>
          </gmd:report>
          <gmd:lineage>
