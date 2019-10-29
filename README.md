@@ -6,7 +6,7 @@ Gemini 2.3 Metadata Profile
 
 ### GeoNetwork version to use with this plugin
 
-Use GeoNetwork 3.4+. It's not supported in older versions so don't plug it into it!
+Use GeoNetwork 3.8+. It's not supported in older versions so don't plug it into it!
 
 ### Adding the plugin to the source code
 
@@ -14,7 +14,7 @@ The best approach is to add the plugin as a submodule into GeoNetwork schema mod
 
 ```
 cd schemas
-git submodule add -b 3.4.x https://github.com/metadata101/iso19139.gemini23 iso19139.gemini23
+git submodule add -b 3.8.x https://github.com/AstunTechnology/iso19139.gemini23 iso19139.gemini23
 ```
 
 Add the new module to the schema/pom.xml:
