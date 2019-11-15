@@ -68,4 +68,18 @@
       <xsl:value-of select="$codelistTranslation" />
     </gmd:LanguageCode>
   </xsl:template>
+
+  <xsl:template match="//*[(@gco:nilReason='inapplicable' or @gco:nilReason='unknown')]/gco:CharacterString" priority="10">
+    <xsl:choose>
+      <xsl:when test="not(text())">
+        <xsl:message>Empty: <xsl:value-of select="name()" /></xsl:message>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:message>Not Empty: <xsl:value-of select="name()" /></xsl:message>
+        <xsl:copy>
+          <xsl:apply-templates select="@*|node()"/>
+        </xsl:copy>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
 </xsl:stylesheet>
