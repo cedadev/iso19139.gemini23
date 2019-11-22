@@ -10,47 +10,17 @@ Use GeoNetwork 3.8+. It's not supported in older versions so don't plug it into 
 
 ### Adding the plugin to the source code
 
-The best approach is to add the plugin as a submodule into GeoNetwork schema module.
+The best approach is to add the plugin as a submodule. Use https://github.com/geonetwork/core-geonetwork/blob/3.8.x/add-schema.sh for automatic deployment:
 
 ```
-cd schemas
-git submodule add -b 3.8.x https://github.com/AstunTechnology/iso19139.gemini23 iso19139.gemini23
+.\add-schema.sh iso19139.gemini23 http://github.com/metadata101/iso19139.gemini23 3.8.x
 ```
 
-Add the new module to the schema/pom.xml:
-
-```
-  <module>iso19139</module>
-  <module>iso19139.gemini23</module>
-</modules>
-```
-
-Add the dependency in the web module in web/pom.xml:
-
-```
-<dependency>
-  <groupId>${project.groupId}</groupId>
-  <artifactId>schema-iso19139.gemini23</artifactId>
-  <version>${gn.schemas.version}</version>
-</dependency>
-```
-
-Add the module to the webapp in web/pom.xml:
-
-```
-<execution>
-  <id>copy-schemas</id>
-  <phase>process-resources</phase>
-  ...
-  <resource>
-    <directory>${project.basedir}/../schemas/iso19139.gemini23/src/main/plugin</directory>
-    <targetPath>${basedir}/src/main/webapp/WEB-INF/data/config/schema_plugins</targetPath>
-  </resource>
-```
+**Note: Check whether https://github.com/geonetwork/core-geonetwork/pull/3569 has been merged into the 3.8.x branch. If not, it is necessary to manually include the affected files.**
 
 ### Adding editor configuration
 
-Editor configuration in GeoNetwork 3.4.x is done in `schemas/iso19139.gemini23/src/main/plugin/iso19139.gemini23/layout/config-editor.xml` inside each view. Default values are the following:
+Editor configuration in GeoNetwork 3.8.x is done in `schemas/iso19139.gemini23/src/main/plugin/iso19139.gemini23/layout/config-editor.xml` inside each view. Default values are the following:
 
       <sidePanel>
         <directive data-gn-onlinesrc-list=""/>
@@ -65,7 +35,7 @@ Editor configuration in GeoNetwork 3.4.x is done in `schemas/iso19139.gemini23/s
 
 ### Build the application 
 
-Once the application is build, the war file contains the schema plugin:
+Once the application is built, the war file contains the schema plugin:
 
 ```
 $ mvn clean install -Penv-prod
@@ -73,10 +43,9 @@ $ mvn clean install -Penv-prod
 
 ### Deploy the profile in an existing installation
 
-After building the application, it's possible to deploy the schema plugin manually in an existing GeoNetwork installation:
+The plugin can be deployed manually in an existing GeoNetwork installation:
 
 - Copy the content of the folder schemas/iso19139.gemini23/src/main/plugin to INSTALL_DIR/geonetwork/WEB-INF/data/config/schema_plugins/iso19139.gemini23
 
-- Copy the jar file schemas/iso19139.gemini23/target/schema-iso19139.gemini23-3.4.jar to INSTALL_DIR/geonetwork/WEB-INF/lib.
+**Note: https://github.com/geonetwork/core-geonetwork/pull/3569 will also need to be deployed in this case** 
 
-If there's no changes to the profile Java code or the configuration (config-spring-geonetwork.xml), the jar file is not required to be deployed each time.
