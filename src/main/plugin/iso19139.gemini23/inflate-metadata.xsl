@@ -393,23 +393,22 @@
 
   <!-- Add gco:Boolean to gmd:pass with nilReason to work nicely in the editor,
     update-fixed-info.xsl should removed if empty to avoid xsd errors  -->
-  <xsl:template match="gmd:pass[@gco:nilReason and not(gco:Boolean)]">
+  <xsl:template match="gmd:pass[@gco:nilReason and not(gco:Boolean)]" priority="20">
     <xsl:copy>
       <xsl:copy-of select="@*" />
 
-      <gco:Boolean></gco:Boolean>
+      <gco:Boolean>false</gco:Boolean>
     </xsl:copy>
   </xsl:template>
 
     <!-- Add gco:CharacterString child nodes to elements with gco:nilReason attributes so they display
     in the editor, then use update-fixed-info.xsl to get rid of them if not required -->
-
-    <!-- <xsl:template match="//*[@gco:nilReason]">
-        <xsl:copy>
-            <xsl:apply-templates select="@* | *"/>
-            <xsl:element name="gco:CharacterString"/>
-        </xsl:copy>
-    </xsl:template> -->
+    <xsl:template match="//*[(@gco:nilReason='inapplicable' or @gco:nilReason='unknown') and not(gco:CharacterString)]" priority="10">
+      <xsl:copy>
+        <xsl:apply-templates select="@*[name() != 'gco:nilReason']|*"/>
+        <xsl:element name="gco:CharacterString"/>
+      </xsl:copy>
+    </xsl:template>
 
   <!-- copy everything else -->
 
