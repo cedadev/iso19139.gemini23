@@ -16,7 +16,18 @@ The best approach is to add the plugin as a submodule. Use https://github.com/ge
 .\add-schema.sh iso19139.gemini23 http://github.com/metadata101/iso19139.gemini23 3.8.x
 ```
 
-**Note: Check whether https://github.com/geonetwork/core-geonetwork/pull/3569 has been merged into the 3.8.x branch. If not, it is necessary to manually include the affected files.**
+**Note: Check whether https://github.com/geonetwork/core-geonetwork/pull/3569 has been merged into the 3.8.x branch. If not, it is necessary to manually include the affected files as below:
+
+### Adding manual PR
+
+If pr/3569 is unmerged, then follow this process to manually include it:
+
+* Cherry-pick the commit for pr/3569- if there are conflicts, manually resolve them
+* If requested, `git stash` changes such as to pom.xml so you can re-apply them afterwards with `git stash pop`
+* You may also need to make a change to `schemas\iso19115-3.2018\src\main\plugin\iso19115-3.2018\layout\layout.xsl`- overwrite **line 393** with:
+```
+<xsl:copy-of select="gn-fn-metadata:getFieldDirective($editorConfig, name(), name($theElement), $xpath)"/> 
+```
 
 ### Adding editor configuration
 
