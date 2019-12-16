@@ -108,4 +108,23 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
+
+  <!-- remove whole vertical element if both min and max values are empty or not present -->
+  <xsl:template match="gmd:verticalElement">
+    <xsl:variable name="hasMinimumValue" select="string(gmd:EX_VerticalExtent/gmd:minimumValue/gco:Real)" />
+    <xsl:variable name="hasMaximumValue" select="string(gmd:EX_VerticalExtent/gmd:maximumValue/gco:Real)" />
+    <xsl:variable name="hasVerticalCRSContent" select="string(gmd:EX_VerticalExtent/gmd:verticalCRS/@xlink:href) or count(gmd:EX_VerticalExtent/gmd:verticalCRS/*) > 0" />
+
+    <xsl:choose>
+      <xsl:when test="$hasMinimumValue or $hasMaximumValue or $hasVerticalCRSContent">
+         <xsl:copy>
+          <xsl:apply-templates select="@*|node()"/>
+        </xsl:copy>
+      </xsl:when>
+      <xsl:otherwise>
+        <gmd:verticalElement gco:nilReason="inapplicable" />
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
 </xsl:stylesheet>

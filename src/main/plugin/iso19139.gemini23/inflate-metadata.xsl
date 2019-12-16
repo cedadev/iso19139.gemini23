@@ -403,7 +403,7 @@
 
     <!-- Add gco:CharacterString child nodes to elements with gco:nilReason attributes so they display
     in the editor, then use update-fixed-info.xsl to get rid of them if not required -->
-    <xsl:template match="//*[(@gco:nilReason='inapplicable' or @gco:nilReason='unknown') and not(gco:CharacterString)]" priority="10">
+    <xsl:template match="//*[(@gco:nilReason='inapplicable' or @gco:nilReason='unknown') and not(gco:CharacterString) and name() != 'gmd:verticalElement']" priority="10">
       <xsl:copy>
         <xsl:apply-templates select="@*[name() != 'gco:nilReason']|*"/>
         <xsl:element name="gco:CharacterString"/>
