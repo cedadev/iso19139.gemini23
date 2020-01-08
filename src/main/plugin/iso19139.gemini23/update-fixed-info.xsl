@@ -127,4 +127,52 @@
     </xsl:choose>
   </xsl:template>
 
+
+    <!-- Insert resource id if it does not exist -->
+
+    <xsl:template match="gmd:identificationInfo/*/gmd:citation/gmd:CI_Citation" >
+
+        <xsl:copy>
+            <xsl:apply-templates select="gmd:title|gmd:alternateTitle|gmd:date|gmd:date|gmd:edition|gmd:editionDate"/>
+
+            <xsl:choose>
+                <xsl:when test="not(gmd:identifier)">
+                    <xsl:message>==== Add missing resource identifier ====</xsl:message>
+                    <gmd:identifier>
+                        <gmd:RS_Identifier>
+                            <gmd:code>
+                                <gco:CharacterString><xsl:value-of select="/root/env/uuid"/>_resource</gco:CharacterString>
+                            </gmd:code>
+                        </gmd:RS_Identifier>
+                    </gmd:identifier>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="gmd:identifier"/>
+                </xsl:otherwise>
+            </xsl:choose>
+
+            <xsl:apply-templates select="gmd:citedResponsibleParty|gmd:presentationForm|gmd:series|gmd:otherCitationDetails|gmd:collectiveTitle|gmd:ISBN|gmd:ISSN"/>
+
+        </xsl:copy>
+    </xsl:template>
+
+    <!-- ================================================================= -->
+    <!-- Insert character encoding as utf8 if it does not exist -->
+
+    <xsl:template match="gmd:identificationInfo/*/gmd:characterSet" >
+      <xsl:copy>
+      <xsl:choose>
+        <xsl:when test="not(gmd:MD_CharacterSetCode/@codeListValue='utf8')">
+        <xsl:message>==== Add missing encoding ====</xsl:message>
+            <gmd:MD_CharacterSetCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_CharacterSetCode"
+                                     codeListValue="utf8"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:message>==== Copying existing encoding ====</xsl:message>
+          <xsl:apply-templates select="gmd:MD_CharacterSetCode"/>
+        </xsl:otherwise>
+        </xsl:choose>
+      </xsl:copy>
+    </xsl:template>
+
 </xsl:stylesheet>
