@@ -130,7 +130,6 @@
   <!-- ================================================================= -->
     <!-- Insert resource id if it does not exist -->
 
-    <!--<xsl:template match="gmd:identificationInfo/*/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code" >-->
     <xsl:template match="gmd:identificationInfo/*/gmd:citation/gmd:CI_Citation" >
 
         <xsl:copy>
@@ -175,6 +174,5 @@
         </xsl:choose>
       </xsl:copy>
     </xsl:template>
-
 
 </xsl:stylesheet>
