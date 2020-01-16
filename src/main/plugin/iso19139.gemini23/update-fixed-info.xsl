@@ -127,7 +127,7 @@
     </xsl:choose>
   </xsl:template>
 
-  <!-- ================================================================= -->
+
     <!-- Insert resource id if it does not exist -->
 
     <xsl:template match="gmd:identificationInfo/*/gmd:citation/gmd:CI_Citation" >

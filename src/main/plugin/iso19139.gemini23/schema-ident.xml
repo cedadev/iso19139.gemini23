@@ -28,13 +28,14 @@
   <name>iso19139.gemini23</name>
   <id>c9054754-5692-4189-9ac2-e95cf404a470</id>
   <version>1.0</version>
-  <appMinorVersionSupported>3.4.0</appMinorVersionSupported>
+  <appMinorVersionSupported>3.6.0</appMinorVersionSupported>
   <title>Gemini 2.3 Metadata Profile</title>
   <description>Gemini 2.3 Metadata Profile based on ISO19139:2007</description>
   <standardUrl>https://github.com/AstunTechnology/iso19139.gemini23</standardUrl>
   <depends>iso19139</depends>
-  <schemaLocation>http://www.isotc211.org/2005/gmd http://www.isotc211.org/2005/gmd/gmd.xsd http://www.isotc211.org/2005/srv http://schemas.opengis.net/iso/19139/20060504/srv/srv.xsd http://www.isotc211.org/2005/gmx http://www.isotc211.org/2005/gmx/gmx.xsd</schemaLocation>
-    <autodetect xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gco="http://www.isotc211.org/2005/gco">
+  <!-- 19139:2007 version -->
+  <schemaLocation>http://www.isotc211.org/2005/gmd http://schemas.opengis.net/csw/2.0.2/profiles/apiso/1.0.0/apiso.xsd</schemaLocation>
+  <autodetect xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gco="http://www.isotc211.org/2005/gco">
         <elements>
             <gmd:metadataStandardName>
                 <gco:CharacterString>UK GEMINI</gco:CharacterString>
