@@ -30,7 +30,7 @@
   <version>1.0</version>
   <appMinorVersionSupported>3.4.0</appMinorVersionSupported>
   <title>Gemini 2.3 Metadata Profile</title>
-  <description>Gemini 2.3 Metadata Profile</description>
+  <description>Gemini 2.3 Metadata Profile based on ISO19139:2007</description>
   <standardUrl>https://github.com/AstunTechnology/iso19139.gemini23</standardUrl>
   <depends>iso19139</depends>
   <schemaLocation>http://www.isotc211.org/2005/gmd http://www.isotc211.org/2005/gmd/gmd.xsd http://www.isotc211.org/2005/srv http://schemas.opengis.net/iso/19139/20060504/srv/srv.xsd http://www.isotc211.org/2005/gmx http://www.isotc211.org/2005/gmx/gmx.xsd</schemaLocation>
