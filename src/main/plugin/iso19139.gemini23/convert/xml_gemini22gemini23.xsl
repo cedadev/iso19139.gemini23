@@ -64,30 +64,39 @@
     <!-- TODO Needs some tests to copy existing constraints into new encoding
         or these below as defaults -->
 
-    <xsl:template match="gmd:resourceConstraints">
-        <xsl:message>=== Updating Resource Constraints</xsl:message>
-        <gmd:MD_LegalConstraints>
-            <gmd:accessConstraints>
-                <gmd:MD_RestrictionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_RestrictionCode"
-                                          codeListValue="otherRestrictions">otherRestrictions</gmd:MD_RestrictionCode>
-           </gmd:accessConstraints>
-            <gmd:otherConstraints>
-                <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1e">no limitations</gmx:Anchor>
-            </gmd:otherConstraints>
-            <gmd:otherConstraints>
-                <gco:CharacterString/>
-            </gmd:otherConstraints>
-        </gmd:MD_LegalConstraints>
-        <gmd:MD_LegalConstraints>
-            <gmd:useConstraints>
-            <gmd:MD_RestrictionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_RestrictionCode"
-                                          codeListValue="otherRestrictions">otherRestrictions</gmd:MD_RestrictionCode>
-            </gmd:useConstraints>
-            <gmd:otherConstraints>
-                <gmx:Anchor>no conditions apply</gmx:Anchor>
-            </gmd:otherConstraints>
-        </gmd:MD_LegalConstraints>
+    <xsl:template match="gmd:resourceConstraints" priority="10">
+        <xsl:copy copy-namespaces="no">
+            <!--<xsl:apply-templates select="@*|node()"/>-->
+            <xsl:message>=== Adding Access Constraints</xsl:message>
+            <gmd:MD_LegalConstraints>
+                <gmd:accessConstraints>
+                    <gmd:MD_RestrictionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_RestrictionCode"
+                                              codeListValue="otherRestrictions">otherRestrictions</gmd:MD_RestrictionCode>
+               </gmd:accessConstraints>
+                <gmd:otherConstraints>
+                    <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1e">no limitations</gmx:Anchor>
+                </gmd:otherConstraints>
+                <gmd:otherConstraints>
+                    <gco:CharacterString/>
+                </gmd:otherConstraints>
+            </gmd:MD_LegalConstraints>
+        </xsl:copy>
+        <xsl:copy copy-namespaces="no">
+            <xsl:message>=== Adding Use Constraints</xsl:message>
+            <!--<xsl:apply-templates select="@*|node()"/>-->
+            <gmd:MD_LegalConstraints>
+                <gmd:useConstraints>
+                    <gmd:MD_RestrictionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_RestrictionCode"
+                        codeListValue="otherRestrictions">otherRestrictions</gmd:MD_RestrictionCode>
+                </gmd:useConstraints>
+                <gmd:otherConstraints>
+                    <gmx:Anchor>no conditions apply</gmx:Anchor>
+                </gmd:otherConstraints>
+            </gmd:MD_LegalConstraints>
+        </xsl:copy>
     </xsl:template>
+
+
 
     <!-- ================================================================= -->
     <!-- Insert character encoding as utf8 if it does not exist -->
