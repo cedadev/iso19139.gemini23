@@ -79,7 +79,7 @@
   <sch:ns prefix="xlink" uri="http://www.w3.org/1999/xlink"/>
 
   <sch:ns prefix="geonet" uri="http://www.fao.org/geonetwork"/>
-  
+
   <!-- Namespace for ISO 19119 - Metadata Describing Services - Note: no standardised schema -->
   <sch:ns prefix="srv" uri="http://www.isotc211.org/2005/srv"/>
 
@@ -563,7 +563,7 @@
   <sch:pattern fpi="TestValues">
     <sch:title>Element Values or Nil Reason Attributes</sch:title>
     <sch:rule context="//*">
-      <sch:assert test="name() = 'geonet:element' or count(*[name()!='geonet:element']) &gt; 0 or
+      <sch:assert test="substring-before(name(), concat(':', local-name())) = 'geonet' or name() = 'geonet:text' or name() = 'geonet:element' or count(*[name()!='geonet:element']) &gt; 0 or
                     namespace-uri() = 'http://www.isotc211.org/2005/gco' or
                     namespace-uri() = 'http://www.isotc211.org/2005/gmx' or
                     namespace-uri() = 'http://www.opengis.net/gml/3.2' or
@@ -619,13 +619,13 @@
   <sch:pattern abstract="true" id="InnerTextPattern">
     <sch:rule context="$context">
       <sch:assert test="(count($element) = 0) or
-                  (string-length(normalize-space($element)) &gt; 0) or
+                  (count(gmd:otherConstraints[not(string(normalize-space(text())))]) = 0) or
                   ($element/@gco:nilReason = 'inapplicable' or
                   $element/@gco:nilReason = 'missing' or
                   $element/@gco:nilReason = 'template' or
                   $element/@gco:nilReason = 'unknown' or
                   $element/@gco:nilReason = 'withheld')">
-        The '<sch:value-of select="name($element)"/>' element should have a value.
+        The '<sch:value-of select="name($element[1])"/>' element should have a value.
       </sch:assert>
     </sch:rule>
   </sch:pattern>
