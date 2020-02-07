@@ -134,7 +134,7 @@
                         <gmd:specification>
                             <gmd:CI_Citation>
                                 <gmd:title>
-                                    <gmx:Anchor xlink:href="http://data.europa.eu/eli/reg/2010/1089">Commission Regulation (EU) No 1089/2010 of 23 November 2010 implementing Directive 2007/2/EC of the European Parliament and of the Council as regards interoperability of spatial datasets and services</gmx:Anchor> 
+                                    <gmx:Anchor xlink:href="http://data.europa.eu/eli/reg/2010/1089">Commission Regulation (EU) No 1089/2010 of 23 November 2010 implementing Directive 2007/2/EC of the European Parliament and of the Council as regards interoperability of spatial data sets and services</gmx:Anchor>
                                 </gmd:title>
                                 <gmd:date>
                                     <gmd:CI_Date>
@@ -142,7 +142,7 @@
                                             <gco:Date>2010-12-08</gco:Date>
                                         </gmd:date>
                                         <gmd:dateType>
-                                            <gmd:CI_DateTypeCode codeList='http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#CI_DateTypeCode' codeListValue='publication' /> 
+                                            <gmd:CI_DateTypeCode codeList='http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#CI_DateTypeCode' codeListValue='publication' />
                                         </gmd:dateType>
                                     </gmd:CI_Date>
                                 </gmd:date>
