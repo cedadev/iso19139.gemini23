@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--  
-Mapping between : 
+<!--
+Mapping between :
 - WMS 1.0.0
 - WMS 1.1.1
 - WMS 1.3.0
@@ -9,7 +9,7 @@ Mapping between :
 - WFS 1.1.0
 - WPS 0.4.0
 - WPS 1.0.0
-... to ISO19119. 
+... to ISO19119.
  -->
 <xsl:stylesheet version="2.0" xmlns    ="http://www.isotc211.org/2005/gmd"
 										xmlns:gco="http://www.isotc211.org/2005/gco"
@@ -32,21 +32,21 @@ Mapping between :
 										extension-element-prefixes="wcs ows wfs ows11 wps wps1 owsg">
 
 	<!-- ============================================================================= -->
-	
+
     <xsl:param name="uuid">uuid</xsl:param>
 	<xsl:param name="lang">eng</xsl:param>
 	<xsl:param name="topic"></xsl:param>
-	
+
 	<!-- ============================================================================= -->
-	
+
 	<xsl:include href="resp-party.xsl"/>
 	<xsl:include href="ref-system.xsl"/>
 	<xsl:include href="identification.xsl"/>
-	
+
 	<!-- ============================================================================= -->
 
 	<xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" />
-	
+
 	<!-- ============================================================================= -->
 
 	<xsl:template match="/">
@@ -57,10 +57,10 @@ Mapping between :
 
 	<xsl:template match="WMT_MS_Capabilities|wfs:WFS_Capabilities|wcs:WCS_Capabilities|
 	       wps:Capabilities|wps1:Capabilities|wms:WMS_Capabilities">
-	
+
 		<xsl:variable name="ows">
 			<xsl:choose>
-				<xsl:when test="(local-name(.)='WFS_Capabilities' and namespace-uri(.)='http://www.opengis.net/wfs' and @version='1.1.0') 
+				<xsl:when test="(local-name(.)='WFS_Capabilities' and namespace-uri(.)='http://www.opengis.net/wfs' and @version='1.1.0')
 					or (local-name(.)='Capabilities' and namespace-uri(.)='http://www.opengeospatial.net/wps')
 					or (local-name(.)='Capabilities' and namespace-uri(.)='http://www.opengis.net/wps/1.0.0')">true</xsl:when>
 				<xsl:otherwise>false</xsl:otherwise>
@@ -68,7 +68,7 @@ Mapping between :
 		</xsl:variable>
 
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-		
+
 		<MD_Metadata>
 
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -76,7 +76,7 @@ Mapping between :
 			<fileIdentifier>
 				<gco:CharacterString><xsl:value-of select="$uuid"/></gco:CharacterString>
 			</fileIdentifier>
-		
+
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 			<language>
@@ -95,24 +95,24 @@ Mapping between :
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 			<characterSet>
-				<MD_CharacterSetCode codeList="./resources/codeList.xml#MD_CharacterSetCode" codeListValue="utf8" />
+				<MD_CharacterSetCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codeList.xml#MD_CharacterSetCode" codeListValue="utf8" />
 			</characterSet>
 
 			<!-- parentIdentifier : service have no parent -->
 			<!-- mdHrLv -->
             <hierarchyLevel>
                 <MD_ScopeCode
-                    codeList="./resources/codeList.xml#MD_ScopeCode"
+                    codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_ScopeCode"
                     codeListValue="service" />
             </hierarchyLevel>
-            
+
 			<!-- mdHrLvName -->
 
 			<hierarchyLevelName>
-				<gco:CharacterString>Service</gco:CharacterString>
+				<gco:CharacterString>service</gco:CharacterString>
    </hierarchyLevelName>
 
-			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->			
+			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 			<xsl:choose>
 				<xsl:when test="Service/ContactInformation|
 					wfs:Service/wfs:ContactInformation|
@@ -137,7 +137,7 @@ Mapping between :
 					<contact gco:nilReason="missing"/>
 				</xsl:otherwise>
 			</xsl:choose>
-			
+
 
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 			<xsl:variable name="df">[Y0001]-[M01]-[D01]T[H01]:[m01]:[s01]</xsl:variable>
@@ -151,17 +151,16 @@ Mapping between :
 					</xsl:otherwise>
 				</xsl:choose>
 			</dateStamp>
-			
+
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <metadataStandardName>
+        <gco:CharacterString>UK GEMINI</gco:CharacterString>
+      </metadataStandardName>
 
-			<metadataStandardName>
-				<gco:CharacterString>ISO 19119/2005</gco:CharacterString>
-			</metadataStandardName>
+      <metadataStandardVersion>
+        <gco:CharacterString>2.3</gco:CharacterString>
+      </metadataStandardVersion>
 
-			<metadataStandardVersion>
-				<gco:CharacterString>1.0</gco:CharacterString>
-			</metadataStandardVersion>
-			
 
 			<!--mdExtInfo-->
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -174,21 +173,25 @@ Mapping between :
 					</xsl:apply-templates>
 				</srv:SV_ServiceIdentification>
 			</identificationInfo>
-		
+      
 			<!--contInfo-->
 			<!--distInfo -->
 			 <distributionInfo>
                 <MD_Distribution>
-                	<distributionFormat>
-                		<MD_Format>
-                			<name gco:nilReason="missing">
-                				<gco:CharacterString/>
-                			</name>
-                			<version gco:nilReason="missing">
-                				<gco:CharacterString/>
-                			</version>
-                		</MD_Format>
-                	</distributionFormat>
+
+                <xsl:for-each select="wms:Capability/wms:Request/wms:GetMap/wms:Format">
+                    <distributionFormat>
+                      <MD_Format>
+                        <name>
+                          <gco:CharacterString><xsl:value-of select="." /></gco:CharacterString>
+                        </name>
+                        <version>
+                          <gco:CharacterString>Inaplicable</gco:CharacterString>
+                        </version>
+                      </MD_Format>
+                    </distributionFormat>
+                  </xsl:for-each>
+
                     <transferOptions>
                         <MD_DigitalTransferOptions>
                             <onLine>
@@ -244,32 +247,32 @@ Mapping between :
                                             </xsl:choose>
                                         </gco:CharacterString>
                                     </description>
-                                 </CI_OnlineResource>    
+                                 </CI_OnlineResource>
                              </onLine>
                         </MD_DigitalTransferOptions>
                    </transferOptions>
                </MD_Distribution>
-            </distributionInfo> 
+            </distributionInfo>
 			<!--dqInfo-->
 			<dataQualityInfo>
 				<DQ_DataQuality>
 					<scope>
 						<DQ_Scope>
 							<level>
-								<MD_ScopeCode codeListValue="service"
-									codeList="./resources/codeList.xml#MD_ScopeCode" />
+                <MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_ScopeCode"
+                                  codeListValue="service"/>
 							</level>
 							<levelDescription>
 							            <MD_ScopeDescription>
 							              <other>
-							                <gco:CharacterString>Service</gco:CharacterString>
+							                <gco:CharacterString>service</gco:CharacterString>
 							              </other>
 							            </MD_ScopeDescription>
 							          </levelDescription>
 						</DQ_Scope>
 					</scope>
-					
-					<!-- 
+
+					<!--
 		                <inspire_common:Conformity>
 		                    <inspire_common:Specification>
 		                        <inspire_common:Title>-</inspire_common:Title>
@@ -324,7 +327,7 @@ Mapping between :
 											</pass>
 										</xsl:otherwise>
 									</xsl:choose>
-									
+
 								</DQ_ConformanceResult>
 							</result>
 						</DQ_DomainConsistency>
@@ -338,14 +341,24 @@ Mapping between :
 						</LI_Lineage>
 					</lineage>
 				</DQ_DataQuality>
-				
+
 			</dataQualityInfo>
 			<!--mdConst -->
 			<!--mdMaint-->
 
 		</MD_Metadata>
 	</xsl:template>
-	
+
 	<!-- ============================================================================= -->
 
+  <xsl:template name="freetext">
+    <xsl:param name="elementName" />
+    <xsl:param name="value" />
+
+    <xsl:if test="string($value)">
+      <xsl:element name="{$elementName}">
+        <gco:CharacterString><xsl:value-of select="$value" /></gco:CharacterString>
+      </xsl:element>
+    </xsl:if>
+  </xsl:template>
 </xsl:stylesheet>
