@@ -173,86 +173,101 @@ Mapping between :
 					</xsl:apply-templates>
 				</srv:SV_ServiceIdentification>
 			</identificationInfo>
-      
+
 			<!--contInfo-->
 			<!--distInfo -->
-			 <distributionInfo>
-                <MD_Distribution>
+      <distributionInfo>
+        <MD_Distribution>
+          <!-- WMS / WFS 1.1.0 -->
+          <xsl:for-each select="wms:Capability/wms:Request/wms:GetMap/wms:Format|ows:OperationsMetadata/ows:Operation[@name='GetFeature']/ows:Parameter[@name='outputFormat']/ows:Value">
+            <distributionFormat>
+              <MD_Format>
+                <name>
+                  <gco:CharacterString><xsl:value-of select="." /></gco:CharacterString>
+                </name>
+                <version>
+                  <gco:CharacterString>Inaplicable</gco:CharacterString>
+                </version>
+              </MD_Format>
+            </distributionFormat>
+          </xsl:for-each>
 
-                <xsl:for-each select="wms:Capability/wms:Request/wms:GetMap/wms:Format">
-                    <distributionFormat>
-                      <MD_Format>
-                        <name>
-                          <gco:CharacterString><xsl:value-of select="." /></gco:CharacterString>
-                        </name>
-                        <version>
-                          <gco:CharacterString>Inaplicable</gco:CharacterString>
-                        </version>
-                      </MD_Format>
-                    </distributionFormat>
-                  </xsl:for-each>
+          <!-- WFS 1.0.0 -->
+        	<xsl:for-each select="wfs:Capability/wfs:Request/wfs:GetFeature/wfs:ResultFormat/*">
+            <distributionFormat>
+              <MD_Format>
+                <name>
+                  <gco:CharacterString><xsl:value-of select="name()" /></gco:CharacterString>
+                </name>
+                <version>
+                  <gco:CharacterString>Inaplicable</gco:CharacterString>
+                </version>
+              </MD_Format>
+            </distributionFormat>
+          </xsl:for-each>
 
-                    <transferOptions>
-                        <MD_DigitalTransferOptions>
-                            <onLine>
-                                <CI_OnlineResource>
-                                    <linkage>
-                                        <URL>
-                                        <xsl:choose>
-                                            <xsl:when test="$ows='true'">
-                                                <xsl:value-of select="//ows:Operation[@name='GetCapabilities']/ows:DCP/ows:HTTP/ows:Get/@xlink:href|
-                                                	//ows11:Operation[@name='GetCapabilities']/ows11:DCP/ows11:HTTP/ows11:Get/@xlink:href"/>
-                                            </xsl:when>
-                                            <xsl:when test="name(.)='WMS_Capabilities'">
-                                                <xsl:value-of select="//wms:GetCapabilities/wms:DCPType/wms:HTTP/wms:Get/wms:OnlineResource/@xlink:href"/>request=GetCapabilities
-                                            </xsl:when>
-                                            <xsl:when test="name(.)='WFS_Capabilities'">
-                                                <xsl:value-of select="//wfs:GetCapabilities/wfs:DCPType/wfs:HTTP/wfs:Get/@onlineResource"/>
-                                            </xsl:when>
-                                            <xsl:when test="name(.)='WMT_MS_Capabilities'">
-                                                <xsl:value-of select="//GetCapabilities/DCPType/HTTP/Get/OnlineResource[1]/@xlink:href"/>
-                                            </xsl:when>
-                                            <xsl:otherwise>
-                                                <xsl:value-of select="//wcs:GetCapabilities//wcs:OnlineResource[1]/@xlink:href"/>
-                                            </xsl:otherwise>
-                                        </xsl:choose>
-                                        </URL>
-                                    </linkage>
-                                    <protocol>
-                                        <gco:CharacterString>
-                                        	<xsl:choose>
-                                        		<xsl:when test="name(.)='WMT_MS_Capabilities' or name(.)='WMS_Capabilities'">application/vnd.ogc.wms_xml</xsl:when>
-                                        		<xsl:otherwise>WWW:LINK-1.0-http--link</xsl:otherwise>
-                                        	</xsl:choose>
-                                        </gco:CharacterString>
-                                    </protocol>
-                                    <description>
-                                        <gco:CharacterString>
-                                            <xsl:choose>
-                                                <xsl:when test="$ows='true'">
-                                                    <xsl:value-of select="//ows:Operation[@name='GetCapabilities']/ows:DCP/ows:HTTP/ows:Get/@xlink:href"/>
-                                                </xsl:when>
-                                                <xsl:when test="name(.)='WMS_Capabilities'">
-	                                                <xsl:value-of select="//wms:GetCapabilities/wms:DCPType/wms:HTTP/wms:Get/wms:OnlineResource/@xlink:href"/>
-	                                            </xsl:when>
-	                                            <xsl:when test="name(.)='WFS_Capabilities'">
-                                                    <xsl:value-of select="//wfs:GetCapabilities/wfs:DCPType/wfs:HTTP/wfs:Get/@onlineResource"/>
-                                                </xsl:when>
-                                                <xsl:when test="name(.)='WMT_MS_Capabilities'">
-                                                    <xsl:value-of select="//GetCapabilities//OnlineResource[1]/@xlink:href"/>
-                                                </xsl:when>
-                                                <xsl:otherwise>
-                                                    <xsl:value-of select="//wcs:GetCapabilities//wcs:OnlineResource[1]/@xlink:href"/>
-                                                </xsl:otherwise>
-                                            </xsl:choose>
-                                        </gco:CharacterString>
-                                    </description>
-                                 </CI_OnlineResource>
-                             </onLine>
-                        </MD_DigitalTransferOptions>
-                   </transferOptions>
-               </MD_Distribution>
-            </distributionInfo>
+            <transferOptions>
+              <MD_DigitalTransferOptions>
+                <onLine>
+                  <CI_OnlineResource>
+                    <linkage>
+                      <URL>
+                        <xsl:choose>
+                          <xsl:when test="$ows='true'">
+                            <xsl:value-of select="//ows:Operation[@name='GetCapabilities']/ows:DCP/ows:HTTP/ows:Get/@xlink:href|
+                              //ows11:Operation[@name='GetCapabilities']/ows11:DCP/ows11:HTTP/ows11:Get/@xlink:href"/>
+                          </xsl:when>
+                          <xsl:when test="name(.)='WMS_Capabilities'">
+                            <xsl:value-of select="//wms:GetCapabilities/wms:DCPType/wms:HTTP/wms:Get/wms:OnlineResource/@xlink:href"/>request=GetCapabilities
+                          </xsl:when>
+                          <xsl:when test="name(.)='WFS_Capabilities'">
+                            <xsl:value-of select="//wfs:GetCapabilities/wfs:DCPType/wfs:HTTP/wfs:Get/@onlineResource"/>
+                          </xsl:when>
+                          <xsl:when test="name(.)='WMT_MS_Capabilities'">
+                            <xsl:value-of select="//GetCapabilities/DCPType/HTTP/Get/OnlineResource[1]/@xlink:href"/>
+                          </xsl:when>
+                          <xsl:otherwise>
+                            <xsl:value-of select="//wcs:GetCapabilities//wcs:OnlineResource[1]/@xlink:href"/>
+                          </xsl:otherwise>
+                        </xsl:choose>
+                      </URL>
+                    </linkage>
+                    <protocol>
+                      <gco:CharacterString>
+                        <xsl:choose>
+                          <xsl:when test="name(.)='WMT_MS_Capabilities' or name(.)='WMS_Capabilities'">application/vnd.ogc.wms_xml</xsl:when>
+                          <xsl:otherwise>WWW:LINK-1.0-http--link</xsl:otherwise>
+                        </xsl:choose>
+                      </gco:CharacterString>
+                    </protocol>
+                    <description>
+                        <gco:CharacterString>
+                            <xsl:choose>
+                                <xsl:when test="$ows='true'">
+                                    <xsl:value-of select="//ows:Operation[@name='GetCapabilities']/ows:DCP/ows:HTTP/ows:Get/@xlink:href"/>
+                                </xsl:when>
+                                <xsl:when test="name(.)='WMS_Capabilities'">
+                                  <xsl:value-of select="//wms:GetCapabilities/wms:DCPType/wms:HTTP/wms:Get/wms:OnlineResource/@xlink:href"/>
+                              </xsl:when>
+                              <xsl:when test="name(.)='WFS_Capabilities'">
+                                    <xsl:value-of select="//wfs:GetCapabilities/wfs:DCPType/wfs:HTTP/wfs:Get/@onlineResource"/>
+                                </xsl:when>
+                                <xsl:when test="name(.)='WMT_MS_Capabilities'">
+                                    <xsl:value-of select="//GetCapabilities//OnlineResource[1]/@xlink:href"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of select="//wcs:GetCapabilities//wcs:OnlineResource[1]/@xlink:href"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </gco:CharacterString>
+                    </description>
+                   </CI_OnlineResource>
+                </onLine>
+              </MD_DigitalTransferOptions>
+            </transferOptions>
+          </MD_Distribution>
+        </distributionInfo>
+
 			<!--dqInfo-->
 			<dataQualityInfo>
 				<DQ_DataQuality>
