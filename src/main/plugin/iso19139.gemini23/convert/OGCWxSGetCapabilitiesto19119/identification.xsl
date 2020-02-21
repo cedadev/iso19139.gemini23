@@ -17,6 +17,7 @@
                     xmlns:gml="http://www.opengis.net/gml/3.2"
 										xmlns:math="http://exslt.org/math"
 										xmlns:exslt="http://exslt.org/common"
+                    xmlns:gmx="http://www.isotc211.org/2005/gmx"
 										xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0"
 										xmlns:inspire_vs="http://inspire.ec.europa.eu/schemas/inspire_vs/1.0"
 										extension-element-prefixes="math exslt wcs ows wps wps1 ows11 wfs gml">
@@ -230,6 +231,7 @@
 
 		</xsl:for-each>
 	</resourceConstraints>
+
 
 		<srv:serviceType>
 			<gco:LocalName codeSpace="www.w3c.org">
@@ -550,8 +552,8 @@
 		<resourceConstraints>
 			<MD_LegalConstraints>
 					<useLimitation>
-                  		<gco:CharacterString>Public Sector End User Licence - INSPIRE http://www.ordnancesurvey.co.uk/business-and-government/public-sector/mapping-agreements/inspire-licence.html</gco:CharacterString>
-               		</useLimitation>
+              <gco:CharacterString>Public Sector End User Licence - INSPIRE http://www.ordnancesurvey.co.uk/business-and-government/public-sector/mapping-agreements/inspire-licence.html</gco:CharacterString>
+          </useLimitation>
 					<accessConstraints>
 						<MD_RestrictionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_RestrictionCode" codeListValue="otherRestrictions">otherRestrictions</MD_RestrictionCode>
 					</accessConstraints>
@@ -561,8 +563,31 @@
 				</MD_LegalConstraints>
 		</resourceConstraints>
 
+    <resourceConstraints>
+      <MD_LegalConstraints>
+        <accessConstraints>
+          <MD_RestrictionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_RestrictionCode"
+                                  codeListValue="otherRestrictions">otherRestrictions</MD_RestrictionCode>
+        </accessConstraints>
+        <otherConstraints>
+          <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1e">no limitations</gmx:Anchor>
+        </otherConstraints>
+      </MD_LegalConstraints>
+    </resourceConstraints>
 
-		<xsl:choose>
+    <resourceConstraints>
+      <MD_LegalConstraints>
+        <useConstraints>
+          <MD_RestrictionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_RestrictionCode"
+                                  codeListValue="otherRestrictions">otherRestrictions</MD_RestrictionCode>
+        </useConstraints>
+        <otherConstraints>
+          <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/ConditionsApplyingToAccessAndUse/noConditionsApply">no conditions apply</gmx:Anchor>
+        </otherConstraints>
+      </MD_LegalConstraints>
+    </resourceConstraints>
+
+    <xsl:choose>
 		 	<xsl:when test="//wfs:FeatureType">
 				<spatialRepresentationType>
 					<MD_SpatialRepresentationTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codeList.xml#MD_SpatialRepresentationTypeCode" codeListValue="vector" />
