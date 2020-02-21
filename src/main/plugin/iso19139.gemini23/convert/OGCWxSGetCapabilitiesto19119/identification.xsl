@@ -20,7 +20,9 @@
                     xmlns:gmx="http://www.isotc211.org/2005/gmx"
 										xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0"
 										xmlns:inspire_vs="http://inspire.ec.europa.eu/schemas/inspire_vs/1.0"
-										extension-element-prefixes="math exslt wcs ows wps wps1 ows11 wfs gml">
+										extension-element-prefixes="math exslt wcs ows wps wps1 ows11 wfs gml"
+                    exclude-result-prefixes="ows ows11 wcs wms wps wps1 math inspire_common inspire_vs exslt">
+
 <!-- note this template does not handle WFS 2.0.0 -->
 	<!-- ============================================================================= -->
 	<xsl:import href="language.xsl"/>
