@@ -1,15 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?> 
+<?xml version="1.0" encoding="UTF-8"?>
 
 <xsl:stylesheet version="2.0" xmlns="http://www.isotc211.org/2005/gmd"
 	xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gts="http://www.isotc211.org/2005/gts"
-	xmlns:gml="http://www.opengis.net/gml" xmlns:srv="http://www.isotc211.org/2005/srv"
+	xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:srv="http://www.isotc211.org/2005/srv"
+  xmlns:gmx="http://www.isotc211.org/2005/gmx"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:wfs="http://www.opengis.net/wfs"
 	xmlns:wms="http://www.opengis.net/wms" xmlns:ows11="http://www.opengis.net/ows/1.1"
 	xmlns:ows="http://www.opengis.net/ows" xmlns:wcs="http://www.opengis.net/wcs"
 	xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0"
 	xmlns:inspire_vs="http://inspire.ec.europa.eu/schemas/inspire_vs/1.0"
-	xmlns:xlink="http://www.w3.org/1999/xlink" extension-element-prefixes="wcs ows wfs srv">
+	xmlns:xlink="http://www.w3.org/1999/xlink" extension-element-prefixes="wms wcs ows ows11 wfs srv inspire_common inspire_vs"
+  exclude-result-prefixes="wms wcs ows ows11 wfs inspire_common inspire_vs">
 
 	<!--
 		=============================================================================
@@ -23,7 +25,7 @@
 
 
 	<!-- Max number of coordinate system to add
-	to the metadata record. Avoid to have too many CRS when 
+	to the metadata record. Avoid to have too many CRS when
 	OGC server list all epsg database. -->
 	<xsl:variable name="maxCRS">21</xsl:variable>
 
@@ -52,7 +54,7 @@
 		<xsl:apply-templates/>
 	</xsl:template>
 
-	<!-- 
+	<!--
 		==============================================================================
 	-->
 
@@ -156,7 +158,7 @@
 			</metadataStandardName>
 
 			<metadataStandardVersion>
-				<gco:CharacterString>2.2</gco:CharacterString>
+				<gco:CharacterString>2.3</gco:CharacterString>
 			</metadataStandardVersion>
 
 			<!-- spatRepInfo-->
@@ -342,6 +344,23 @@
 											</xsl:choose>
 										</gco:CharacterString>
 									</description>
+
+                  <xsl:variable name="function">
+                    <xsl:choose>
+                      <xsl:when test="name(.) = 'WMS_Capabilities' or name(.) = 'WMT_MS_Capabilities'">information</xsl:when>
+                      <xsl:when test="$ows = 'true' or name(.) = 'WFS_Capabilities'">download</xsl:when>
+                      <xsl:otherwise></xsl:otherwise>
+                    </xsl:choose>
+                  </xsl:variable>
+
+                  <xsl:if test="string(normalize-space($function))">
+                    <function>
+                      <CI_OnLineFunctionCode
+                        codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_OnLineFunctionCode"
+                        codeListValue="{$function}"/>
+                    </function>
+                  </xsl:if>
+
 								</CI_OnlineResource>
 							</onLine>
 							<xsl:apply-templates mode="onlineResource"/>
@@ -361,14 +380,51 @@
 							</level>
 						</DQ_Scope>
 					</scope>
-					<lineage>
-						<LI_Lineage>
-							<statement>
-								<gco:CharacterString>Data captured with reference to Ordnance Survey Mastermap topographic data. </gco:CharacterString>
-							</statement>
-						</LI_Lineage>
-					</lineage>
-				</DQ_DataQuality>
+
+          <report>
+            <DQ_DomainConsistency>
+              <result>
+                <DQ_ConformanceResult>
+                  <specification>
+                    <CI_Citation>
+                      <title>
+                        <gmx:Anchor xlink:href="http://data.europa.eu/eli/reg/2010/1089">
+                          Commission Regulation (EU) No 1089/2010 of 23 November 2010 implementing Directive
+                          2007/2/EC of the European Parliament and of the Council as regards interoperability
+                          of spatial data sets and services</gmx:Anchor>
+                      </title>
+                      <date>
+                        <CI_Date>
+                          <date>
+                            <gco:Date>2010-12-08</gco:Date>
+                          </date>
+                          <dateType>
+                            <CI_DateTypeCode
+                              codeList='http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#CI_DateTypeCode'
+                              codeListValue='publication' />
+                          </dateType>
+                        </CI_Date>
+                      </date>
+                    </CI_Citation>
+                  </specification>
+                  <!-- Explanation is a required element but can be empty -->
+                  <explanation gco:nilReason="inapplicable"/>
+                  <!-- Conformance has no been evaluated -->
+                  <pass gco:nilReason="unknown" />
+                </DQ_ConformanceResult>
+              </result>
+            </DQ_DomainConsistency>
+          </report>
+
+          <lineage>
+            <LI_Lineage>
+              <statement>
+                <gco:CharacterString>Data captured with reference to Ordnance Survey Mastermap topographic data. </gco:CharacterString>
+              </statement>
+            </LI_Lineage>
+          </lineage>
+
+        </DQ_DataQuality>
 			</dataQualityInfo>
 			<!--mdConst -->
 
@@ -445,7 +501,7 @@
 
 	<!-- Create as many online resource as result format available in WFS server
 		to download features using GetFeature operation.
-		
+
 		WFS 1.1.0
 	-->
 	<xsl:template mode="onlineResource"
@@ -472,6 +528,7 @@
 				<xsl:value-of select="//wfs:FeatureType[wfs:Name = $Name]/wfs:Title"/>
 					(<xsl:value-of select="."/>) </xsl:with-param>
 			<xsl:with-param name="protocol" select="'OGC:WFS-1.1.0-http-get-feature'"/>
+      <xsl:with-param name="function" select="'download'" />
 		</xsl:call-template>
 
 	</xsl:template>
@@ -502,11 +559,12 @@
 				<xsl:value-of select="//wfs:FeatureType[wfs:Name = $Name]/wfs:Title"/>
 					(<xsl:value-of select="name(.)"/>) </xsl:with-param>
 			<xsl:with-param name="protocol" select="'OGC:WFS-1.0.0-http-get-feature'"/>
+      <xsl:with-param name="function" select="'download'" />
 		</xsl:call-template>
 	</xsl:template>
 
 
-	<!-- Metadata URL 
+	<!-- Metadata URL
 	-->
 	<xsl:template mode="onlineResource"
 		match="
@@ -519,6 +577,7 @@
 			<xsl:with-param name="url"
 				select="wms:OnlineResource/@xlink:href | OnlineResource/@xlink:href"/>
 			<xsl:with-param name="protocol" select="wms:Format | Format"/>
+      <xsl:with-param name="function" select="'information'" />
 		</xsl:call-template>
 
 	</xsl:template>
@@ -534,6 +593,7 @@
 			<xsl:with-param name="url"
 				select="wms:OnlineResource/@xlink:href | OnlineResource/@xlink:href"/>
 			<xsl:with-param name="protocol" select="wms:Format | Format"/>
+      <xsl:with-param name="function" select="'information'" />
 		</xsl:call-template>
 
 	</xsl:template>
@@ -547,6 +607,7 @@
 		<xsl:param name="url"/>
 		<xsl:param name="title"/>
 		<xsl:param name="protocol"/>
+    <xsl:param name="function"></xsl:param>
 
 		<onLine>
 			<CI_OnlineResource>
@@ -570,11 +631,29 @@
 						<xsl:value-of select="$title"/>
 					</gco:CharacterString>
 				</description>
+
+        <xsl:if test="string(normalize-space($function))">
+          <function>
+            <CI_OnLineFunctionCode
+              codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_OnLineFunctionCode"
+              codeListValue="{$function}"/>
+          </function>
+        </xsl:if>
 			</CI_OnlineResource>
 		</onLine>
 	</xsl:template>
 
-	
+  <xsl:template name="freetext">
+    <xsl:param name="elementName" />
+    <xsl:param name="value" />
+
+    <xsl:if test="string($value)">
+      <xsl:element name="{$elementName}">
+        <gco:CharacterString><xsl:value-of select="$value" /></gco:CharacterString>
+      </xsl:element>
+    </xsl:if>
+  </xsl:template>
+
 	<!--
 		=============================================================================
 	-->

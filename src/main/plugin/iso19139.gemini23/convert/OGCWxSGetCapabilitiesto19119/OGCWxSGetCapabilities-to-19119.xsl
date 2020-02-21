@@ -14,10 +14,11 @@ Mapping between :
 <xsl:stylesheet version="2.0" xmlns    ="http://www.isotc211.org/2005/gmd"
 										xmlns:gco="http://www.isotc211.org/2005/gco"
 										xmlns:gts="http://www.isotc211.org/2005/gts"
-										xmlns:gml="http://www.opengis.net/gml"
-										xmlns:srv="http://www.isotc211.org/2005/srv"
+                    xmlns:gml="http://www.opengis.net/gml/3.2"
+                    xmlns:srv="http://www.isotc211.org/2005/srv"
 										xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 										xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                    xmlns:gmx="http://www.isotc211.org/2005/gmx"
 										xmlns:xlink="http://www.w3.org/1999/xlink"
 										xmlns:wfs="http://www.opengis.net/wfs"
 										xmlns:wcs="http://www.opengis.net/wcs"
@@ -29,7 +30,8 @@ Mapping between :
                                         xmlns:wps1="http://www.opengis.net/wps/1.0.0"
                                         xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0"
                                         xmlns:inspire_vs="http://inspire.ec.europa.eu/schemas/inspire_vs/1.0"
-										extension-element-prefixes="wcs ows wfs ows11 wps wps1 owsg">
+										extension-element-prefixes="wcs ows wfs ows11 wps wps1 owsg"
+                    exclude-result-prefixes="wfs wcs wms ows ows11 wps wps1 inspire_common inspire_vs">
 
 	<!-- ============================================================================= -->
 
@@ -240,6 +242,30 @@ Mapping between :
                         </xsl:choose>
                       </gco:CharacterString>
                     </protocol>
+
+                    <name>
+                      <gco:CharacterString>
+                        <xsl:choose>
+                          <xsl:when test="$ows='true'">
+                            <xsl:value-of select="//ows:ServiceIdentification/ows:Title|
+													//ows11:ServiceIdentification/ows11:Title"/>
+                          </xsl:when>
+                          <xsl:when test="name(.)='WFS_Capabilities'">
+                            <xsl:value-of select="//wfs:Service/wfs:Title"/>
+                          </xsl:when>
+                          <xsl:when test="name(.)='WMS_Capabilities'">
+                            <xsl:value-of select="//wms:Service/wms:Title"/>
+                          </xsl:when>
+                          <xsl:when test="name(.)='WMT_MS_Capabilities'">
+                            <xsl:value-of select="//Service/Title"/>
+                          </xsl:when>
+                          <xsl:otherwise>
+                            <xsl:value-of select="//wcs:Service/wcs:label"/>
+                          </xsl:otherwise>
+                        </xsl:choose>
+                      </gco:CharacterString>
+                    </name>
+
                     <description>
                         <gco:CharacterString>
                             <xsl:choose>
@@ -261,6 +287,23 @@ Mapping between :
                             </xsl:choose>
                         </gco:CharacterString>
                     </description>
+
+
+                    <xsl:variable name="function">
+                      <xsl:choose>
+                        <xsl:when test="name(.) = 'WMS_Capabilities' or name(.) = 'WMT_MS_Capabilities'">information</xsl:when>
+                        <xsl:when test="$ows = 'true' or name(.) = 'WFS_Capabilities'">download</xsl:when>
+                        <xsl:otherwise></xsl:otherwise>
+                      </xsl:choose>
+                    </xsl:variable>
+
+                    <xsl:if test="string(normalize-space($function))">
+                      <function>
+                        <CI_OnLineFunctionCode
+                          codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_OnLineFunctionCode"
+                          codeListValue="{$function}"/>
+                      </function>
+                    </xsl:if>
                    </CI_OnlineResource>
                 </onLine>
               </MD_DigitalTransferOptions>
@@ -296,6 +339,46 @@ Mapping between :
 		                    <inspire_common:Degree>notEvaluated</inspire_common:Degree>
 		                </inspire_common:Conformity>
 		                -->
+
+
+          <xsl:if test="not(//inspire_vs:ExtendedCapabilities/inspire_common:Conformity[
+						inspire_common:Degree='conformant' or inspire_common:Degree='notConformant'])">
+            <report>
+              <DQ_DomainConsistency>
+                <result>
+                  <DQ_ConformanceResult>
+                    <specification>
+                      <CI_Citation>
+                        <title>
+                          <gmx:Anchor xlink:href="http://data.europa.eu/eli/reg/2010/1089">
+                            Commission Regulation (EU) No 1089/2010 of 23 November 2010 implementing Directive
+                            2007/2/EC of the European Parliament and of the Council as regards interoperability
+                            of spatial data sets and services</gmx:Anchor>
+                        </title>
+                        <date>
+                          <CI_Date>
+                            <date>
+                              <gco:Date>2010-12-08</gco:Date>
+                            </date>
+                            <dateType>
+                              <CI_DateTypeCode
+                                codeList='http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#CI_DateTypeCode'
+                                codeListValue='publication' />
+                            </dateType>
+                          </CI_Date>
+                        </date>
+                      </CI_Citation>
+                    </specification>
+                    <!-- Explanation is a required element but can be empty -->
+                    <explanation gco:nilReason="inapplicable"/>
+                    <!-- Conformance has no been evaluated -->
+                    <pass gco:nilReason="unknown" />
+                  </DQ_ConformanceResult>
+                </result>
+              </DQ_DomainConsistency>
+            </report>
+          </xsl:if>
+
 					<xsl:for-each select="//inspire_vs:ExtendedCapabilities/inspire_common:Conformity[
 						inspire_common:Degree='conformant' or inspire_common:Degree='notConformant']">
 					<report>
