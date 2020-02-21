@@ -2,14 +2,14 @@
 
 <xsl:stylesheet version="2.0"
 	xmlns="http://www.isotc211.org/2005/gmd" xmlns:gco="http://www.isotc211.org/2005/gco"
-	xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:gml="http://www.opengis.net/gml"
+	xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:gml="http://www.opengis.net/gml/3.2"
 	xmlns:srv="http://www.isotc211.org/2005/srv" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:wfs="http://www.opengis.net/wfs"
 	xmlns:wms="http://www.opengis.net/wms"
 	xmlns:ows="http://www.opengis.net/ows" xmlns:wcs="http://www.opengis.net/wcs"
 	xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0"
 	xmlns:inspire_vs="http://inspire.ec.europa.eu/schemas/inspire_vs/1.0"
-	xmlns:xlink="http://www.w3.org/1999/xlink" extension-element-prefixes="wcs ows wfs srv">
+	xmlns:xlink="http://www.w3.org/1999/xlink" extension-element-prefixes="wms wcs ows wfs srv inspire_common inspire_vs">
 	<xsl:template name="language">
 		<xsl:param name="lang"/>
 		<xsl:choose>
