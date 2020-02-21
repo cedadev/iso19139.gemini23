@@ -11,7 +11,7 @@
 	xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0"
 	xmlns:inspire_vs="http://inspire.ec.europa.eu/schemas/inspire_vs/1.0"
 	xmlns:xlink="http://www.w3.org/1999/xlink" extension-element-prefixes="wms wcs ows ows11 wfs srv inspire_common inspire_vs"
-  exclude-result-prefixes="wms wcs ows ows11 wfs inspire_common inspire_vs">
+  exclude-result-prefixes="srv wms wcs ows ows11 wfs inspire_common inspire_vs">
 
 	<!--
 		=============================================================================
