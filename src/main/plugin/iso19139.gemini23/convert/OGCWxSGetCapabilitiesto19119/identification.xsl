@@ -232,6 +232,29 @@
 		</xsl:for-each>
 	</resourceConstraints>
 
+    <resourceConstraints>
+      <MD_LegalConstraints>
+        <accessConstraints>
+          <MD_RestrictionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_RestrictionCode"
+                              codeListValue="otherRestrictions">otherRestrictions</MD_RestrictionCode>
+        </accessConstraints>
+        <otherConstraints>
+          <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1e">no limitations</gmx:Anchor>
+        </otherConstraints>
+      </MD_LegalConstraints>
+    </resourceConstraints>
+
+    <resourceConstraints>
+      <MD_LegalConstraints>
+        <useConstraints>
+          <MD_RestrictionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_RestrictionCode"
+                              codeListValue="otherRestrictions">otherRestrictions</MD_RestrictionCode>
+        </useConstraints>
+        <otherConstraints>
+          <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/ConditionsApplyingToAccessAndUse/noConditionsApply">no conditions apply</gmx:Anchor>
+        </otherConstraints>
+      </MD_LegalConstraints>
+    </resourceConstraints>
 
 		<srv:serviceType>
 			<gco:LocalName codeSpace="www.w3c.org">
