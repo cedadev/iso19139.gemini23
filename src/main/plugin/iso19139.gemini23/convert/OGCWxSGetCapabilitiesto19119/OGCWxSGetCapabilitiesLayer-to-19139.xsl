@@ -164,7 +164,7 @@
 			<!-- spatRepInfo-->
 			<xsl:choose>
 				<!-- WMS 1.1.0 is space separated -->
-				<xsl:when test="@version = '1.1.0' or @version = '1.0.0'">
+				<xsl:when test="name() != 'wfs:WFS_Capabilities' and @version = '1.1.0' or @version = '1.0.0'">
 					<xsl:for-each select="tokenize(//Layer[Name = $Name]/SRS, ' ')">
 						<referenceSystemInfo>
 							<MD_ReferenceSystem>
@@ -177,7 +177,7 @@
 				</xsl:when>
 				<xsl:otherwise>
 					<xsl:for-each
-						select="//wms:Layer[wms:Name = $Name]/wms:CRS[position() &lt; $maxCRS] | //Layer[Name = $Name]/SRS[position() &lt; $maxCRS]">
+						select="//wms:Layer[wms:Name = $Name]/wms:CRS[position() &lt; $maxCRS] | //Layer[Name = $Name]/SRS[position() &lt; $maxCRS]|  //wfs:FeatureTypeList/wfs:FeatureType[wfs:Name = $Name]/wfs:DefaultSRS[position() &lt; $maxCRS]">
 						<referenceSystemInfo>
 							<MD_ReferenceSystem>
 								<xsl:call-template name="RefSystemTypes">
