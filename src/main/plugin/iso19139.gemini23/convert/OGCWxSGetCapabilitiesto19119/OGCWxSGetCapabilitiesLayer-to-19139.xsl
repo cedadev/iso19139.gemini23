@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?> 
+<?xml version="1.0" encoding="UTF-8"?>
 
 <xsl:stylesheet version="2.0" xmlns="http://www.isotc211.org/2005/gmd"
 	xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gts="http://www.isotc211.org/2005/gts"
 	xmlns:gml="http://www.opengis.net/gml" xmlns:srv="http://www.isotc211.org/2005/srv"
+  xmlns:gmx="http://www.isotc211.org/2005/gmx"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:wfs="http://www.opengis.net/wfs"
 	xmlns:wms="http://www.opengis.net/wms" xmlns:ows11="http://www.opengis.net/ows/1.1"
@@ -23,7 +24,7 @@
 
 
 	<!-- Max number of coordinate system to add
-	to the metadata record. Avoid to have too many CRS when 
+	to the metadata record. Avoid to have too many CRS when
 	OGC server list all epsg database. -->
 	<xsl:variable name="maxCRS">21</xsl:variable>
 
@@ -52,7 +53,7 @@
 		<xsl:apply-templates/>
 	</xsl:template>
 
-	<!-- 
+	<!--
 		==============================================================================
 	-->
 
@@ -156,7 +157,7 @@
 			</metadataStandardName>
 
 			<metadataStandardVersion>
-				<gco:CharacterString>2.2</gco:CharacterString>
+				<gco:CharacterString>2.3</gco:CharacterString>
 			</metadataStandardVersion>
 
 			<!-- spatRepInfo-->
@@ -368,6 +369,41 @@
 							</statement>
 						</LI_Lineage>
 					</lineage>
+
+          <report>
+            <DQ_DomainConsistency>
+              <result>
+                <DQ_ConformanceResult>
+                  <specification>
+                    <CI_Citation>
+                      <title>
+                        <gmx:Anchor xlink:href="http://data.europa.eu/eli/reg/2010/1089">
+                          Commission Regulation (EU) No 1089/2010 of 23 November 2010 implementing Directive
+                          2007/2/EC of the European Parliament and of the Council as regards interoperability
+                          of spatial data sets and services</gmx:Anchor>
+                      </title>
+                      <date>
+                        <CI_Date>
+                          <date>
+                            <gco:Date>2010-12-08</gco:Date>
+                          </date>
+                          <dateType>
+                            <CI_DateTypeCode
+                              codeList='http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#CI_DateTypeCode'
+                              codeListValue='publication' />
+                          </dateType>
+                        </CI_Date>
+                      </date>
+                    </CI_Citation>
+                  </specification>
+                  <!-- Explanation is a required element but can be empty -->
+                  <explanation gco:nilReason="inapplicable"/>
+                  <!-- Conformance has no been evaluated -->
+                  <pass gco:nilReason="unknown" />
+                </DQ_ConformanceResult>
+              </result>
+            </DQ_DomainConsistency>
+          </report>
 				</DQ_DataQuality>
 			</dataQualityInfo>
 			<!--mdConst -->
@@ -445,7 +481,7 @@
 
 	<!-- Create as many online resource as result format available in WFS server
 		to download features using GetFeature operation.
-		
+
 		WFS 1.1.0
 	-->
 	<xsl:template mode="onlineResource"
@@ -506,7 +542,7 @@
 	</xsl:template>
 
 
-	<!-- Metadata URL 
+	<!-- Metadata URL
 	-->
 	<xsl:template mode="onlineResource"
 		match="
@@ -574,7 +610,17 @@
 		</onLine>
 	</xsl:template>
 
-	
+  <xsl:template name="freetext">
+    <xsl:param name="elementName" />
+    <xsl:param name="value" />
+
+    <xsl:if test="string($value)">
+      <xsl:element name="{$elementName}">
+        <gco:CharacterString><xsl:value-of select="$value" /></gco:CharacterString>
+      </xsl:element>
+    </xsl:if>
+  </xsl:template>
+
 	<!--
 		=============================================================================
 	-->
