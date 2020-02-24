@@ -576,7 +576,7 @@
 			<xsl:with-param name="name" select="concat($Name, ' (', name(.), ')')"/>
 			<xsl:with-param name="url"
 				select="wms:OnlineResource/@xlink:href | OnlineResource/@xlink:href"/>
-			<xsl:with-param name="protocol" select="wms:Format | Format"/>
+			<xsl:with-param name="protocol" select="'WWW:LINK-1.0-http--link'"/>
       <xsl:with-param name="function" select="'information'" />
 		</xsl:call-template>
 
@@ -592,7 +592,7 @@
 			<xsl:with-param name="name" select="concat($Name, ' (', name(.), ')')"/>
 			<xsl:with-param name="url"
 				select="wms:OnlineResource/@xlink:href | OnlineResource/@xlink:href"/>
-			<xsl:with-param name="protocol" select="wms:Format | Format"/>
+			<xsl:with-param name="protocol" select="'WWW:LINK-1.0-http--link'"/>
       <xsl:with-param name="function" select="'information'" />
 		</xsl:call-template>
 
@@ -628,7 +628,7 @@
 				</name>
 				<description>
 					<gco:CharacterString>
-						<xsl:value-of select="$title"/>
+						<xsl:value-of select="$name"/>
 					</gco:CharacterString>
 				</description>
 
