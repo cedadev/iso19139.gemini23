@@ -163,6 +163,42 @@ Mapping between :
         <gco:CharacterString>2.3</gco:CharacterString>
       </metadataStandardVersion>
 
+      <xsl:variable name="maxCRS">21</xsl:variable>
+
+		  <xsl:message>C1: <xsl:value-of select="count(//wfs:FeatureTypeList/wfs:FeatureType/wfs:DefaultSRS)" /> - <xsl:value-of select="name()"/> /></xsl:message>
+		  
+		 
+      <!-- spatRepInfo-->
+      <xsl:choose>
+        <!-- WMS 1.1.0 is space separated -->
+        <xsl:when test="name() != 'wfs:WFS_Capabilities' and @version = '1.1.0' or @version = '1.0.0'">
+          <xsl:message>A1</xsl:message>
+          <xsl:for-each select="tokenize(//Layer/SRS, ' ')">
+            <referenceSystemInfo>
+              <MD_ReferenceSystem>
+                <xsl:call-template name="RefSystemTypes">
+                  <xsl:with-param name="srs" select="."/>
+                </xsl:call-template>
+              </MD_ReferenceSystem>
+            </referenceSystemInfo>
+          </xsl:for-each>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:message>A3</xsl:message>
+          <xsl:for-each-group
+            select="//wms:Layer/wms:CRS[position() &lt; $maxCRS] | //Layer/SRS[position() &lt; $maxCRS] | //wfs:FeatureTypeList/wfs:FeatureType/wfs:DefaultSRS[position() &lt; $maxCRS]" group-by=".">
+            <xsl:message>C2</xsl:message>
+            
+            <referenceSystemInfo>
+              <MD_ReferenceSystem>
+                <xsl:call-template name="RefSystemTypes">
+                  <xsl:with-param name="srs" select="current-grouping-key()"/>
+                </xsl:call-template>
+              </MD_ReferenceSystem>
+            </referenceSystemInfo>
+          </xsl:for-each-group>
+        </xsl:otherwise>
+      </xsl:choose>
 
 			<!--mdExtInfo-->
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->

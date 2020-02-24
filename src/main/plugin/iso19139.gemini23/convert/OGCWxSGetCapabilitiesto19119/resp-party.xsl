@@ -11,7 +11,8 @@
                                         xmlns:wms="http://www.opengis.net/wms"
 										xmlns:wcs="http://www.opengis.net/wcs"
 										xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-										extension-element-prefixes="wcs ows wfs owsg ows11">
+										extension-element-prefixes="wcs ows wfs owsg ows11"
+                    exclude-result-prefixes="wfs ows owsg ows11 wms wcs">
 
 	<!-- ============================================================================= -->
 
@@ -180,6 +181,7 @@
 		</xsl:for-each>
 
 	</xsl:template>
+
 
 	<!-- ============================================================================= -->
 </xsl:stylesheet>
