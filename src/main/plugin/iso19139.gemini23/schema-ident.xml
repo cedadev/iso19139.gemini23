@@ -35,10 +35,10 @@
   <depends>iso19139</depends>
   <!-- 19139:2007 version -->
   <schemaLocation>http://www.isotc211.org/2005/gmd http://schemas.opengis.net/csw/2.0.2/profiles/apiso/1.0.0/apiso.xsd</schemaLocation>
-  <autodetect xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gco="http://www.isotc211.org/2005/gco">
+    <autodetect xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gmx="http://www.isotc211.org/2005/gmx" xmlns:xlink="http://www.w3.org/1999/xlink">
         <elements>
             <gmd:metadataStandardName>
-                <gco:CharacterString>UK GEMINI</gco:CharacterString>
+                <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M25/current/GEMINI/">UK GEMINI</gmx:Anchor>
             </gmd:metadataStandardName>
             <gmd:metadataStandardVersion>
                 <gco:CharacterString>2.3</gco:CharacterString>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--  
-Mapping between : 
+<!--
+Mapping between :
 - WMS 1.0.0
 - WMS 1.1.1
 - WMS 1.3.0
@@ -9,15 +9,16 @@ Mapping between :
 - WFS 1.1.0
 - WPS 0.4.0
 - WPS 1.0.0
-... to ISO19119. 
+... to ISO19119.
  -->
 <xsl:stylesheet version="2.0" xmlns    ="http://www.isotc211.org/2005/gmd"
 										xmlns:gco="http://www.isotc211.org/2005/gco"
 										xmlns:gts="http://www.isotc211.org/2005/gts"
-										xmlns:gml="http://www.opengis.net/gml"
-										xmlns:srv="http://www.isotc211.org/2005/srv"
+                    xmlns:gml="http://www.opengis.net/gml/3.2"
+                    xmlns:srv="http://www.isotc211.org/2005/srv"
 										xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 										xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                    xmlns:gmx="http://www.isotc211.org/2005/gmx"
 										xmlns:xlink="http://www.w3.org/1999/xlink"
 										xmlns:wfs="http://www.opengis.net/wfs"
 										xmlns:wcs="http://www.opengis.net/wcs"
@@ -29,24 +30,25 @@ Mapping between :
                                         xmlns:wps1="http://www.opengis.net/wps/1.0.0"
                                         xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0"
                                         xmlns:inspire_vs="http://inspire.ec.europa.eu/schemas/inspire_vs/1.0"
-										extension-element-prefixes="wcs ows wfs ows11 wps wps1 owsg">
+										extension-element-prefixes="wcs ows wfs ows11 wps wps1 owsg"
+                    exclude-result-prefixes="wfs wcs wms ows ows11 wps wps1 inspire_common inspire_vs">
 
 	<!-- ============================================================================= -->
-	
+
     <xsl:param name="uuid">uuid</xsl:param>
 	<xsl:param name="lang">eng</xsl:param>
 	<xsl:param name="topic"></xsl:param>
-	
+
 	<!-- ============================================================================= -->
-	
+
 	<xsl:include href="resp-party.xsl"/>
 	<xsl:include href="ref-system.xsl"/>
 	<xsl:include href="identification.xsl"/>
-	
+
 	<!-- ============================================================================= -->
 
 	<xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" />
-	
+
 	<!-- ============================================================================= -->
 
 	<xsl:template match="/">
@@ -57,10 +59,10 @@ Mapping between :
 
 	<xsl:template match="WMT_MS_Capabilities|wfs:WFS_Capabilities|wcs:WCS_Capabilities|
 	       wps:Capabilities|wps1:Capabilities|wms:WMS_Capabilities">
-	
+
 		<xsl:variable name="ows">
 			<xsl:choose>
-				<xsl:when test="(local-name(.)='WFS_Capabilities' and namespace-uri(.)='http://www.opengis.net/wfs' and @version='1.1.0') 
+				<xsl:when test="(local-name(.)='WFS_Capabilities' and namespace-uri(.)='http://www.opengis.net/wfs' and @version='1.1.0')
 					or (local-name(.)='Capabilities' and namespace-uri(.)='http://www.opengeospatial.net/wps')
 					or (local-name(.)='Capabilities' and namespace-uri(.)='http://www.opengis.net/wps/1.0.0')">true</xsl:when>
 				<xsl:otherwise>false</xsl:otherwise>
@@ -68,7 +70,7 @@ Mapping between :
 		</xsl:variable>
 
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-		
+
 		<MD_Metadata>
 
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -76,7 +78,7 @@ Mapping between :
 			<fileIdentifier>
 				<gco:CharacterString><xsl:value-of select="$uuid"/></gco:CharacterString>
 			</fileIdentifier>
-		
+
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 			<language>
@@ -95,24 +97,24 @@ Mapping between :
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 			<characterSet>
-				<MD_CharacterSetCode codeList="./resources/codeList.xml#MD_CharacterSetCode" codeListValue="utf8" />
+				<MD_CharacterSetCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codeList.xml#MD_CharacterSetCode" codeListValue="utf8" />
 			</characterSet>
 
 			<!-- parentIdentifier : service have no parent -->
 			<!-- mdHrLv -->
             <hierarchyLevel>
                 <MD_ScopeCode
-                    codeList="./resources/codeList.xml#MD_ScopeCode"
+                    codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_ScopeCode"
                     codeListValue="service" />
             </hierarchyLevel>
-            
+
 			<!-- mdHrLvName -->
 
 			<hierarchyLevelName>
-				<gco:CharacterString>Service</gco:CharacterString>
+				<gco:CharacterString>service</gco:CharacterString>
    </hierarchyLevelName>
 
-			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->			
+			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 			<xsl:choose>
 				<xsl:when test="Service/ContactInformation|
 					wfs:Service/wfs:ContactInformation|
@@ -137,7 +139,7 @@ Mapping between :
 					<contact gco:nilReason="missing"/>
 				</xsl:otherwise>
 			</xsl:choose>
-			
+
 
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 			<xsl:variable name="df">[Y0001]-[M01]-[D01]T[H01]:[m01]:[s01]</xsl:variable>
@@ -151,17 +153,52 @@ Mapping between :
 					</xsl:otherwise>
 				</xsl:choose>
 			</dateStamp>
-			
+
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <metadataStandardName>
+        <gco:CharacterString>UK GEMINI</gco:CharacterString>
+      </metadataStandardName>
 
-			<metadataStandardName>
-				<gco:CharacterString>ISO 19119/2005</gco:CharacterString>
-			</metadataStandardName>
+      <metadataStandardVersion>
+        <gco:CharacterString>2.3</gco:CharacterString>
+      </metadataStandardVersion>
 
-			<metadataStandardVersion>
-				<gco:CharacterString>1.0</gco:CharacterString>
-			</metadataStandardVersion>
-			
+      <xsl:variable name="maxCRS">21</xsl:variable>
+
+		  <xsl:message>C1: <xsl:value-of select="count(//wfs:FeatureTypeList/wfs:FeatureType/wfs:DefaultSRS)" /> - <xsl:value-of select="name()"/> /></xsl:message>
+		  
+		 
+      <!-- spatRepInfo-->
+      <xsl:choose>
+        <!-- WMS 1.1.0 is space separated -->
+        <xsl:when test="name() != 'wfs:WFS_Capabilities' and @version = '1.1.0' or @version = '1.0.0'">
+          <xsl:message>A1</xsl:message>
+          <xsl:for-each select="tokenize(//Layer/SRS, ' ')">
+            <referenceSystemInfo>
+              <MD_ReferenceSystem>
+                <xsl:call-template name="RefSystemTypes">
+                  <xsl:with-param name="srs" select="."/>
+                </xsl:call-template>
+              </MD_ReferenceSystem>
+            </referenceSystemInfo>
+          </xsl:for-each>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:message>A3</xsl:message>
+          <xsl:for-each-group
+            select="//wms:Layer/wms:CRS[position() &lt; $maxCRS] | //Layer/SRS[position() &lt; $maxCRS] | //wfs:FeatureTypeList/wfs:FeatureType/wfs:DefaultSRS[position() &lt; $maxCRS]" group-by=".">
+            <xsl:message>C2</xsl:message>
+            
+            <referenceSystemInfo>
+              <MD_ReferenceSystem>
+                <xsl:call-template name="RefSystemTypes">
+                  <xsl:with-param name="srs" select="current-grouping-key()"/>
+                </xsl:call-template>
+              </MD_ReferenceSystem>
+            </referenceSystemInfo>
+          </xsl:for-each-group>
+        </xsl:otherwise>
+      </xsl:choose>
 
 			<!--mdExtInfo-->
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -174,102 +211,162 @@ Mapping between :
 					</xsl:apply-templates>
 				</srv:SV_ServiceIdentification>
 			</identificationInfo>
-		
+
 			<!--contInfo-->
 			<!--distInfo -->
-			 <distributionInfo>
-                <MD_Distribution>
-                	<distributionFormat>
-                		<MD_Format>
-                			<name gco:nilReason="missing">
-                				<gco:CharacterString/>
-                			</name>
-                			<version gco:nilReason="missing">
-                				<gco:CharacterString/>
-                			</version>
-                		</MD_Format>
-                	</distributionFormat>
-                    <transferOptions>
-                        <MD_DigitalTransferOptions>
-                            <onLine>
-                                <CI_OnlineResource>
-                                    <linkage>
-                                        <URL>
-                                        <xsl:choose>
-                                            <xsl:when test="$ows='true'">
-                                                <xsl:value-of select="//ows:Operation[@name='GetCapabilities']/ows:DCP/ows:HTTP/ows:Get/@xlink:href|
-                                                	//ows11:Operation[@name='GetCapabilities']/ows11:DCP/ows11:HTTP/ows11:Get/@xlink:href"/>
-                                            </xsl:when>
-                                            <xsl:when test="name(.)='WMS_Capabilities'">
-                                                <xsl:value-of select="//wms:GetCapabilities/wms:DCPType/wms:HTTP/wms:Get/wms:OnlineResource/@xlink:href"/>request=GetCapabilities
-                                            </xsl:when>
-                                            <xsl:when test="name(.)='WFS_Capabilities'">
-                                                <xsl:value-of select="//wfs:GetCapabilities/wfs:DCPType/wfs:HTTP/wfs:Get/@onlineResource"/>
-                                            </xsl:when>
-                                            <xsl:when test="name(.)='WMT_MS_Capabilities'">
-                                                <xsl:value-of select="//GetCapabilities/DCPType/HTTP/Get/OnlineResource[1]/@xlink:href"/>
-                                            </xsl:when>
-                                            <xsl:otherwise>
-                                                <xsl:value-of select="//wcs:GetCapabilities//wcs:OnlineResource[1]/@xlink:href"/>
-                                            </xsl:otherwise>
-                                        </xsl:choose>
-                                        </URL>
-                                    </linkage>
-                                    <protocol>
-                                        <gco:CharacterString>
-                                        	<xsl:choose>
-                                        		<xsl:when test="name(.)='WMT_MS_Capabilities' or name(.)='WMS_Capabilities'">application/vnd.ogc.wms_xml</xsl:when>
-                                        		<xsl:otherwise>WWW:LINK-1.0-http--link</xsl:otherwise>
-                                        	</xsl:choose>
-                                        </gco:CharacterString>
-                                    </protocol>
-                                    <description>
-                                        <gco:CharacterString>
-                                            <xsl:choose>
-                                                <xsl:when test="$ows='true'">
-                                                    <xsl:value-of select="//ows:Operation[@name='GetCapabilities']/ows:DCP/ows:HTTP/ows:Get/@xlink:href"/>
-                                                </xsl:when>
-                                                <xsl:when test="name(.)='WMS_Capabilities'">
-	                                                <xsl:value-of select="//wms:GetCapabilities/wms:DCPType/wms:HTTP/wms:Get/wms:OnlineResource/@xlink:href"/>
-	                                            </xsl:when>
-	                                            <xsl:when test="name(.)='WFS_Capabilities'">
-                                                    <xsl:value-of select="//wfs:GetCapabilities/wfs:DCPType/wfs:HTTP/wfs:Get/@onlineResource"/>
-                                                </xsl:when>
-                                                <xsl:when test="name(.)='WMT_MS_Capabilities'">
-                                                    <xsl:value-of select="//GetCapabilities//OnlineResource[1]/@xlink:href"/>
-                                                </xsl:when>
-                                                <xsl:otherwise>
-                                                    <xsl:value-of select="//wcs:GetCapabilities//wcs:OnlineResource[1]/@xlink:href"/>
-                                                </xsl:otherwise>
-                                            </xsl:choose>
-                                        </gco:CharacterString>
-                                    </description>
-                                 </CI_OnlineResource>    
-                             </onLine>
-                        </MD_DigitalTransferOptions>
-                   </transferOptions>
-               </MD_Distribution>
-            </distributionInfo> 
+      <distributionInfo>
+        <MD_Distribution>
+          <!-- WMS / WFS 1.1.0 -->
+          <xsl:for-each select="wms:Capability/wms:Request/wms:GetMap/wms:Format|ows:OperationsMetadata/ows:Operation[@name='GetFeature']/ows:Parameter[@name='outputFormat']/ows:Value">
+            <distributionFormat>
+              <MD_Format>
+                <name>
+                  <gco:CharacterString><xsl:value-of select="." /></gco:CharacterString>
+                </name>
+                <version>
+                  <gco:CharacterString>Inaplicable</gco:CharacterString>
+                </version>
+              </MD_Format>
+            </distributionFormat>
+          </xsl:for-each>
+
+          <!-- WFS 1.0.0 -->
+        	<xsl:for-each select="wfs:Capability/wfs:Request/wfs:GetFeature/wfs:ResultFormat/*">
+            <distributionFormat>
+              <MD_Format>
+                <name>
+                  <gco:CharacterString><xsl:value-of select="name()" /></gco:CharacterString>
+                </name>
+                <version>
+                  <gco:CharacterString>Inaplicable</gco:CharacterString>
+                </version>
+              </MD_Format>
+            </distributionFormat>
+          </xsl:for-each>
+
+            <transferOptions>
+              <MD_DigitalTransferOptions>
+                <onLine>
+                  <CI_OnlineResource>
+                    <linkage>
+                      <URL>
+                        <xsl:choose>
+                          <xsl:when test="$ows='true'">
+                            <xsl:value-of select="//ows:Operation[@name='GetCapabilities']/ows:DCP/ows:HTTP/ows:Get/@xlink:href|
+                              //ows11:Operation[@name='GetCapabilities']/ows11:DCP/ows11:HTTP/ows11:Get/@xlink:href"/>
+                          </xsl:when>
+                          <xsl:when test="name(.)='WMS_Capabilities'">
+                            <xsl:value-of select="//wms:GetCapabilities/wms:DCPType/wms:HTTP/wms:Get/wms:OnlineResource/@xlink:href"/>request=GetCapabilities
+                          </xsl:when>
+                          <xsl:when test="name(.)='WFS_Capabilities'">
+                            <xsl:value-of select="//wfs:GetCapabilities/wfs:DCPType/wfs:HTTP/wfs:Get/@onlineResource"/>
+                          </xsl:when>
+                          <xsl:when test="name(.)='WMT_MS_Capabilities'">
+                            <xsl:value-of select="//GetCapabilities/DCPType/HTTP/Get/OnlineResource[1]/@xlink:href"/>
+                          </xsl:when>
+                          <xsl:otherwise>
+                            <xsl:value-of select="//wcs:GetCapabilities//wcs:OnlineResource[1]/@xlink:href"/>
+                          </xsl:otherwise>
+                        </xsl:choose>
+                      </URL>
+                    </linkage>
+                    <protocol>
+                      <gco:CharacterString>
+                        <xsl:choose>
+                          <xsl:when test="name(.)='WMT_MS_Capabilities' or name(.)='WMS_Capabilities'">application/vnd.ogc.wms_xml</xsl:when>
+                          <xsl:otherwise>WWW:LINK-1.0-http--link</xsl:otherwise>
+                        </xsl:choose>
+                      </gco:CharacterString>
+                    </protocol>
+
+                    <name>
+                      <gco:CharacterString>
+                        <xsl:choose>
+                          <xsl:when test="$ows='true'">
+                            <xsl:value-of select="//ows:ServiceIdentification/ows:Title|
+													//ows11:ServiceIdentification/ows11:Title"/>
+                          </xsl:when>
+                          <xsl:when test="name(.)='WFS_Capabilities'">
+                            <xsl:value-of select="//wfs:Service/wfs:Title"/>
+                          </xsl:when>
+                          <xsl:when test="name(.)='WMS_Capabilities'">
+                            <xsl:value-of select="//wms:Service/wms:Title"/>
+                          </xsl:when>
+                          <xsl:when test="name(.)='WMT_MS_Capabilities'">
+                            <xsl:value-of select="//Service/Title"/>
+                          </xsl:when>
+                          <xsl:otherwise>
+                            <xsl:value-of select="//wcs:Service/wcs:label"/>
+                          </xsl:otherwise>
+                        </xsl:choose>
+                      </gco:CharacterString>
+                    </name>
+
+                    <description>
+                        <gco:CharacterString>
+                            <xsl:choose>
+                                <xsl:when test="$ows='true'">
+                                    <xsl:value-of select="//ows:Operation[@name='GetCapabilities']/ows:DCP/ows:HTTP/ows:Get/@xlink:href"/>
+                                </xsl:when>
+                                <xsl:when test="name(.)='WMS_Capabilities'">
+                                  <xsl:value-of select="//wms:GetCapabilities/wms:DCPType/wms:HTTP/wms:Get/wms:OnlineResource/@xlink:href"/>
+                              </xsl:when>
+                              <xsl:when test="name(.)='WFS_Capabilities'">
+                                    <xsl:value-of select="//wfs:GetCapabilities/wfs:DCPType/wfs:HTTP/wfs:Get/@onlineResource"/>
+                                </xsl:when>
+                                <xsl:when test="name(.)='WMT_MS_Capabilities'">
+                                    <xsl:value-of select="//GetCapabilities//OnlineResource[1]/@xlink:href"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of select="//wcs:GetCapabilities//wcs:OnlineResource[1]/@xlink:href"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </gco:CharacterString>
+                    </description>
+
+
+                    <xsl:variable name="function">
+                      <xsl:choose>
+                        <xsl:when test="name(.) = 'WMS_Capabilities' or name(.) = 'WMT_MS_Capabilities'">information</xsl:when>
+                        <xsl:when test="$ows = 'true' or name(.) = 'WFS_Capabilities'">download</xsl:when>
+                        <xsl:otherwise></xsl:otherwise>
+                      </xsl:choose>
+                    </xsl:variable>
+
+                    <xsl:if test="string(normalize-space($function))">
+                      <function>
+                        <CI_OnLineFunctionCode
+                          codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_OnLineFunctionCode"
+                          codeListValue="{$function}"/>
+                      </function>
+                    </xsl:if>
+                   </CI_OnlineResource>
+                </onLine>
+              </MD_DigitalTransferOptions>
+            </transferOptions>
+          </MD_Distribution>
+        </distributionInfo>
+
 			<!--dqInfo-->
 			<dataQualityInfo>
 				<DQ_DataQuality>
 					<scope>
 						<DQ_Scope>
 							<level>
-								<MD_ScopeCode codeListValue="service"
-									codeList="./resources/codeList.xml#MD_ScopeCode" />
+                <MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_ScopeCode"
+                                  codeListValue="service"/>
 							</level>
 							<levelDescription>
 							            <MD_ScopeDescription>
 							              <other>
-							                <gco:CharacterString>Service</gco:CharacterString>
+							                <gco:CharacterString>service</gco:CharacterString>
 							              </other>
 							            </MD_ScopeDescription>
 							          </levelDescription>
 						</DQ_Scope>
 					</scope>
-					
-					<!-- 
+
+					<!--
 		                <inspire_common:Conformity>
 		                    <inspire_common:Specification>
 		                        <inspire_common:Title>-</inspire_common:Title>
@@ -278,6 +375,46 @@ Mapping between :
 		                    <inspire_common:Degree>notEvaluated</inspire_common:Degree>
 		                </inspire_common:Conformity>
 		                -->
+
+
+          <xsl:if test="not(//inspire_vs:ExtendedCapabilities/inspire_common:Conformity[
+						inspire_common:Degree='conformant' or inspire_common:Degree='notConformant'])">
+            <report>
+              <DQ_DomainConsistency>
+                <result>
+                  <DQ_ConformanceResult>
+                    <specification>
+                      <CI_Citation>
+                        <title>
+                          <gmx:Anchor xlink:href="http://data.europa.eu/eli/reg/2010/1089">
+                            Commission Regulation (EU) No 1089/2010 of 23 November 2010 implementing Directive
+                            2007/2/EC of the European Parliament and of the Council as regards interoperability
+                            of spatial data sets and services</gmx:Anchor>
+                        </title>
+                        <date>
+                          <CI_Date>
+                            <date>
+                              <gco:Date>2010-12-08</gco:Date>
+                            </date>
+                            <dateType>
+                              <CI_DateTypeCode
+                                codeList='http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#CI_DateTypeCode'
+                                codeListValue='publication' />
+                            </dateType>
+                          </CI_Date>
+                        </date>
+                      </CI_Citation>
+                    </specification>
+                    <!-- Explanation is a required element but can be empty -->
+                    <explanation gco:nilReason="inapplicable"/>
+                    <!-- Conformance has no been evaluated -->
+                    <pass gco:nilReason="unknown" />
+                  </DQ_ConformanceResult>
+                </result>
+              </DQ_DomainConsistency>
+            </report>
+          </xsl:if>
+
 					<xsl:for-each select="//inspire_vs:ExtendedCapabilities/inspire_common:Conformity[
 						inspire_common:Degree='conformant' or inspire_common:Degree='notConformant']">
 					<report>
@@ -324,7 +461,7 @@ Mapping between :
 											</pass>
 										</xsl:otherwise>
 									</xsl:choose>
-									
+
 								</DQ_ConformanceResult>
 							</result>
 						</DQ_DomainConsistency>
@@ -338,14 +475,24 @@ Mapping between :
 						</LI_Lineage>
 					</lineage>
 				</DQ_DataQuality>
-				
+
 			</dataQualityInfo>
 			<!--mdConst -->
 			<!--mdMaint-->
 
 		</MD_Metadata>
 	</xsl:template>
-	
+
 	<!-- ============================================================================= -->
 
+  <xsl:template name="freetext">
+    <xsl:param name="elementName" />
+    <xsl:param name="value" />
+
+    <xsl:if test="string($value)">
+      <xsl:element name="{$elementName}">
+        <gco:CharacterString><xsl:value-of select="$value" /></gco:CharacterString>
+      </xsl:element>
+    </xsl:if>
+  </xsl:template>
 </xsl:stylesheet>
