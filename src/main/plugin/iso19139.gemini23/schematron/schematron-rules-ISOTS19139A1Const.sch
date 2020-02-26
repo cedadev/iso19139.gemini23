@@ -187,9 +187,10 @@
     </sch:rule>
   </sch:pattern>
 
+
   <sch:pattern is-a="InnerTextPattern" id="ISO19139A1_ROW7_InnerTextPattern">
-    <sch:param name="context" value="//gmd:MD_LegalConstraints | //*[@gco:isoType='gmd:MD_LegalConstraints']"/>
-    <sch:param name="element" value="gmd:otherConstraints"/>
+    <sch:param name="context" value="//gmd:MD_LegalConstraints/gmd:otherConstraints | //*[@gco:isoType='gmd:MD_LegalConstraints']/gmd:otherConstraints"/>
+    <sch:param name="element" value="."/>
   </sch:pattern>
 
   <!-- ========================================================================================== -->
@@ -392,9 +393,9 @@
     </sch:rule>
   </sch:pattern>
 
-  <sch:pattern is-a="InnerTextPattern" id="ISO19139A1_ROW19_InnerTextPattern_Obligation">
-    <sch:param name="context" value="//gmd:MD_ExtendedElementInformation | //*[@gco:isoType = 'gmd:MD_ExtendedElementInformation']"/>
-    <sch:param name="element" value="gmd:obligation"/>
+  <sch:pattern is-a="InnerTextPattern" id="ISO19139A1_ROW19_InnerTextPattern_Obligation2">
+    <sch:param name="context" value="//gmd:MD_ExtendedElementInformation/gmd:obligation | //*[@gco:isoType = 'gmd:MD_ExtendedElementInformation']/gmd:obligation"/>
+    <sch:param name="element" value="."/>
   </sch:pattern>
 
   <sch:pattern is-a="GcoTypeTestPattern" id="ISO19139A1_ROW19_GcoTypeTestPattern_MaximumOccurrence">
@@ -615,17 +616,17 @@
     </sch:rule>
   </sch:pattern>
 
+
   <!-- Test that an element has a value and is not empty string -->
   <sch:pattern abstract="true" id="InnerTextPattern">
     <sch:rule context="$context">
-      <sch:assert test="(count($element) = 0) or
-                  (count(gmd:otherConstraints[not(string(normalize-space(text())))]) = 0) or
-                  ($element/@gco:nilReason = 'inapplicable' or
-                  $element/@gco:nilReason = 'missing' or
-                  $element/@gco:nilReason = 'template' or
-                  $element/@gco:nilReason = 'unknown' or
-                  $element/@gco:nilReason = 'withheld')">
-        The '<sch:value-of select="name($element[1])"/>' element should have a value.
+      <sch:assert test="string(normalize-space($element/*[1]/text())) or
+        ($element/@gco:nilReason = 'inapplicable' or
+        $element/@gco:nilReason = 'missing' or
+        $element/@gco:nilReason = 'template' or
+        $element/@gco:nilReason = 'unknown' or
+        $element/@gco:nilReason = 'withheld')">
+        The '<sch:value-of select="name($element)"/>' element should have a value.
       </sch:assert>
     </sch:rule>
   </sch:pattern>

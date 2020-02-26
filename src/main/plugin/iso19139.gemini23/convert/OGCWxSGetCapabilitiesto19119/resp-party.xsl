@@ -11,7 +11,8 @@
                                         xmlns:wms="http://www.opengis.net/wms"
 										xmlns:wcs="http://www.opengis.net/wcs"
 										xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-										extension-element-prefixes="wcs ows wfs owsg ows11">
+										extension-element-prefixes="wcs ows wfs owsg ows11"
+                    exclude-result-prefixes="wfs ows owsg ows11 wms wcs">
 
 	<!-- ============================================================================= -->
 
@@ -46,11 +47,11 @@
 				<xsl:apply-templates select="." mode="Contact"/>
 			</CI_Contact>
 		</contactInfo>
-		
+
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 		<role>
-			<CI_RoleCode codeList="./resources/codeList.xml#CI_RoleCode" codeListValue="pointOfContact" />
+			<CI_RoleCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codeList.xml#CI_RoleCode" codeListValue="pointOfContact" />
 		</role>
 
 	</xsl:template>
@@ -59,26 +60,42 @@
 
 	<xsl:template match="*" mode="Contact">
 
-		<phone>
-			<CI_Telephone>
-				<xsl:for-each select="ContactVoiceTelephone|wms:ContactVoiceTelephone|
-						ows:ServiceContact/ows:ContactInfo/ows:Phone/ows:Voice|
-						ows11:ServiceContact/ows11:ContactInfo/ows11:Phone/ows11:Voice">
-					<voice>
-						<gco:CharacterString><xsl:value-of select="."/></gco:CharacterString>
-					</voice>
-				</xsl:for-each>
-	
-				<xsl:for-each select="ContactFacsimileTelephone|wms:ContactFacsimileTelephone|
-						ows:ServiceContact/ows:ContactInfo/ows:Phone/ows:Facsimile|
-						ows11:ServiceContact/ows11:ContactInfo/ows11:Phone/ows11:Facsimile">
-					<facsimile>
-						<gco:CharacterString><xsl:value-of select="."/></gco:CharacterString>
-					</facsimile>
-				</xsl:for-each>
-			</CI_Telephone>
-		</phone>
-	
+    <xsl:variable name="countVoice" select="count(ContactVoiceTelephone[string(text())]|wms:ContactVoiceTelephone[string(text())]|
+						ows:ServiceContact/ows:ContactInfo/ows:Phone/ows:Voice[string(text())]|
+						ows11:ServiceContact/ows11:ContactInfo/ows11:Phone/ows11:Voice[string(text())]) > 0" />
+
+    <xsl:variable name="countFacsimile" select="count(ContactFacsimileTelephone[string(text())]|wms:ContactFacsimileTelephone[string(text())]|
+						ows:ServiceContact/ows:ContactInfo/ows:Phone/ows:Facsimile[string(text())]|
+						ows11:ServiceContact/ows11:ContactInfo/ows11:Phone/ows11:Facsimile[string(text())]) > 0" />
+
+    <xsl:if test="($countVoice > 0) or ($countFacsimile > 0)">
+      <phone>
+        <CI_Telephone>
+          <xsl:for-each select="ContactVoiceTelephone|wms:ContactVoiceTelephone|
+              ows:ServiceContact/ows:ContactInfo/ows:Phone/ows:Voice|
+              ows11:ServiceContact/ows11:ContactInfo/ows11:Phone/ows11:Voice">
+
+            <xsl:call-template name="freetext">
+              <xsl:with-param name="elementName" select="'voice'" />
+              <xsl:with-param name="value" select="." />
+            </xsl:call-template>
+
+          </xsl:for-each>
+
+          <xsl:for-each select="ContactFacsimileTelephone|wms:ContactFacsimileTelephone|
+              ows:ServiceContact/ows:ContactInfo/ows:Phone/ows:Facsimile|
+              ows11:ServiceContact/ows11:ContactInfo/ows11:Phone/ows11:Facsimile">
+
+            <xsl:call-template name="freetext">
+              <xsl:with-param name="elementName" select="'facsimile'" />
+              <xsl:with-param name="value" select="." />
+            </xsl:call-template>
+
+          </xsl:for-each>
+        </CI_Telephone>
+      </phone>
+    </xsl:if>
+
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 		<xsl:for-each select="ContactAddress|wms:ContactAddress|
@@ -165,6 +182,6 @@
 
 	</xsl:template>
 
-	<!-- ============================================================================= -->
 
+	<!-- ============================================================================= -->
 </xsl:stylesheet>

@@ -27,6 +27,7 @@
                 xmlns:gco="http://www.isotc211.org/2005/gco"
                 xmlns:gmx="http://www.isotc211.org/2005/gmx"
                 xmlns:gml="http://www.opengis.net/gml/3.2"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns:tr="java:org.fao.geonet.api.records.formatters.SchemaLocalizations"
                 xmlns:gn-fn-render="http://geonetwork-opensource.org/xsl/functions/render"
@@ -228,7 +229,7 @@
   <xsl:template mode="render-field"
                 match="*[gco:Integer|gco:Decimal|
        gco:Boolean|gco:Real|gco:Measure|gco:Length|gco:Distance|
-       gco:Angle|gmx:FileName|
+       gco:Angle|gmx:FileName|gmx:Anchor|
        gco:Scale|gco:Record|gco:RecordType|gmx:MimeFileType|gmd:URL|
        gco:LocalName|gmd:PT_FreeText|gml:beginPosition|gml:endPosition|
        gco:Date|gco:DateTime|*/@codeListValue]"
@@ -278,6 +279,36 @@
 
     <xsl:apply-templates mode="render-value" select="@*"/>
     <xsl:apply-templates mode="render-field" select="*"/>
+  </xsl:template>
+
+  <!-- Anchor elements should render as links -->
+
+  <xsl:template mode="render-value"
+                match="*[gmx:Anchor]">
+    <xsl:apply-templates mode="render-value"
+                         select="gmx:Anchor"/>
+  </xsl:template>
+
+  <xsl:template mode="render-value"
+                match="gmx:Anchor">
+    <xsl:variable name="link"
+                  select="@xlink:href"/>
+    <xsl:variable name="txt">
+      <xsl:apply-templates mode="localised" select="..">
+        <xsl:with-param name="langId" select="$langId"/>
+      </xsl:apply-templates>
+    </xsl:variable>
+
+    <xsl:choose>
+      <xsl:when test="$link != ''">
+        <a href="{$link}">
+          <xsl:value-of select="$txt"/>
+        </a>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$txt"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
 
