@@ -76,9 +76,6 @@
                 <gmd:otherConstraints>
                     <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1e">no limitations</gmx:Anchor>
                 </gmd:otherConstraints>
-                <gmd:otherConstraints>
-                    <gco:CharacterString/>
-                </gmd:otherConstraints>
             </gmd:MD_LegalConstraints>
         </xsl:copy>
         <xsl:copy copy-namespaces="no">
