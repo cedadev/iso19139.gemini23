@@ -545,19 +545,31 @@
 			</descriptiveKeywords>
 		</xsl:for-each>
 
-		<resourceConstraints>
-			<MD_LegalConstraints>
-					<useLimitation>
-                  		<gco:CharacterString>Public Sector End User Licence - INSPIRE http://www.ordnancesurvey.co.uk/business-and-government/public-sector/mapping-agreements/inspire-licence.html</gco:CharacterString>
-               		</useLimitation>
-					<accessConstraints>
-						<MD_RestrictionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_RestrictionCode" codeListValue="otherRestrictions">otherRestrictions</MD_RestrictionCode>
-					</accessConstraints>
-					<otherConstraints>
-						<gco:CharacterString>no limitations</gco:CharacterString>
-					</otherConstraints>
-				</MD_LegalConstraints>
-		</resourceConstraints>
+		         <resourceConstraints>
+            <MD_LegalConstraints>
+               <accessConstraints>
+                  <MD_RestrictionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_RestrictionCode"
+                                          codeListValue="otherRestrictions">otherRestrictions</MD_RestrictionCode>
+               </accessConstraints>
+               <otherConstraints>
+                  <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1e">no limitations</gmx:Anchor>
+               </otherConstraints>
+               <otherConstraints>
+                  <gco:CharacterString/>
+               </otherConstraints>
+            </MD_LegalConstraints>
+         </resourceConstraints>
+         <resourceConstraints>
+            <MD_LegalConstraints>
+               <useConstraints>
+                  <MD_RestrictionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_RestrictionCode"
+                                          codeListValue="otherRestrictions">otherRestrictions</MD_RestrictionCode>
+               </useConstraints>
+               <otherConstraints>
+                  <gmx:Anchor>no conditions apply</gmx:Anchor>
+               </otherConstraints>
+            </MD_LegalConstraints>
+         </resourceConstraints>
 		
 		
 		<xsl:choose>
