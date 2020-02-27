@@ -200,7 +200,8 @@
     <xsl:copy>
       <xsl:copy-of select="@*" />
 
-      <xsl:copy-of select="gmd:distributionFormat" />
+      <xsl:apply-templates select="gmd:distributionFormat" />
+
       <xsl:if test="not(gmd:distributionFormat)" >
         <gmd:distributionFormat>
             <gmd:MD_Format>
@@ -402,10 +403,10 @@
   </xsl:template>
 
     <!-- Add gco:CharacterString child nodes to elements with gco:nilReason attributes so they display
-    in the editor, then use update-fixed-info.xsl to get rid of them if not required -->
+    in the editor, then use update-fixed-info.xsl to get rid of them if not required, keep also gco:nilReason attribute -->
     <xsl:template match="//*[(@gco:nilReason='inapplicable' or @gco:nilReason='unknown') and not(gco:CharacterString) and name() != 'gmd:verticalElement']" priority="10">
       <xsl:copy>
-        <xsl:apply-templates select="@*[name() != 'gco:nilReason']|*"/>
+        <xsl:apply-templates select="@*|*"/>
         <xsl:element name="gco:CharacterString"/>
       </xsl:copy>
     </xsl:template>
