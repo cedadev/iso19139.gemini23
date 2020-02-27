@@ -8,6 +8,7 @@
 										xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 										xmlns:xlink="http://www.w3.org/1999/xlink"
 										xmlns:wfs="http://www.opengis.net/wfs"
+                    xmlns:gmx="http://www.isotc211.org/2005/gmx"
 										xmlns:ows="http://www.opengis.net/ows"
 										xmlns:ows11="http://www.opengis.net/ows/1.1"
 										xmlns:wcs="http://www.opengis.net/wcs"
@@ -27,9 +28,9 @@
 		<xsl:param name="topic"/>
 		<xsl:param name="ows"/>
 		<xsl:param name="lang">eng</xsl:param>
-		
+
 		<xsl:variable name="s" select="Service|wfs:Service|wms:Service|ows:ServiceIdentification|ows11:ServiceIdentification|wcs:Service"/>
-		
+
 		<citation>
 			<CI_Citation>
 				<title>
@@ -134,7 +135,7 @@
 				</CI_ResponsibleParty>
 			</pointOfContact>
 		</xsl:for-each>
-		
+
 		<!-- resMaint -->
 		<!-- graphOver -->
 		<!-- dsFormat-->
@@ -145,7 +146,7 @@
 				</MD_Keywords>
 			</descriptiveKeywords>
 		</xsl:for-each>
-		
+
 		<xsl:for-each-group select="$s/wms:KeywordList/wms:Keyword" group-by="@vocabulary">
 			<descriptiveKeywords>
 				<MD_Keywords>
@@ -173,7 +174,7 @@
 				</MD_Keywords>
 			</descriptiveKeywords>
 		</xsl:for-each-group>
-		
+
 		<xsl:for-each select="//inspire_vs:ExtendedCapabilities/inspire_common:MandatoryKeyword[@xsi:type='inspire_common:classificationOfSpatialDataService']">
 			<descriptiveKeywords>
 				<MD_Keywords xmlns:gmx="http://www.isotc211.org/2005/gmx">
@@ -210,8 +211,8 @@
 				</MD_Keywords>
 			</descriptiveKeywords>
 		</xsl:for-each>
-		
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
+
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<resourceConstraints>
 		<xsl:for-each select="$s/wms:AccessConstraints|$s/ows:AccessConstraints">
 				<MD_LegalConstraints>
@@ -225,10 +226,10 @@
 						<gco:CharacterString>no limitations</gco:CharacterString>
 					</otherConstraints>
 				</MD_LegalConstraints>
-			
+
 		</xsl:for-each>
 	</resourceConstraints>
-		
+
 		<srv:serviceType>
 			<gco:LocalName codeSpace="www.w3c.org">
 				<xsl:choose>
@@ -244,9 +245,9 @@
 		<srv:serviceTypeVersion>
 			<gco:CharacterString><xsl:value-of select='@version'/></gco:CharacterString>
 		</srv:serviceTypeVersion>
-		
+
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-		
+
 		<srv:accessProperties>
 			<MD_StandardOrderProcess>
 				<fees>
@@ -254,25 +255,25 @@
 				</fees>
 			</MD_StandardOrderProcess>
 		</srv:accessProperties>
-		
+
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 		Extent in OGC spec are somehow differents !
-		
+
 		WCS 1.0.0
 		<lonLatEnvelope srsName="WGS84(DD)">
 				<gml:pos>-130.85168 20.7052</gml:pos>
 				<gml:pos>-62.0054 54.1141</gml:pos>
 		</lonLatEnvelope>
-		
+
 		WFS 1.1.0
 		<ows:WGS84BoundingBox>
 				<ows:LowerCorner>-124.731422 24.955967</ows:LowerCorner>
 				<ows:UpperCorner>-66.969849 49.371735</ows:UpperCorner>
 		</ows:WGS84BoundingBox>
-		
+
 		WMS 1.1.1
 		<LatLonBoundingBox minx="-74.047185" miny="40.679648" maxx="-73.907005" maxy="40.882078"/>
-        
+
         WMS 1.3.0
         <EX_GeographicBoundingBox>
 	        <westBoundLongitude>-178.9988054730254</westBoundLongitude>
@@ -281,9 +282,9 @@
 	        <northBoundLatitude>88.9987992292308</northBoundLatitude>
         </EX_GeographicBoundingBox>
         <BoundingBox CRS="EPSG:4326" minx="27.116136375774644" miny="-17.934116876940887" maxx="44.39484823803499" maxy="6.052081516030762"/>
-        
+
         WPS 0.4.0 : none
-        
+
         WPS 1.0.0 : none
 		 -->
         <xsl:if test="name(.)!='wps:Capabilities'">
@@ -293,7 +294,7 @@
 						<EX_GeographicBoundingBox>
 							<xsl:choose>
 								<xsl:when test="$ows='true' or name(.)='WCS_Capabilities'">
-					
+
 									<xsl:variable name="boxes">
 										<xsl:choose>
 											<xsl:when test="$ows='true'">
@@ -318,7 +319,7 @@
 											</xsl:when>
 										</xsl:choose>
 									</xsl:variable>
-											
+
 									<westBoundLongitude>
 										<gco:Decimal><xsl:copy-of select="math:min(exslt:node-set($boxes)/*[name(.)='xmin'])"/></gco:Decimal>
 									</westBoundLongitude>
@@ -330,7 +331,7 @@
 									</southBoundLatitude>
 									<northBoundLatitude>
 										<gco:Decimal><xsl:value-of select="math:max(exslt:node-set($boxes)/*[name(.)='ymax'])"/></gco:Decimal>
-									</northBoundLatitude> 
+									</northBoundLatitude>
 								</xsl:when>
 								<xsl:otherwise>
 									<westBoundLongitude>
@@ -353,11 +354,11 @@
 		    </srv:extent>
         </xsl:if>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-			
+
 		<srv:couplingType gco:nilReason="missing"/>
          <srv:containsOperations gco:nilReason="missing"/>
-		
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 		Done by harvester after data metadata creation
 		<xsl:for-each select="//Layer[count(./*[name(.)='Layer'])=0] | FeatureType[count(./*[name(.)='FeatureType'])=0] | CoverageOfferingBrief[count(./*[name(.)='CoverageOfferingBrief'])=0]">
 				<srv:operatesOn>
@@ -367,7 +368,7 @@
 				</srv:operatesOn>
 		</xsl:for-each>
 		-->
-		
+
 	</xsl:template>
 
 
@@ -377,7 +378,7 @@
 
 	<xsl:template match="*" mode="LayerDataIdentification">
 		<xsl:param name="Name"/>
-		<xsl:param name="topic"/>		
+		<xsl:param name="topic"/>
 		<xsl:param name="ows"/>
 		<xsl:param name="lang">eng</xsl:param>
 		<citation>
@@ -491,9 +492,9 @@
 				</MD_Keywords>
 			</descriptiveKeywords>
 		</xsl:for-each>
-		
-		
-		<xsl:for-each-group select="//wms:Layer[wms:Name=$Name]/wms:KeywordList/wms:Keyword|wms:Service/wms:KeywordList/wms:Keyword" 
+
+
+		<xsl:for-each-group select="//wms:Layer[wms:Name=$Name]/wms:KeywordList/wms:Keyword|wms:Service/wms:KeywordList/wms:Keyword"
 			group-by="@vocabulary">
 			<descriptiveKeywords>
 				<MD_Keywords>
@@ -515,14 +516,14 @@
 									<gco:CharacterString/>
 								</alternateTitle>
 								<date gco:nilReason="missing"/>
-					
+
 							</CI_Citation>
 						</thesaurusName>
 					</xsl:if>
 				</MD_Keywords>
 			</descriptiveKeywords>
 		</xsl:for-each-group>
-		
+
 		<!--<xsl:for-each select="//wfs:FeatureType[wfs:Name=$Name]">
 			<descriptiveKeywords>
 				<MD_Keywords>
@@ -570,8 +571,8 @@
                </otherConstraints>
             </MD_LegalConstraints>
          </resourceConstraints>
-		
-		
+
+
 		<xsl:choose>
 		 	<xsl:when test="//wfs:FeatureType">
 				<spatialRepresentationType>
@@ -584,7 +585,7 @@
 				</spatialRepresentationType>
 			</xsl:when>
 		</xsl:choose>
-		
+
 		<!-- TODO WCS -->
 		<xsl:variable name="minScale" select="//Layer[Name=$Name]/MinScaleDenominator
 		  |//wms:Layer[wms:Name=$Name]/wms:MinScaleDenominator"/>
@@ -633,19 +634,19 @@
 		<xsl:call-template name="language">
 			<xsl:with-param name="lang" select="$lang"/>
 		</xsl:call-template>
-		
-		
+
+
 		<characterSet>
 			<MD_CharacterSetCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_CharacterSetCode" codeListValue=""/>
 		</characterSet>
-		<!-- 
+		<!--
 		<topicCategory>
 			<MD_TopicCategoryCode><xsl:value-of select="$topic"/></MD_TopicCategoryCode>
 		</topicCategory> -->
 		<topicCategory>
 			<MD_TopicCategoryCode>location</MD_TopicCategoryCode>
 		</topicCategory>
-		
+
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<extent>
 				<EX_Extent>
@@ -677,7 +678,7 @@
 											</xsl:when>
 										</xsl:choose>
 									</xsl:variable>
-											
+
 									<westBoundLongitude>
 										<gco:Decimal><xsl:value-of select="exslt:node-set($boxes)/*[name(.)='xmin']"/></gco:Decimal>
 									</westBoundLongitude>
@@ -689,7 +690,7 @@
 									</southBoundLatitude>
 									<northBoundLatitude>
 										<gco:Decimal><xsl:value-of select="exslt:node-set($boxes)/*[name(.)='ymax']"/></gco:Decimal>
-									</northBoundLatitude> 
+									</northBoundLatitude>
 								</xsl:when>
 								<xsl:when test="name(.)='WFS_Capabilities'">
 									<westBoundLongitude>
@@ -728,9 +729,9 @@
 					</geographicElement>
 				</EX_Extent>
 		</extent>
-			
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-			TODO : could be added to the GUI ?  
+
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+			TODO : could be added to the GUI ?
 		<xsl:for-each select="tpCat">
 			<topicCategory>
 				<MD_TopicCategoryCode codeList="./resources/codeList.xml#MD_TopicCategoryCode" codeListValue="{TopicCatCd/@value}" />
@@ -738,7 +739,7 @@
 		</xsl:for-each>
 
 		  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-		  
+
 	</xsl:template>
 
 	<!-- ============================================================================= -->
