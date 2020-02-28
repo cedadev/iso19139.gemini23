@@ -448,17 +448,6 @@
       System Identifiers in Annex D.4, ... The gmd:codeSpace element shall not be used in this
       case.</sch:p>
     <sch:rule
-      context="//gmd:MD_Metadata[1]/gmd:referenceSystemInfo/*[1]/gmd:referenceSystemIdentifier/gmd:RS_Identifier[1]/gmd:code/gmx:Anchor[1]/@xlink:href">
-      <!-- associated test for whether code is a default CRS is in supplemental -->
-      <sch:report
-        test="
-          $defaultCRScodes//crs/text()[normalize-space(.) = normalize-space(current()/.)] and
-          count(parent::gmx:Anchor/parent::gmd:code/parent::gmd:RS_Identifier/child::gmd:codeSpace) &gt; 0"
-        > MI-17b (Spatial Reference System): The coordinate reference system <sch:value-of
-          select="normalize-space(current()/.)"/> is listed in Default Coordinate Reference System
-        Identifiers in Annex D.4. Such identifiers SHALL NOT use gmd:codeSpace </sch:report>
-    </sch:rule>
-    <sch:rule
       context="//gmd:MD_Metadata[1]/gmd:referenceSystemInfo/*[1]/gmd:referenceSystemIdentifier/gmd:RS_Identifier[1]/gmd:code/gco:CharacterString">
       <!-- associated test for whether code is a default CRS is in supplemental -->
       <sch:report
@@ -471,6 +460,15 @@
     </sch:rule>
     <sch:rule
       context="//gmd:MD_Metadata[1]/gmd:referenceSystemInfo/*[1]/gmd:referenceSystemIdentifier/gmd:RS_Identifier[1]/gmd:code/gmx:Anchor">
+
+      <sch:report
+        test="
+          $defaultCRScodes//crs/text()[normalize-space(.) = normalize-space(current()/@xlink:href)] and
+          count(parent::gmd:code/parent::gmd:RS_Identifier/child::gmd:codeSpace) &gt; 0"
+      > MI-17b (Spatial Reference System): The coordinate reference system <sch:value-of
+        select="normalize-space(current()/@xlink:href)"/> is listed in Default Coordinate Reference System
+        Identifiers in Annex D.4. Such identifiers SHALL NOT use gmd:codeSpace </sch:report>
+
       <sch:report
         test="
           $defaultCRScodes//crs/text()[normalize-space(.) = normalize-space(current()/.)] and
@@ -1096,12 +1094,12 @@
       within the described dataset or datasets series, all used character encodings, including UTF-8
       (code list value "utf8"), shall be given using this element</sch:p>
     <sch:rule
-      context="//gmd:MD_Metadata[1]/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:characterSet/gmd:MD_CharacterSetCode[1]/@codeListValue">
+      context="//gmd:MD_Metadata[1]/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:characterSet/gmd:MD_CharacterSetCode[1]">
       <sch:assert
         test="
           ($hierarchyLevelCLValue = 'dataset' or $hierarchyLevelCLValue = 'series') and
-          $charSetCodes//gml:identifier/text()[normalize-space(.) = normalize-space(current()/.)]"
-        > MI-51 (Character encoding): "<sch:value-of select="normalize-space(.)"/>" is not one of the values of ISO 19139
+          $charSetCodes//gml:identifier/text()[normalize-space(.) = normalize-space(current()/@codeListValue)]"
+        > MI-51 (Character encoding): "<sch:value-of select="normalize-space(./@codeListValue)"/>" is not one of the values of ISO 19139
         code list MD_CharacterSetCode </sch:assert>
     </sch:rule>
   </sch:pattern>

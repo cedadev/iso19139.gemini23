@@ -56,11 +56,11 @@
         <sch:title>Coordinate Reference System (warning)</sch:title>
         <sch:p>Checking whether coordinate reference system is a default CRS</sch:p>
         <sch:rule
-            context="//gmd:MD_Metadata[1]/gmd:referenceSystemInfo/*[1]/gmd:referenceSystemIdentifier/gmd:RS_Identifier[1]/gmd:code/gmx:Anchor[1]/@xlink:href">
+            context="//gmd:MD_Metadata[1]/gmd:referenceSystemInfo/*[1]/gmd:referenceSystemIdentifier/gmd:RS_Identifier[1]/gmd:code/gmx:Anchor[1]">
             <sch:assert
-                test="$defaultCRScodes//crs/text()[normalize-space(.) = normalize-space(current()/.)]"
+                test="$defaultCRScodes//crs/text()[normalize-space(.) = normalize-space(current()/@xlink:href)]"
                 >SP-4a: Coordinate Reference System: <sch:value-of
-                    select="normalize-space(current()/.)"/> is not a default CRS </sch:assert>
+                    select="normalize-space(current()/@xlink:href)"/> is not a default CRS </sch:assert>
         </sch:rule>
         <sch:rule
             context="//gmd:MD_Metadata[1]/gmd:referenceSystemInfo/*[1]/gmd:referenceSystemIdentifier/gmd:RS_Identifier[1]/gmd:code/gco:CharacterString">
@@ -75,7 +75,7 @@
         <sch:p>This test checks for the title starting with `COMMISSION REGULATION` as ss. it should be 'Commission Regulation'...</sch:p>
         <sch:rule context="//gmd:MD_Metadata[1]/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:title/*[1][text() = 'COMMISSION REGULATION (EU) No 1089/2010 of 23 November 2010 implementing Directive 2007/2/EC of the European Parliament and of the Council as regards interoperability of spatial data sets and services']">
             <sch:report test=".">SP-5:
-                To be fully compliant with the regulation the title should be <sch:value-of select="$inspire1089"/>. 
+                To be fully compliant with the regulation the title should be <sch:value-of select="$inspire1089"/>.
             </sch:report>
         </sch:rule>
     </sch:pattern>
