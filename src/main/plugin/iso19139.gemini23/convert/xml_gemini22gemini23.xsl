@@ -117,7 +117,6 @@
     <!-- ================================================================= -->
 
     <!-- Add default conformance snippet -->
-    <!-- TODO should be different for services -->
 
     <xsl:template match="gmd:DQ_DataQuality">
         <gmd:DQ_DataQuality>
@@ -125,7 +124,7 @@
         <!-- <xsl:copy copy-namespaces="no"> -->
         <xsl:choose>
             <xsl:when test="not(gmd:report)">
-            <xsl:message>=== Adding default conformance report for datasets and series ===</xsl:message>
+            <xsl:message>=== Adding default conformance report for datasets, series and invocable spatial data services ===</xsl:message>
             <gmd:report>
                 <gmd:DQ_DomainConsistency>
                     <gmd:result>
@@ -168,6 +167,31 @@
     </xsl:template>
 
 
+    <!-- ================================================================= -->
+    <!-- fix service hierarchy level description if not present -->
+
+    <xsl:template match="gmd:DQ_Scope">
+        <xsl:copy>
+        <xsl:apply-templates select="gmd:level"/>
+            <xsl:if test="not(gmd:levelDescription) and gmd:level/gmd:MD_ScopeCode[@codeListValue='service']">
+                <xsl:message>=== Adding level description for service ===</xsl:message>
+                <gmd:levelDescription>
+                  <gmd:MD_ScopeDescription>
+                     <gmd:other>
+                        <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">service</gco:CharacterString>
+                     </gmd:other>
+                  </gmd:MD_ScopeDescription>
+               </gmd:levelDescription>
+            </xsl:if>
+            <xsl:if test="gmd:levelDescription and gmd:level/gmd:MD_ScopeCode[@codeListValue='service']">
+                <xsl:message>=== Copying existing level description ===</xsl:message>
+                <xsl:apply-templates select="gmd:levelDescription"/>
+            </xsl:if>
+            <xsl:if test="not(gmd:level/gmd:MD_ScopeCode[@codeListValue='service'])">
+                <xsl:message>=== Not a service record ===</xsl:message>
+            </xsl:if>
+        </xsl:copy>
+        </xsl:template>
     <!-- ================================================================= -->
 
     <xsl:template match="@*|node()">
