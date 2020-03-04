@@ -34,7 +34,7 @@
 
    <!-- conformity directory entries -->
 
-    <xsl:template mode="index" match="gmd:result[count(ancestor::node()) =  1]">
+    <xsl:template mode="index" match="gmd:DQ_DomainConsistency[count(ancestor::node()) =  1]">
     <xsl:variable name="date"
                   select="*/gmd:specification/*/gmd:date/*/gmd:date/gco:Date"/>
     <Field name="_title"
