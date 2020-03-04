@@ -398,7 +398,7 @@
     <xsl:copy>
       <xsl:copy-of select="@*" />
 
-      <gco:Boolean>false</gco:Boolean>
+      <gco:Boolean></gco:Boolean>
     </xsl:copy>
   </xsl:template>
 
