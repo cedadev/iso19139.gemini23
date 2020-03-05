@@ -9,6 +9,7 @@
 										xmlns:xlink="http://www.w3.org/1999/xlink"
 										xmlns:wfs="http://www.opengis.net/wfs"
                     xmlns:gmx="http://www.isotc211.org/2005/gmx"
+                    xmlns:gmd="http://www.isotc211.org/2005/gmd"
 										xmlns:ows="http://www.opengis.net/ows"
 										xmlns:ows11="http://www.opengis.net/ows/1.1"
 										xmlns:wcs="http://www.opengis.net/wcs"
@@ -213,9 +214,9 @@
 		</xsl:for-each>
 
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-		<resourceConstraints>
+		
 		<xsl:for-each select="$s/wms:AccessConstraints|$s/ows:AccessConstraints">
-				<MD_LegalConstraints>
+				<!-- <MD_LegalConstraints>
 					<useLimitation>
                   		<gco:CharacterString><xsl:value-of select='.'/></gco:CharacterString>
                		</useLimitation>
@@ -225,10 +226,29 @@
 					<otherConstraints>
 						<gco:CharacterString>no limitations</gco:CharacterString>
 					</otherConstraints>
-				</MD_LegalConstraints>
-
+				</MD_LegalConstraints> -->
+		<resourceConstraints>
+			<MD_LegalConstraints>
+				<accessConstraints>
+					<MD_RestrictionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_RestrictionCode" codeListValue="otherRestrictions">otherRestrictions</MD_RestrictionCode> 
+				</accessConstraints>
+				<otherConstraints>
+					<gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/noLimitations">no limitations</gmx:Anchor>
+				</otherConstraints>
+			</MD_LegalConstraints>
+		</resourceConstraints>
+		<resourceConstraints>
+			<MD_LegalConstraints>
+				<useConstraints>
+					<MD_RestrictionCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_RestrictionCode" codeListValue="otherRestrictions">otherRestrictions</MD_RestrictionCode>
+				</useConstraints>
+				<otherConstraints>
+					<gco:CharacterString><xsl:value-of select='.'/></gco:CharacterString>
+				</otherConstraints>
+			</MD_LegalConstraints>
+		</resourceConstraints>
 		</xsl:for-each>
-	</resourceConstraints>
+	
 
 		<srv:serviceType>
 			<gco:LocalName codeSpace="www.w3c.org">
