@@ -12,7 +12,7 @@
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/csw/2.0.2/profiles/apiso/1.0.0/apiso.xsd">
   <gmd:fileIdentifier>
-      <gco:CharacterString/>
+      <gco:CharacterString>b4f6d6c3-a126-4629-8d77-1488370dc118</gco:CharacterString>
   </gmd:fileIdentifier>
   <gmd:language xmlns:geonet="http://www.fao.org/geonetwork">
       <gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="eng">English</gmd:LanguageCode>
@@ -66,7 +66,7 @@
       </gmd:CI_ResponsibleParty>
   </gmd:contact>
   <gmd:dateStamp xmlns:geonet="http://www.fao.org/geonetwork">
-      <gco:DateTime>2020-03-03T17:16:09</gco:DateTime>
+      <gco:DateTime>2020-03-04T16:22:51</gco:DateTime>
   </gmd:dateStamp>
   <gmd:metadataStandardName xmlns:geonet="http://www.fao.org/geonetwork">
       <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M25/current/GEMINI/">UK GEMINI</gmx:Anchor>
@@ -90,7 +90,7 @@
          <gmd:citation>
             <gmd:CI_Citation>
                <gmd:title>
-                  <gco:CharacterString>Template for datasets in Gemini 2.3 format</gco:CharacterString>
+                  <gco:CharacterString>Template for Dataset Metadata in Gemini 2.3 format</gco:CharacterString>
                </gmd:title>
                <gmd:date>
                   <gmd:CI_Date>
@@ -267,9 +267,6 @@
             <gmd:MD_CharacterSetCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_CharacterSetCode"
                                      codeListValue="utf8"/>
          </gmd:characterSet>
-         <gmd:topicCategory>
-            <gmd:MD_TopicCategoryCode/>
-         </gmd:topicCategory>
          <gmd:extent>
             <gmd:EX_Extent>
                <gmd:geographicElement>
@@ -343,32 +340,33 @@
                </gmd:level>
             </gmd:DQ_Scope>
          </gmd:scope>
-         <gmd:report/>
          <gmd:report>
-            <gmd:DQ_ConformanceResult>
-               <gmd:specification xlink:href="http://inspire.ec.europa.eu/id/citation/ir/reg-1089-2010">
-                  <gmd:CI_Citation>
-                     <gmd:title>
-                        <gmx:Anchor xlink:href="http://data.europa.eu/eli/reg/2010/1089">COMMISSION REGULATION (EU) No 1089/2010 of 23 November 2010 implementing Directive 2007/2/EC of the European Parliament and of the Council as regards interoperability of spatial data sets and services</gmx:Anchor>
-                     </gmd:title>
-                     <gmd:date>
-                        <gmd:CI_Date>
+            <gmd:DQ_DomainConsistency>
+               <gmd:result>
+                  <gmd:DQ_ConformanceResult>
+                     <gmd:specification>
+                        <gmd:CI_Citation>
+                           <gmd:title>
+                              <gmx:Anchor xlink:href="http://data.europa.eu/eli/reg/2010/1089">Commission Regulation (EU) No 1089/2010 of 23 November 2010 implementing Directive 2007/2/EC of the European Parliament and of the Council as regards interoperability of spatial data sets and services</gmx:Anchor>
+                           </gmd:title>
                            <gmd:date>
-                              <gco:Date>2010-12-08</gco:Date>
+                              <gmd:CI_Date>
+                                 <gmd:date>
+                                    <gco:Date>2010-12-08</gco:Date>
+                                 </gmd:date>
+                                 <gmd:dateType>
+                                    <gmd:CI_DateTypeCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode"
+                                                         codeListValue="publication"/>
+                                 </gmd:dateType>
+                              </gmd:CI_Date>
                            </gmd:date>
-                           <gmd:dateType>
-                              <gmd:CI_DateTypeCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode"
-                                                   codeListValue="publication"/>
-                           </gmd:dateType>
-                        </gmd:CI_Date>
-                     </gmd:date>
-                  </gmd:CI_Citation>
-               </gmd:specification>
-               <gmd:explanation>
-                  <gco:CharacterString/>
-               </gmd:explanation>
-               <gmd:pass gco:nilReason="unknown"/>
-            </gmd:DQ_ConformanceResult>
+                        </gmd:CI_Citation>
+                     </gmd:specification>
+                     <gmd:explanation gco:nilReason="inapplicable"/>
+                     <gmd:pass gco:nilReason="unknown"/>
+                  </gmd:DQ_ConformanceResult>
+               </gmd:result>
+            </gmd:DQ_DomainConsistency>
          </gmd:report>
          <gmd:lineage>
             <gmd:LI_Lineage>
