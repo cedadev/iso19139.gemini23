@@ -585,7 +585,17 @@
                         namespace-uri() != 'http://www.isotc211.org/2005/gco'">
               The '<sch:value-of select="name(../..)"/>/<sch:value-of select="name(..)"/>/<sch:name/>' gco element has no value.
             </sch:assert>
-      -->    </sch:rule>
+      -->
+    </sch:rule>
+  </sch:pattern>
+
+  <sch:pattern fpi="TestValuesNotNilReasonIfValue">
+    <sch:title>Element Values have no Nil Reason Attributes</sch:title>
+    <sch:rule context="//*[gco:CharacterString]">
+      <sch:assert test="not(string(normalize-space(gco:CharacterString))) or (string(normalize-space(gco:CharacterString)) and not(@gco:nilReason))">
+      The '<sch:value-of select="name()"/>' element has a value, should not have gco:nilReason.
+      </sch:assert>
+    </sch:rule>
   </sch:pattern>
 
   <!-- ========================================================================================== -->
@@ -630,6 +640,7 @@
       </sch:assert>
     </sch:rule>
   </sch:pattern>
+
 
   <!-- Test for the responsible party information -->
   <sch:pattern abstract="true" id="ResponsiblePartyPattern">

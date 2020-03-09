@@ -46,7 +46,7 @@
     <xsl:template match="gmd:metadataStandardName">
         <xsl:message>=== Updating Metadata Standard Name ===</xsl:message>
         <xsl:copy>
-            <gco:CharacterString>UK GEMINI</gco:CharacterString>
+                <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M25/current/GEMINI/">UK GEMINI</gmx:Anchor>
         </xsl:copy>
     </xsl:template>
 
@@ -75,9 +75,6 @@
                </gmd:accessConstraints>
                 <gmd:otherConstraints>
                     <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1e">no limitations</gmx:Anchor>
-                </gmd:otherConstraints>
-                <gmd:otherConstraints>
-                    <gco:CharacterString/>
                 </gmd:otherConstraints>
             </gmd:MD_LegalConstraints>
         </xsl:copy>
@@ -120,48 +117,81 @@
     <!-- ================================================================= -->
 
     <!-- Add default conformance snippet -->
-    <!-- TODO should be different for services -->
 
     <xsl:template match="gmd:DQ_DataQuality">
         <gmd:DQ_DataQuality>
         <xsl:apply-templates select="gmd:scope"/>
         <!-- <xsl:copy copy-namespaces="no"> -->
-        <xsl:message>=== Adding default conformance report for datasets and series ===</xsl:message>
-        <gmd:report>
-            <gmd:DQ_DomainConsistency>
-                <gmd:result>
-                    <gmd:DQ_ConformanceResult>
-                        <gmd:specification>
-                            <gmd:CI_Citation>
-                                <gmd:title>
-                                    <gmx:Anchor xlink:href="http://data.europa.eu/eli/reg/2010/1089">Commission Regulation (EU) No 1089/2010 of 23 November 2010 implementing Directive 2007/2/EC of the European Parliament and of the Council as regards interoperability of spatial data sets and services</gmx:Anchor>
-                                </gmd:title>
-                                <gmd:date>
-                                    <gmd:CI_Date>
-                                        <gmd:date>
-                                            <gco:Date>2010-12-08</gco:Date>
-                                        </gmd:date>
-                                        <gmd:dateType>
-                                            <gmd:CI_DateTypeCode codeList='http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#CI_DateTypeCode' codeListValue='publication' />
-                                        </gmd:dateType>
-                                    </gmd:CI_Date>
-                                </gmd:date>
-                            </gmd:CI_Citation>
-                        </gmd:specification>
-                        <!-- Explanation is a required element but can be empty -->
-                        <gmd:explanation gco:nilReason="inapplicable"/>
-                        <!-- Conformance has no been evaluated -->
-                        <gmd:pass gco:nilReason="unknown" />
-                    </gmd:DQ_ConformanceResult>
-                </gmd:result>
-            </gmd:DQ_DomainConsistency>
-        </gmd:report>
+        <xsl:choose>
+            <xsl:when test="not(gmd:report)">
+            <xsl:message>=== Adding default conformance report for datasets, series and invocable spatial data services ===</xsl:message>
+            <gmd:report>
+                <gmd:DQ_DomainConsistency>
+                    <gmd:result>
+                        <gmd:DQ_ConformanceResult>
+                            <gmd:specification>
+                                <gmd:CI_Citation>
+                                    <gmd:title>
+                                        <gmx:Anchor xlink:href="http://data.europa.eu/eli/reg/2010/1089">Commission Regulation (EU) No 1089/2010 of 23 November 2010 implementing Directive 2007/2/EC of the European Parliament and of the Council as regards interoperability of spatial data sets and services</gmx:Anchor>
+                                    </gmd:title>
+                                    <gmd:date>
+                                        <gmd:CI_Date>
+                                            <gmd:date>
+                                                <gco:Date>2010-12-08</gco:Date>
+                                            </gmd:date>
+                                            <gmd:dateType>
+                                                <gmd:CI_DateTypeCode codeList='http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#CI_DateTypeCode' codeListValue='publication' />
+                                            </gmd:dateType>
+                                        </gmd:CI_Date>
+                                    </gmd:date>
+                                </gmd:CI_Citation>
+                            </gmd:specification>
+                            <!-- Explanation is a required element but can be empty -->
+                            <gmd:explanation gco:nilReason="inapplicable"/>
+                            <!-- Conformance has not been evaluated -->
+                            <gmd:pass gco:nilReason="unknown" />
+                        </gmd:DQ_ConformanceResult>
+                    </gmd:result>
+                </gmd:DQ_DomainConsistency>
+            </gmd:report>
+        </xsl:when>
+        <xsl:otherwise>
+            <xsl:message>=== Copying existing conformity report ===</xsl:message>
+            <xsl:apply-templates select="gmd:report"/>
+        </xsl:otherwise>
+    </xsl:choose>
+
     <!-- </xsl:copy> -->
     <xsl:apply-templates select="gmd:lineage"/>
     </gmd:DQ_DataQuality>
     </xsl:template>
 
 
+    <!-- ================================================================= -->
+    <!-- fix service hierarchy level description if not present -->
+
+    <xsl:template match="gmd:DQ_Scope">
+        <xsl:copy>
+        <xsl:apply-templates select="gmd:level"/>
+            <xsl:if test="not(gmd:levelDescription) and gmd:level/gmd:MD_ScopeCode[@codeListValue='service']">
+                <xsl:message>=== Adding level description for service ===</xsl:message>
+                <gmd:levelDescription>
+                  <gmd:MD_ScopeDescription>
+                     <gmd:other>
+                        <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">service</gco:CharacterString>
+                     </gmd:other>
+                  </gmd:MD_ScopeDescription>
+               </gmd:levelDescription>
+            </xsl:if>
+            <xsl:if test="gmd:levelDescription and gmd:level/gmd:MD_ScopeCode[@codeListValue='service']">
+                <xsl:message>=== Copying existing level description ===</xsl:message>
+                <xsl:apply-templates select="gmd:levelDescription"/>
+            </xsl:if>
+            <xsl:if test="not(gmd:level/gmd:MD_ScopeCode[@codeListValue='service'])">
+                <xsl:message>=== Not a service record ===</xsl:message>
+            </xsl:if>
+        </xsl:copy>
+        </xsl:template>
     <!-- ================================================================= -->
 
     <xsl:template match="@*|node()">

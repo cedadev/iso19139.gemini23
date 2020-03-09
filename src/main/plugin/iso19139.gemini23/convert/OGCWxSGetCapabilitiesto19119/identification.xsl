@@ -8,21 +8,20 @@
 										xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 										xmlns:xlink="http://www.w3.org/1999/xlink"
 										xmlns:wfs="http://www.opengis.net/wfs"
+                    xmlns:gmx="http://www.isotc211.org/2005/gmx"
+                    xmlns:gmd="http://www.isotc211.org/2005/gmd"
 										xmlns:ows="http://www.opengis.net/ows"
 										xmlns:ows11="http://www.opengis.net/ows/1.1"
 										xmlns:wcs="http://www.opengis.net/wcs"
 										xmlns:wms="http://www.opengis.net/wms"
-                    xmlns:wps="http://www.opengeospatial.net/wps"
-                    xmlns:wps1="http://www.opengis.net/wps/1.0.0"
-                    xmlns:gml="http://www.opengis.net/gml/3.2"
+                                        xmlns:wps="http://www.opengeospatial.net/wps"
+                                        xmlns:wps1="http://www.opengis.net/wps/1.0.0"
+                                        xmlns:gml="http://www.opengis.net/gml"
 										xmlns:math="http://exslt.org/math"
 										xmlns:exslt="http://exslt.org/common"
-                    xmlns:gmx="http://www.isotc211.org/2005/gmx"
 										xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0"
 										xmlns:inspire_vs="http://inspire.ec.europa.eu/schemas/inspire_vs/1.0"
-										extension-element-prefixes="math exslt wcs ows wps wps1 ows11 wfs gml"
-                    exclude-result-prefixes="ows ows11 wcs wms wps wps1 math inspire_common inspire_vs exslt">
-
+										extension-element-prefixes="math exslt wcs ows wps wps1 ows11 wfs gml">
 <!-- note this template does not handle WFS 2.0.0 -->
 	<!-- ============================================================================= -->
 	<xsl:import href="language.xsl"/>
@@ -75,7 +74,7 @@
 							</xsl:choose>
 						</date>
 						<dateType>
-							<CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codeList.xml#CI_DateTypeCode" codeListValue="revision"/>
+							<CI_DateTypeCode codeList="./resources/codeList.xml#CI_DateTypeCode" codeListValue="revision"/>
 						</dateType>
 					</CI_Date>
 				</date>
@@ -118,7 +117,7 @@
 		<!--idPurp-->
 
 		<status>
-			<MD_ProgressCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codeList.xml#MD_ProgressCode" codeListValue="completed" />
+			<MD_ProgressCode codeList="./resources/codeList.xml#MD_ProgressCode" codeListValue="completed" />
 		</status>
 
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -158,7 +157,7 @@
 						</keyword>
 					</xsl:for-each>
 					<type>
-						<MD_KeywordTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codeList.xml#MD_KeywordTypeCode" codeListValue="theme" />
+						<MD_KeywordTypeCode codeList="./resources/codeList.xml#MD_KeywordTypeCode" codeListValue="theme" />
 					</type>
 					<xsl:if test="current-grouping-key() != ''">
 						<thesaurusName>
@@ -215,9 +214,9 @@
 		</xsl:for-each>
 
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-		<resourceConstraints>
+		
 		<xsl:for-each select="$s/wms:AccessConstraints|$s/ows:AccessConstraints">
-				<MD_LegalConstraints>
+				<!-- <MD_LegalConstraints>
 					<useLimitation>
                   		<gco:CharacterString><xsl:value-of select='.'/></gco:CharacterString>
                		</useLimitation>
@@ -225,38 +224,31 @@
 						<MD_RestrictionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_RestrictionCode" codeListValue="otherRestrictions">otherRestrictions</MD_RestrictionCode>
 					</accessConstraints>
 					<otherConstraints>
-            <gmx:Anchor xmlns:gmx="http://www.isotc211.org/2005/gmx"
-                        xmlns:xlink="http://www.w3.org/1999/xlink"
-                        xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/noLimitations">no limitations</gmx:Anchor>
+						<gco:CharacterString>no limitations</gco:CharacterString>
 					</otherConstraints>
-				</MD_LegalConstraints>
-
+				</MD_LegalConstraints> -->
+		<resourceConstraints>
+			<MD_LegalConstraints>
+				<accessConstraints>
+					<MD_RestrictionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_RestrictionCode" codeListValue="otherRestrictions">otherRestrictions</MD_RestrictionCode> 
+				</accessConstraints>
+				<otherConstraints>
+					<gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/noLimitations">no limitations</gmx:Anchor>
+				</otherConstraints>
+			</MD_LegalConstraints>
+		</resourceConstraints>
+		<resourceConstraints>
+			<MD_LegalConstraints>
+				<useConstraints>
+					<MD_RestrictionCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_RestrictionCode" codeListValue="otherRestrictions">otherRestrictions</MD_RestrictionCode>
+				</useConstraints>
+				<otherConstraints>
+					<gco:CharacterString><xsl:value-of select='.'/></gco:CharacterString>
+				</otherConstraints>
+			</MD_LegalConstraints>
+		</resourceConstraints>
 		</xsl:for-each>
-	</resourceConstraints>
-
-    <resourceConstraints>
-      <MD_LegalConstraints>
-        <accessConstraints>
-          <MD_RestrictionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_RestrictionCode"
-                              codeListValue="otherRestrictions">otherRestrictions</MD_RestrictionCode>
-        </accessConstraints>
-        <otherConstraints>
-          <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1e">no limitations</gmx:Anchor>
-        </otherConstraints>
-      </MD_LegalConstraints>
-    </resourceConstraints>
-
-    <resourceConstraints>
-      <MD_LegalConstraints>
-        <useConstraints>
-          <MD_RestrictionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_RestrictionCode"
-                              codeListValue="otherRestrictions">otherRestrictions</MD_RestrictionCode>
-        </useConstraints>
-        <otherConstraints>
-          <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/ConditionsApplyingToAccessAndUse/noConditionsApply">no conditions apply</gmx:Anchor>
-        </otherConstraints>
-      </MD_LegalConstraints>
-    </resourceConstraints>
+	
 
 		<srv:serviceType>
 			<gco:LocalName codeSpace="www.w3c.org">
@@ -436,7 +428,7 @@
 							<gco:DateTime><xsl:value-of select="format-dateTime(current-dateTime(),$df)"/></gco:DateTime>
 						</date>
 						<dateType>
-							<CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codeList.xml#CI_DateTypeCode" codeListValue="revision"/>
+							<CI_DateTypeCode codeList="./resources/codeList.xml#CI_DateTypeCode" codeListValue="revision"/>
 						</dateType>
 					</CI_Date>
 				</date>
@@ -475,7 +467,7 @@
 		<!--idPurp-->
 
 		<status>
-			<MD_ProgressCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codeList.xml#MD_ProgressCode" codeListValue="completed" />
+			<MD_ProgressCode codeList="./resources/codeList.xml#MD_ProgressCode" codeListValue="completed" />
 		</status>
 
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -532,7 +524,7 @@
 						</keyword>
 					</xsl:for-each>
 					<type>
-						<MD_KeywordTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codeList.xml#MD_KeywordTypeCode" codeListValue="theme" />
+						<MD_KeywordTypeCode codeList="./resources/codeList.xml#MD_KeywordTypeCode" codeListValue="theme" />
 					</type>
 					<xsl:if test="current-grouping-key() != ''">
 						<thesaurusName>
@@ -574,53 +566,42 @@
 			</descriptiveKeywords>
 		</xsl:for-each>
 
-		<resourceConstraints>
-			<MD_LegalConstraints>
-					<useLimitation>
-              <gco:CharacterString>Public Sector End User Licence - INSPIRE http://www.ordnancesurvey.co.uk/business-and-government/public-sector/mapping-agreements/inspire-licence.html</gco:CharacterString>
-          </useLimitation>
-					<accessConstraints>
-						<MD_RestrictionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_RestrictionCode" codeListValue="otherRestrictions">otherRestrictions</MD_RestrictionCode>
-					</accessConstraints>
-					<otherConstraints>
-						<gco:CharacterString>no limitations</gco:CharacterString>
-					</otherConstraints>
-				</MD_LegalConstraints>
-		</resourceConstraints>
+		         <resourceConstraints>
+            <MD_LegalConstraints>
+               <accessConstraints>
+                  <MD_RestrictionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_RestrictionCode"
+                                          codeListValue="otherRestrictions">otherRestrictions</MD_RestrictionCode>
+               </accessConstraints>
+               <otherConstraints>
+                  <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1e">no limitations</gmx:Anchor>
+               </otherConstraints>
+               <otherConstraints>
+                  <gco:CharacterString/>
+               </otherConstraints>
+            </MD_LegalConstraints>
+         </resourceConstraints>
+         <resourceConstraints>
+            <MD_LegalConstraints>
+               <useConstraints>
+                  <MD_RestrictionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_RestrictionCode"
+                                          codeListValue="otherRestrictions">otherRestrictions</MD_RestrictionCode>
+               </useConstraints>
+               <otherConstraints>
+                  <gmx:Anchor>no conditions apply</gmx:Anchor>
+               </otherConstraints>
+            </MD_LegalConstraints>
+         </resourceConstraints>
 
-    <resourceConstraints>
-      <MD_LegalConstraints>
-        <accessConstraints>
-          <MD_RestrictionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_RestrictionCode"
-                                  codeListValue="otherRestrictions">otherRestrictions</MD_RestrictionCode>
-        </accessConstraints>
-        <otherConstraints>
-          <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1e">no limitations</gmx:Anchor>
-        </otherConstraints>
-      </MD_LegalConstraints>
-    </resourceConstraints>
 
-    <resourceConstraints>
-      <MD_LegalConstraints>
-        <useConstraints>
-          <MD_RestrictionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_RestrictionCode"
-                                  codeListValue="otherRestrictions">otherRestrictions</MD_RestrictionCode>
-        </useConstraints>
-        <otherConstraints>
-          <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/ConditionsApplyingToAccessAndUse/noConditionsApply">no conditions apply</gmx:Anchor>
-        </otherConstraints>
-      </MD_LegalConstraints>
-    </resourceConstraints>
-
-    <xsl:choose>
+		<xsl:choose>
 		 	<xsl:when test="//wfs:FeatureType">
 				<spatialRepresentationType>
-					<MD_SpatialRepresentationTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codeList.xml#MD_SpatialRepresentationTypeCode" codeListValue="vector" />
+					<MD_SpatialRepresentationTypeCode codeList="./resources/codeList.xml#MD_SpatialRepresentationTypeCode" codeListValue="vector" />
 				</spatialRepresentationType>
 			</xsl:when>
 			<xsl:when test="//wcs:CoverageOfferingBrief">
 				<spatialRepresentationType>
-					<MD_SpatialRepresentationTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codeList.xml#MD_SpatialRepresentationTypeCode" codeListValue="grid" />
+					<MD_SpatialRepresentationTypeCode codeList="./resources/codeList.xml#MD_SpatialRepresentationTypeCode" codeListValue="grid" />
 				</spatialRepresentationType>
 			</xsl:when>
 		</xsl:choose>

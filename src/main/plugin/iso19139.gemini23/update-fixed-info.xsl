@@ -78,7 +78,35 @@
         </xsl:choose>
     </xsl:template> -->
 
+  <xsl:template match="gmd:MD_Format/gmd:version[not(string(gco:CharacterString))]" priority="10">
+    <xsl:copy>
+      <!-- Preserve existing gco:nilReason if empty, but if not defined add a default value unknown -->
+      <xsl:apply-templates select="@*"/>
+      <xsl:if test="not(gco:nilReason)">
+        <xsl:attribute name="gco:nilReason">unknown</xsl:attribute>
+      </xsl:if>
+    </xsl:copy>
+  </xsl:template>
 
+  <xsl:template match="gmd:hierarchyLevelName[not(string(gco:CharacterString))]" priority="10">
+    <xsl:copy>
+      <!-- Preserve existing gco:nilReason if empty, but if not defined add a default value inapplicable -->
+      <xsl:apply-templates select="@*"/>
+      <xsl:if test="not(@gco:nilReason)">
+        <xsl:attribute name="gco:nilReason">inapplicable</xsl:attribute>
+      </xsl:if>
+    </xsl:copy>
+  </xsl:template>
+
+  <xsl:template match="gmd:DQ_ConformanceResult/gmd:explanation[not(string(gco:CharacterString))]" priority="10">
+    <xsl:copy>
+      <!-- Preserve existing gco:nilReason if empty, but if not defined add a default value unknown -->
+      <xsl:apply-templates select="@*"/>
+      <xsl:if test="not(@gco:nilReason)">
+        <xsl:attribute name="gco:nilReason">unknown</xsl:attribute>
+      </xsl:if>
+    </xsl:copy>
+  </xsl:template>
 
   <xsl:template match="gmd:LanguageCode[@codeListValue]" priority="10">
 

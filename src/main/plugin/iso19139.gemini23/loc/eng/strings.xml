@@ -313,7 +313,7 @@
     <div class="col-xs-offset-2 col-xs-8">
       <p class="help-block">Conditional, required when Resource type (ISO hierarchyLevel) is not "dataset".</p>
       <ol class="help-block">
-        <li>Set to an appropriate text string.</li>
+        <li>Set to an appropriate text string, or delete if not required. Use of nilreasons is not recommended.</li>
         <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1062-gemini-datasets-and-data-series#47">Gemini Guidance</a></li>
       </ol>
       </div>
@@ -324,7 +324,7 @@
     <div class="col-xs-offset-2 col-xs-8">
       <p class="help-block">Conditional, required when Resource type (ISO hierarchyLevel) is not "dataset".</p>
       <ol class="help-block">
-        <li>Set to an appropriate text string.</li>
+        <li>Set to an appropriate text string, or delete if not required. Use of nilreasons is not recommended.</li>
         <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1063-gemini-services#47">Gemini Guidance</a></li>
       </ol>
       </div>
@@ -402,7 +402,7 @@
     <div class="col-xs-offset-2 col-xs-8">
       <p class="help-block">Supports parent-child relationships in metadata. Allows navigation from a dataset record to the series record of which it forms a part.</p>
       <ol class="help-block">
-        <li>Only to be used if the dataset is part of a series</li>
+        <li>Only to be used if the dataset is part of a series. Delete if not required. Use of nilreasons is not recommended.</li>
         <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1062-gemini-datasets-and-data-series#49">Gemini Guidance</a></li>
       </ol>
       </div>
@@ -726,6 +726,7 @@
     <div class="col-xs-offset-2 col-xs-8">
       <p class="help-block">The purpose of this element is to describe the vertical range of the data resource (where relevant).</p>
       <ol class="help-block">
+        <li>Optional. Delete if not required. Use of nilreasons is not recommended.</li>
         <li>Provide a minimum value and maximum value in the units of the provided coordinate reference system</li>
         <li>Identify the coordinate reference system used for vertical extent measurements from the dropdown list.</li>
         <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1062-gemini-datasets-and-data-series#16">Gemini Guidance</a></li>
@@ -739,6 +740,7 @@
     <div class="col-xs-offset-2 col-xs-8">
       <p class="help-block">The purpose of this element is to describe the vertical range of the data resource (where relevant).</p>
       <ol class="help-block">
+        <li>Optional. Delete if not required. Use of nilreasons is not recommended.</li>
         <li>Provide a minimum value and maximum value in the units of the provided coordinate reference system</li>
         <li>Identify the coordinate reference system used for vertical extent measurements from the dropdown list.</li>
         <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1063-gemini-services#16">Gemini Guidance</a></li>

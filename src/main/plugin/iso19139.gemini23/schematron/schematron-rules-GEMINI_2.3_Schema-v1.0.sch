@@ -2,41 +2,41 @@
 <!-- ========================================================================================== -->
 <!-- Schematron Schema for the UK GEMINI Standard Version 2.3                             -->
 <!-- ========================================================================================== -->
-<!-- 
-     James Passmore                                
-     British Geological Survey                                                
+<!--
+     James Passmore
+     British Geological Survey
      2017-09-08
-     
+
      This Schematron schema has been developed for the UK Location Programme (UKLP) by
      British Geological Survey (BGS), with funding from AGI.
 
      It is designed to validate the constraints introduced in the GEMINI2.3 draft standard.
      Constraints have been taken from:
-     
+
      UK GEMINI Standard, Version 2.3, September 2017.
-     
-     The schema has been developed for XSLT Version 1.0, and is based on the GEMINI 2.1 schematron, 
+
+     The schema has been developed for XSLT Version 1.0, and is based on the GEMINI 2.1 schematron,
      which was tested with the ISO 19757-3 Schematron XML Stylesheets issued on 2009-03-18 at:
      http://www.schematron.com/tmp/iso-schematron-xslt1.zip (no longer available).
-     
-     The schema tests constraints on ISO / TS 19139 encoded metadata. The rules expressed in this 
+
+     The schema tests constraints on ISO / TS 19139 encoded metadata. The rules expressed in this
      schema apply in addition to validation by the ISO / TS 19139 XML schemas.
-     
+
      The schema is designed to test ISO 19139 encoded metadata incorporating ISO 19136 (GML Version
-     3.2.1) elements where necessary. Note that GML elements must be mapped to the Version 3.2.1 
+     3.2.1) elements where necessary. Note that GML elements must be mapped to the Version 3.2.1
      GML namespace - http://www.opengis.net/gml/3.2
 
      You may use and re-use the information in this publication (not including logos) free of charge
      in any format or medium, under the terms of the Open Government Licence.
 
      Document History:
-     
+
      2017-09-08 - Modified from GEMINI 2.1 Schematron Schema.sch
                 ~ All contexts changed to allow checking of metadata either as CSW response or standalone metadata record
                 ~ Namespace prefixes for all relevant XML schema added.
      2017-11-14 - Release Candidate 1
                 ~ Added/amened rules for clarifications and changes for GEMINI 2.3
-     2017-12-11 - Release Candidate 2 
+     2017-12-11 - Release Candidate 2
                 ~ removed Copyright statement, appropriate copyright still needs to be added
                 ~ removed Gemini2-mi47-services-restriction as it doesn't apply.
                 ~ added brackets around Unique for Resource Identifier text.
@@ -72,7 +72,7 @@
                 ~ moved first sch:p to beneath last sch:ns, for compliance to RELAX NG schema for Schematron
                 ~ moved sch:lets for debug reporting to top, for compliance to RELAX NG schema for Schematron
     2018-07-03  ~ Release Candidate 9
-                ~ updated reference XML files to location on https://agi.org.uk/ 
+                ~ updated reference XML files to location on https://agi.org.uk/
 -->
 <sch:schema xmlns:sch="http://purl.oclc.org/dsdl/schematron" queryBinding="xslt" schemaVersion="1.2">
   <sch:title>UK GEMINI Standard Draft Version 2.3</sch:title>
@@ -400,7 +400,7 @@
   </sch:pattern>
   <sch:pattern is-a="TypeNillablePattern" id="Gemini2-mi15-Nillable">
     <sch:param name="context"
-      value="//gmd:MD_Metadata[1]/gmd:identificationInfo[1]/*[1]/gmd:extent/*[1]/gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier/*[1]/gmd:code | 
+      value="//gmd:MD_Metadata[1]/gmd:identificationInfo[1]/*[1]/gmd:extent/*[1]/gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier/*[1]/gmd:code |
       //gmd:MD_Metadata[1]/gmd:identificationInfo[1]/*[1]/gmd:extent/*[1]/gmd:geographicElement/*[@gco:isoType='gmd:EX_GeographicDescription'][1]/gmd:geographicIdentifier/*[1]/gmd:code |
       //gmd:MD_Metadata[1]/gmd:identificationInfo[1]/*[1]/srv:extent/*[1]/gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier/*[1]/gmd:code |
       //gmd:MD_Metadata[1]/gmd:identificationInfo[1]/*[1]/srv:extent/*[1]/gmd:geographicElement/*[@gco:isoType='gmd:EX_GeographicDescription'][1]/gmd:geographicIdentifier/*[1]/gmd:code"
@@ -448,17 +448,6 @@
       System Identifiers in Annex D.4, ... The gmd:codeSpace element shall not be used in this
       case.</sch:p>
     <sch:rule
-      context="//gmd:MD_Metadata[1]/gmd:referenceSystemInfo/*[1]/gmd:referenceSystemIdentifier/gmd:RS_Identifier[1]/gmd:code/gmx:Anchor[1]/@xlink:href">
-      <!-- associated test for whether code is a default CRS is in supplemental -->
-      <sch:report
-        test="
-          $defaultCRScodes//crs/text()[normalize-space(.) = normalize-space(current()/.)] and
-          count(parent::gmx:Anchor/parent::gmd:code/parent::gmd:RS_Identifier/child::gmd:codeSpace) &gt; 0"
-        > MI-17b (Spatial Reference System): The coordinate reference system <sch:value-of
-          select="normalize-space(current()/.)"/> is listed in Default Coordinate Reference System
-        Identifiers in Annex D.4. Such identifiers SHALL NOT use gmd:codeSpace </sch:report>
-    </sch:rule>
-    <sch:rule
       context="//gmd:MD_Metadata[1]/gmd:referenceSystemInfo/*[1]/gmd:referenceSystemIdentifier/gmd:RS_Identifier[1]/gmd:code/gco:CharacterString">
       <!-- associated test for whether code is a default CRS is in supplemental -->
       <sch:report
@@ -471,6 +460,15 @@
     </sch:rule>
     <sch:rule
       context="//gmd:MD_Metadata[1]/gmd:referenceSystemInfo/*[1]/gmd:referenceSystemIdentifier/gmd:RS_Identifier[1]/gmd:code/gmx:Anchor">
+
+      <sch:report
+        test="
+          $defaultCRScodes//crs/text()[normalize-space(.) = normalize-space(current()/@xlink:href)] and
+          count(parent::gmd:code/parent::gmd:RS_Identifier/child::gmd:codeSpace) &gt; 0"
+      > MI-17b (Spatial Reference System): The coordinate reference system <sch:value-of
+        select="normalize-space(current()/@xlink:href)"/> is listed in Default Coordinate Reference System
+        Identifiers in Annex D.4. Such identifiers SHALL NOT use gmd:codeSpace </sch:report>
+
       <sch:report
         test="
           $defaultCRScodes//crs/text()[normalize-space(.) = normalize-space(current()/.)] and
@@ -1096,12 +1094,12 @@
       within the described dataset or datasets series, all used character encodings, including UTF-8
       (code list value "utf8"), shall be given using this element</sch:p>
     <sch:rule
-      context="//gmd:MD_Metadata[1]/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:characterSet/gmd:MD_CharacterSetCode[1]/@codeListValue">
+      context="//gmd:MD_Metadata[1]/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:characterSet/gmd:MD_CharacterSetCode[1]">
       <sch:assert
         test="
           ($hierarchyLevelCLValue = 'dataset' or $hierarchyLevelCLValue = 'series') and
-          $charSetCodes//gml:identifier/text()[normalize-space(.) = normalize-space(current()/.)]"
-        > MI-51 (Character encoding): "<sch:value-of select="normalize-space(.)"/>" is not one of the values of ISO 19139
+          $charSetCodes//gml:identifier/text()[normalize-space(.) = normalize-space(current()/@codeListValue)]"
+        > MI-51 (Character encoding): "<sch:value-of select="normalize-space(./@codeListValue)"/>" is not one of the values of ISO 19139
         code list MD_CharacterSetCode </sch:assert>
     </sch:rule>
   </sch:pattern>
@@ -1219,7 +1217,7 @@
     <sch:title>Non-empty free text content</sch:title>
     <sch:p>Don't allow empty Free text gco:CharacterString or gmx:Anchor</sch:p>
     <sch:rule context="//gco:CharacterString | //gmx:Anchor">
-      <sch:assert test="normalize-space(.)"> AT-6: Free text elements should not be empty
+      <sch:assert test="normalize-space(.) or string(../@gco:nilReason)"> AT-6: Free text elements should not be empty
       </sch:assert>
     </sch:rule>
   </sch:pattern>
@@ -1238,8 +1236,8 @@
     <sch:rule context="//gmd:MD_Metadata[1]/gmd:identificationInfo">
       <sch:let name="legalCons" value="count(//gmd:MD_Metadata[1]/gmd:identificationInfo/*[1]/gmd:resourceConstraints/gmd:MD_LegalConstraints)"/>
       <sch:assert test="$legalCons &gt; 1">
-        AT-8: There must be at least two Legal Constraints sections (gmd:resourceConstraints/gmd:MD_LegalConstraints) in the metadata but we have <sch:value-of select="$legalCons"/>.  
-        One section shall be provided to describe the "Limitations on public access" and another shall be provided to describe the 
+        AT-8: There must be at least two Legal Constraints sections (gmd:resourceConstraints/gmd:MD_LegalConstraints) in the metadata but we have <sch:value-of select="$legalCons"/>.
+        One section shall be provided to describe the "Limitations on public access" and another shall be provided to describe the
         "Conditions for access and use"
       </sch:assert>
     </sch:rule>
@@ -1259,7 +1257,7 @@
           @gco:nilReason = 'unknown' or
           @gco:nilReason = 'withheld' or
           starts-with(@gco:nilReason, 'other:'))"
-        > AP-1a: The <sch:name/> element shall have a value or a valid Nil Reason. This test may be called by the 
+        > AP-1a: The <sch:name/> element shall have a value or a valid Nil Reason. This test may be called by the
         following Metadata Items: 2 - Alternative Title, 36 - (Unique) Resource Identifier,
         37 - Spatial Data Service Type 41 - Conformity, 42 - Specification, and 43 - Equivalent
         scale </sch:assert>
@@ -1279,7 +1277,7 @@
   <sch:pattern abstract="true" id="TypeNotNillablePattern">
     <sch:rule context="$context">
       <sch:assert test="string-length(.) &gt; 0 and count(./@gco:nilReason) = 0"> AP-2: The
-        <sch:name/> element is not nillable and shall have a value. This test may be called by the following 
+        <sch:name/> element is not nillable and shall have a value. This test may be called by the following
         Metadata Items: 1 - Title, 4 - Abstract, 6 - Keyword, 11, 12, 13, 14 - Geographic Bounding
         Box, 17 - Spatial Reference System, 23 - Responsible Organisation, 30 - Metadata Date, 35 -
         Metadata Point of Contact, 36 - (Unique) Resource Identifier, 42 - Specification, and in the

@@ -177,12 +177,12 @@
         data-insert-modes=""
         data-variables="gmd:role/gmd:CI_RoleCode/@codeListValue~{role}"/>
     </for>
-    <for name="gmd:result" addDirective="data-gn-directory-entry-selector">
+    <for name="gmd:report" addDirective="data-gn-directory-entry-selector">
       <directiveAttributes
         data-template-add-action="true"
         data-search-action="true"
         data-popup-action="true"
-        data-filter='{"_root": "gmd:DQ_ConformanceResult"}'
+        data-filter='{"_root": "gmd:DQ_DomainConsistency"}'
         data-insert-modes=""
         data-template-type="report"/>
     </for>
@@ -3612,11 +3612,16 @@
 
 
         <!-- Start dataQualitySection -->
-          <section name="gmd:dataQualityInfo">
-            <field xpath="/gmd:MD_Metadata/gmd:dataQualityInfo"/>
-          </section>
-          <text ref="dataquality_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
-          <text ref="dataqualitysrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+          <!-- <section name="gmd:dataQualityInfo">
+            <field xpath="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:scope"/>
+            <field xpath="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report"/>
+            <field xpath="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:lineage"/>
+          </section> -->
+          <section xpath="/gmd:MD_Metadata/gmd:dataQualityInfo" or="dataQualityInfo"
+                 in="/gmd:MD_Metadata"/>
+           <text ref="dataquality_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+            <text ref="dataqualitysrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+          
           <!-- End dataQualitySection -->
 
         <section name="gmd:MD_Metadata">
@@ -3674,6 +3679,7 @@
         <!--<for name="gmd:resourceConstraints"/>-->
         <for name="gmd:otherConstraints"/>
         <for name="gmd:EX_TemporalExtent"/>
+        <for name="gmd:report"/>
       </flatModeExceptions>
 
       <!--

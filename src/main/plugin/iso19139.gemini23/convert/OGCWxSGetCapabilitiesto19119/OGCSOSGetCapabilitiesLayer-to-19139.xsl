@@ -97,11 +97,10 @@
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 			<metadataStandardName>
-				<gco:CharacterString>ISO 19115:2003/19139</gco:CharacterString>
+				<gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M25/current/GEMINI/">UK GEMINI</gmx:Anchor>
 			</metadataStandardName>
-
 			<metadataStandardVersion>
-				<gco:CharacterString>1.0</gco:CharacterString>
+				<gco:CharacterString>2.3</gco:CharacterString>
 			</metadataStandardVersion>
 			
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
