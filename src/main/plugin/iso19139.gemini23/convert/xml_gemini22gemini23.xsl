@@ -64,7 +64,7 @@
     <!-- TODO Needs some tests to copy existing constraints into new encoding
         or these below as defaults -->
 
-    <xsl:template match="gmd:resourceConstraints" priority="10">
+    <xsl:template match="gmd:resourceConstraints[descendant::gmd:accessConstraints]" priority="10">
         <xsl:copy copy-namespaces="no">
             <!--<xsl:apply-templates select="@*|node()"/>-->
             <xsl:message>=== Adding Access Constraints</xsl:message>
@@ -76,8 +76,13 @@
                 <gmd:otherConstraints>
                     <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1e">no limitations</gmx:Anchor>
                 </gmd:otherConstraints>
-            </gmd:MD_LegalConstraints>
+                <gmd:otherConstraints>
+                    <gco:CharacterString/>
+                </gmd:otherConstraints>
+                </gmd:MD_LegalConstraints>
         </xsl:copy>
+    </xsl:template>
+    <xsl:template match="gmd:resourceConstraints[child::gmd:MD_Constraints]" priority="10">
         <xsl:copy copy-namespaces="no">
             <xsl:message>=== Adding Use Constraints</xsl:message>
             <!--<xsl:apply-templates select="@*|node()"/>-->
