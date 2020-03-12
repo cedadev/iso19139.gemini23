@@ -34,11 +34,12 @@
 
    <!-- conformity directory entries -->
 
-    <xsl:template mode="index" match="gmd:DQ_ConformanceResult[count(ancestor::node()) =  1]">
-        <Field name="_title"
-               string="{if ($title != '') then $title
-                        else gmd:explanation/gco:CharacterString}"
-               store="true" index="true"/>
+    <xsl:template mode="index" match="gmd:DQ_DomainConsistency[count(ancestor::node()) =  1]">
+    <xsl:variable name="date"
+                  select="*/gmd:specification/*/gmd:date/*/gmd:date/gco:Date"/>
+    <Field name="_title"
+           string="{*/gmd:explanation/gco:CharacterString}{if ($date != '') then concat(' (', $date, ')') else ''}"
+           store="true" index="true"/>
 
         <xsl:call-template name="subtemplate-common-fields"/>
     </xsl:template>

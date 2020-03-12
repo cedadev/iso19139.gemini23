@@ -403,10 +403,8 @@
 
    <xsl:variable name="xpath" select="gn-fn-metadata:getXPath(.)"/>
    <xsl:variable name="isoType" select="if (../@gco:isoType) then ../@gco:isoType else ''"/>
-
    <xsl:variable name="labelConfig" select="gn-fn-metadata:getLabel($schema, name(), $labels, name(..), $isoType, $xpath)"/>
-
-
+   <xsl:variable name="helper" select="gn-fn-metadata:getHelper($labelConfig/helper, .)"/>
    <xsl:call-template name="render-element">
      <xsl:with-param name="label" select="$labelConfig"/>
      <xsl:with-param name="value"
@@ -416,6 +414,7 @@
      <xsl:with-param name="cls" select="local-name()"/>
      <xsl:with-param name="editInfo" select="gn:element"/>
      <xsl:with-param name="isDisabled" select="false()"/>
+     <xsl:with-param name="listOfValues" select="$helper"/>
 
    </xsl:call-template>
 

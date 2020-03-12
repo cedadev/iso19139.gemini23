@@ -45,14 +45,14 @@
 
     <xsl:template match="gmd:metadataStandardName">
         <xsl:message>=== Updating Metadata Standard Name ===</xsl:message>
-        <xsl:copy>
+        <xsl:copy copy-namespaces="no">
                 <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M25/current/GEMINI/">UK GEMINI</gmx:Anchor>
         </xsl:copy>
     </xsl:template>
 
     <xsl:template match="gmd:metadataStandardVersion">
         <xsl:message>=== Updating Metadata Standard Version ===</xsl:message>
-        <xsl:copy>
+        <xsl:copy copy-namespaces="no">
             <gco:CharacterString>2.3</gco:CharacterString>
         </xsl:copy>
     </xsl:template>
