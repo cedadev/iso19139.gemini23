@@ -3,7 +3,7 @@
 		xmlns:gn="http://geonetwork-opensource.org"
 		xmlns:gco="http://www.isotc211.org/2005/gco"
 		xmlns:gmd="http://www.isotc211.org/2005/gmd"
-		xmlns:gml="http://www.opengis.net/gml"
+		xmlns:gml="http://www.opengis.net/gml/3.2"
 		xmlns:wfs="http://www.opengis.net/wfs"
 		xmlns:xlink="http://www.w3.org/1999/xlink"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"		

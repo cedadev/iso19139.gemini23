@@ -15,7 +15,7 @@
                 xmlns:gmd="http://www.isotc211.org/2005/gmd"
                 xmlns:gco="http://www.isotc211.org/2005/gco"
                 xmlns:gmx="http://www.isotc211.org/2005/gmx"
-                xmlns:gml="http://www.opengis.net/gml"
+                xmlns:gml="http://www.opengis.net/gml/3.2"
                 xmlns:srv="http://www.isotc211.org/2005/srv"
                 xmlns:xlink="http://www.w3.org/1999/xlink"
                 exclude-result-prefixes="gml" version="1.0" >
@@ -57,7 +57,7 @@
                      xmlns:gss="http://www.isotc211.org/2005/gss"
                      xmlns:gts="http://www.isotc211.org/2005/gts"
                      xmlns:srv="http://www.isotc211.org/2005/srv"
-                     xmlns:gml="http://www.opengis.net/gml"
+                     xmlns:gml="http://www.opengis.net/gml/3.2"
                      xmlns:xlink="http://www.w3.org/1999/xlink">
             <xsl:call-template name="MD_Metadata" />
         </gmd:MD_Metadata>

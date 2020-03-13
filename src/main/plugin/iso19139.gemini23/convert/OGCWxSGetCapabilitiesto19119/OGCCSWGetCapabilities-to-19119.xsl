@@ -4,7 +4,7 @@ Mapping between :
 - CSW 2.0.2 to ISO19119. 
  -->
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-	xmlns:csw="http://www.opengis.net/cat/csw/2.0.2" xmlns:gml="http://www.opengis.net/gml"
+	xmlns:csw="http://www.opengis.net/cat/csw/2.0.2" xmlns:gml="http://www.opengis.net/gml/3.2"
 	xmlns="http://www.isotc211.org/2005/gmd" xmlns:ows="http://www.opengis.net/ows"
 	xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:ogc="http://www.opengis.net/ogc"
 	xmlns:srv="http://www.isotc211.org/2005/srv" xmlns:xlink="http://www.w3.org/1999/xlink"

@@ -16,7 +16,7 @@
 										xmlns:wms="http://www.opengis.net/wms"
                                         xmlns:wps="http://www.opengeospatial.net/wps"
                                         xmlns:wps1="http://www.opengis.net/wps/1.0.0"
-                                        xmlns:gml="http://www.opengis.net/gml"
+                                        xmlns:gml="http://www.opengis.net/gml/3.2"
 										xmlns:math="http://exslt.org/math"
 										xmlns:exslt="http://exslt.org/common"
 										xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0"
