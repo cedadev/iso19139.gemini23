@@ -20,42 +20,98 @@
 
     <!-- ================================================================= -->
 
-    <!-- root element  -->
-    <xsl:template match="gmd:MD_Metadata">
-      <xsl:copy copy-namespaces="no">
-        <!-- Explicitly declare namespaces -->
-        <xsl:namespace name="gco" select="'http://www.isotc211.org/2005/gco'"/>
-        <xsl:namespace name="gmi" select="'http://www.isotc211.org/2005/gmi'"/>
-        <xsl:namespace name="gmx" select="'http://www.isotc211.org/2005/gmx'"/>
-        <xsl:namespace name="gts" select="'http://www.isotc211.org/2005/gts'"/>
-        <xsl:namespace name="gml" select="'http://www.opengis.net/gml/3.2'"/>
-        <xsl:namespace name="xlink" select="'http://www.w3.org/1999/xlink'"/>
-        <xsl:namespace name="xsi" select="'http://www.w3.org/2001/XMLSchema-instance'"/>
-        <xsl:namespace name="xs" select="'http://www.w3.org/2001/XMLSchema'"/>
-
-        <xsl:copy-of select="@*" />
-
-        <xsl:apply-templates select="*" />
-      </xsl:copy>
-    </xsl:template>
-
-
-    <!-- ================================================================= -->
-    <!-- Metadata Standard Name and Version -->
-
+   <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" omit-xml-declaration="no"/>
+    <!--  Change standard to UK GEMINI  -->
     <xsl:template match="gmd:metadataStandardName">
-        <xsl:message>=== Updating Metadata Standard Name ===</xsl:message>
-        <xsl:copy copy-namespaces="no">
-                <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M25/current/GEMINI/">UK GEMINI</gmx:Anchor>
+        <xsl:message>==== Updating Metadata Standard Name ====</xsl:message>
+        <gmd:metadataStandardName>
+            <gco:CharacterString>UK GEMINI</gco:CharacterString>
+        </gmd:metadataStandardName>
+    </xsl:template>
+    
+    <xsl:template match="gmd:metadataStandardVersion">
+        <xsl:message>==== Updating Metadata Standard Version ====</xsl:message>
+        <gmd:metadataStandardVersion>
+            <gco:CharacterString>2.3</gco:CharacterString>
+        </gmd:metadataStandardVersion>
+    </xsl:template>
+    
+    <!--  Change schema location to gemini version  -->
+    <xsl:template match="gmd:MD_Metadata">
+        <xsl:element name="{name()}" namespace="{namespace-uri()}">
+            <xsl:copy-of select="namespace::*[name()]"/>
+            <xsl:apply-templates select="@*"/>
+            
+            <xsl:apply-templates select="gmd:fileIdentifier" />
+            <xsl:apply-templates select="gmd:language" />  
+            <xsl:apply-templates select="gmd:characterSet" />
+            <xsl:apply-templates select="gmd:parentIdentifier" />
+            <xsl:apply-templates select="gmd:hierarchyLevel" />
+            <xsl:apply-templates select="gmd:hierarchyLevelName" />
+            <xsl:apply-templates select="gmd:contact" /> 
+            <xsl:apply-templates select="gmd:dateStamp" />   
+            <xsl:apply-templates select="gmd:metadataStandardName" />
+            <xsl:if test="not(gmd:metadataStandardName)">
+                <xsl:message>==== Adding Metadata Standard Name ====</xsl:message>
+                <gmd:metadataStandardName>
+                    <gco:CharacterString>UK GEMINI</gco:CharacterString>
+                </gmd:metadataStandardName>
+            </xsl:if>
+
+            <xsl:apply-templates select="gmd:metadataStandardVersion" />
+            <xsl:if test="not(gmd:metadataStandardVersion)">
+                <xsl:message>==== Adding Metadata Standard Version ====</xsl:message>
+                <gmd:metadataStandardVersion>
+                    <gco:CharacterString>2.3</gco:CharacterString>
+                </gmd:metadataStandardVersion>
+            </xsl:if>
+            
+            
+            <xsl:apply-templates select="gmd:dataSetURI" /> 
+            <xsl:apply-templates select="gmd:locale" />  
+            <xsl:apply-templates select="gmd:spatialRepresentationInfo" />    
+            <xsl:apply-templates select="gmd:referenceSystemInfo" />    
+            <xsl:apply-templates select="gmd:metadataExtensionInfo" />    
+            <xsl:apply-templates select="gmd:identificationInfo" />   
+            <xsl:apply-templates select="gmd:contentInfo" />    
+            <xsl:apply-templates select="gmd:distributionInfo" />    
+            <xsl:apply-templates select="gmd:dataQualityInfo" />    
+            <xsl:apply-templates select="gmd:portrayalCatalogueInfo" />    
+            <xsl:apply-templates select="gmd:metadataConstraints" />    
+            <xsl:apply-templates select="gmd:applicationSchemaInfo" />    
+            <xsl:apply-templates select="gmd:metadataMaintenance" />    
+            <xsl:apply-templates select="gmd:series" />    
+            <xsl:apply-templates select="gmd:describes" />    
+            <xsl:apply-templates select="gmd:propertyType" />    
+            <xsl:apply-templates select="gmd:featureType" />    
+            <xsl:apply-templates select="gmd:featureAttribute" /> 
+        </xsl:element>
+    </xsl:template>
+    
+    <!--  Update Namespace  -->
+    <!--<xsl:template match="/*">
+        <gmd:MD_Metadata xmlns:gml="http://www.opengis.net/gml/3.2">
+            <xsl:copy-of select="@*"/>
+            <xsl:apply-templates/>
+        </gmd:MD_Metadata>
+    </xsl:template>-->
+    
+    
+    <xsl:template match="gml:*">
+        <xsl:element name="gml:{local-name()}" namespace="http://www.opengis.net/gml/3.2">
+            <xsl:apply-templates select="node()|@*"/>
+        </xsl:element>
+    </xsl:template>
+    
+    <!--  copy All  -->
+    <xsl:template match="@* | node()">
+        <xsl:copy>
+            <xsl:apply-templates select="@* | node()"/>
         </xsl:copy>
     </xsl:template>
 
-    <xsl:template match="gmd:metadataStandardVersion">
-        <xsl:message>=== Updating Metadata Standard Version ===</xsl:message>
-        <xsl:copy copy-namespaces="no">
-            <gco:CharacterString>2.3</gco:CharacterString>
-        </xsl:copy>
-    </xsl:template>
+    <xsl:template match="@xsi:schemaLocation" priority="10"/>
+    
 
     <!-- ================================================================= -->
 

@@ -68,7 +68,7 @@ Mapping between :
 				</gco:DateTime>
 			</dateStamp>
 			<metadataStandardName>
-				<gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M25/current/GEMINI/">UK GEMINI</gmx:Anchor>
+				<gco:CharacterString>UK GEMINI</gco:CharacterString>
 			</metadataStandardName>
 			<metadataStandardVersion>
 				<gco:CharacterString>2.3</gco:CharacterString>
