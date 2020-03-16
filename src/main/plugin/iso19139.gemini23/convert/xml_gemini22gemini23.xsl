@@ -10,7 +10,7 @@
                 xmlns:gmd="http://www.isotc211.org/2005/gmd"
                 xmlns:geonet="http://www.fao.org/geonet"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                exclude-result-prefixes="*" version="1.0">
+                exclude-result-prefixes="#all">
 
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" />
 
@@ -125,7 +125,7 @@
     <!-- ================================================================= -->
     <!-- Insert character encoding as utf8 if it does not exist -->
 
-    <xsl:template match="gmd:identificationInfo/*/gmd:characterSet" >
+    <xsl:template match="gmd:identificationInfo/*/gmd:characterSet" priority="10">
       <xsl:copy>
       <xsl:choose>
         <xsl:when test="not(gmd:MD_CharacterSetCode/@codeListValue='utf8')">
@@ -145,7 +145,7 @@
 
     <!-- Add default conformance snippet -->
 
-    <xsl:template match="gmd:DQ_DataQuality">
+    <xsl:template match="gmd:DQ_DataQuality" priority="10">
         <gmd:DQ_DataQuality>
         <xsl:apply-templates select="gmd:scope"/>
         <!-- <xsl:copy copy-namespaces="no"> -->
@@ -197,7 +197,7 @@
     <!-- ================================================================= -->
     <!-- fix service hierarchy level description if not present -->
 
-    <xsl:template match="gmd:DQ_Scope">
+    <xsl:template match="gmd:DQ_Scope" priority="10">
         <xsl:copy>
         <xsl:apply-templates select="gmd:level"/>
             <xsl:if test="not(gmd:levelDescription) and gmd:level/gmd:MD_ScopeCode[@codeListValue='service']">
