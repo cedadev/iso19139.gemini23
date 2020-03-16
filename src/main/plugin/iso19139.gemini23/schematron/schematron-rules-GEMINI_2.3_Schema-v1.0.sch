@@ -963,7 +963,7 @@
     <sch:p>TG Requirement 3.1: metadata/2.0/req/sds/resource-type Additionally the name of the
       hierarchy level shall be given using element gmd:hierarchyLevelName element with a Non-empty
       Free Text Element containing the term "service" in the language of the metadata.</sch:p>
-    <sch:rule context="//gmd:MD_Metadata[1]/gmd:hierarchyLevelName/*[1]">
+    <sch:rule context="//gmd:MD_Metadata[1]/gmd:hierarchyLevelName/*[not(substring-before(name(), concat(':', local-name())) = 'geonet')][1]">
       <sch:let name="hierLevelcListVal" value="preceding::gmd:hierarchyLevel/*/@codeListValue"/>
       <sch:let name="hierLevelNameText" value="descendant-or-self::text()"/>
       <sch:report test="($hierLevelcListVal = 'service' and $hierLevelNameText != 'service')">
