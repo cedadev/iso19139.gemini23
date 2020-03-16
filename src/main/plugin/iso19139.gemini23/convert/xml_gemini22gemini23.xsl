@@ -9,7 +9,8 @@
                 xmlns:xlink="http://www.w3.org/1999/xlink"
                 xmlns:gmd="http://www.isotc211.org/2005/gmd"
                 xmlns:geonet="http://www.fao.org/geonet"
-                xmlns:xs="http://www.w3.org/2001/XMLSchema">
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                exclude-result-prefixes="*" version="1.0">
 
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" />
 
@@ -99,7 +100,6 @@
             <xsl:namespace name="xsi" select="'http://www.w3.org/2001/XMLSchema-instance'"/>
             <xsl:namespace name="xlink" select="'http://www.w3.org/1999/xlink'"/>
             <xsl:namespace name="gmd" select="'http://www.isotc211.org/2005/gmd'"/>
-            <xsl:namespace name="geonet" select="'http://www.fao.org/geonet'"/>
             <xsl:namespace name="xs" select="'http://www.w3.org/2001/XMLSchema'"/>
             <xsl:apply-templates select="@*|node()"/>
         </xsl:element>
