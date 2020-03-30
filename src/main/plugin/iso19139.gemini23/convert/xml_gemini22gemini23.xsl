@@ -35,6 +35,7 @@
     
     <!-- TODO Needs some tests to copy existing constraints into new encoding
         or these below as defaults -->
+
     
     <xsl:template match="gmd:resourceConstraints[descendant::gmd:accessConstraints]" priority="10">
         <xsl:copy copy-namespaces="no">
@@ -120,7 +121,10 @@
         <gmd:metadataStandardVersion>
             <gco:CharacterString>2.3</gco:CharacterString>
         </gmd:metadataStandardVersion>
+
     </xsl:template>
+
+
 
     <!-- ================================================================= -->
     <!-- Insert character encoding as utf8 if it does not exist -->

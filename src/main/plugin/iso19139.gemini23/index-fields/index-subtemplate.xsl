@@ -38,7 +38,7 @@
     <xsl:variable name="date"
                   select="*/gmd:specification/*/gmd:date/*/gmd:date/gco:Date"/>
     <Field name="_title"
-           string="{*/gmd:explanation/gco:CharacterString}{if ($date != '') then concat(' (', $date, ')') else ''}"
+           string="{gmd:result/*/gmd:explanation/gco:CharacterString}{if ($date != '') then concat(' (', $date, ')') else ''}"
            store="true" index="true"/>
 
         <xsl:call-template name="subtemplate-common-fields"/>
