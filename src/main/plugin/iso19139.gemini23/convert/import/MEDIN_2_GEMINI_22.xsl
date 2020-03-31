@@ -19,7 +19,7 @@
 	<xsl:template match="gmd:metadataStandardName">
 		<xsl:message>==== Updating Metadata Standard Name ====</xsl:message>
 		<gmd:metadataStandardName>
-			<gco:CharacterString>UK GEMINI</gco:CharacterString>
+			<gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M25/current/GEMINI/">UK GEMINI</gmx:Anchor>
 		</gmd:metadataStandardName>
 	</xsl:template>
 	
@@ -49,7 +49,7 @@
 			<xsl:if test="not(gmd:metadataStandardName)">
 				<xsl:message>==== Adding Metadata Standard Name ====</xsl:message>
 				<gmd:metadataStandardName>
-					<gco:CharacterString>UK GEMINI</gco:CharacterString>
+					<gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M25/current/GEMINI/">UK GEMINI</gmx:Anchor>
 				</gmd:metadataStandardName>
 			</xsl:if>
 

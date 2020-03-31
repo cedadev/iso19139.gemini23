@@ -72,7 +72,7 @@
       <gco:DateTime>2020-03-04T15:48:49</gco:DateTime>
   </gmd:dateStamp>
   <gmd:metadataStandardName xmlns:geonet="http://www.fao.org/geonetwork">
-      <gco:CharacterString>UK GEMINI</gco:CharacterString>
+      <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M25/current/GEMINI/">UK GEMINI</gmx:Anchor>
   </gmd:metadataStandardName>
   <gmd:metadataStandardVersion xmlns:geonet="http://www.fao.org/geonetwork">
       <gco:CharacterString>2.3</gco:CharacterString>

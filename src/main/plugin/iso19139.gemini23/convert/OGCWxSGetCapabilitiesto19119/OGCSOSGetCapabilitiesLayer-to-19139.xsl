@@ -97,7 +97,7 @@
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 			<metadataStandardName>
-				<gco:CharacterString>UK GEMINI</gco:CharacterString>
+				<gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M25/current/GEMINI/">UK GEMINI</gmx:Anchor>
 			</metadataStandardName>
 			<metadataStandardVersion>
 				<gco:CharacterString>2.3</gco:CharacterString>
