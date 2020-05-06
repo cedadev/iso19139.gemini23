@@ -26,7 +26,7 @@
 	<xsl:template match="gmd:metadataStandardVersion">
 		<xsl:message>==== Updating Metadata Standard Version ====</xsl:message>
 		<gmd:metadataStandardVersion>
-			<gco:CharacterString>2.2</gco:CharacterString>
+			<gco:CharacterString>2.3</gco:CharacterString>
 		</gmd:metadataStandardVersion>
 	</xsl:template>
 	
