@@ -141,6 +141,7 @@
 
   <xsl:template mode="getMetadataHeader" match="gmd:MD_Metadata">
     <div class="alert alert-info">
+    	<span itemprop="description">
       <xsl:for-each select="gmd:identificationInfo/*/gmd:abstract">
         <xsl:variable name="txt">
           <xsl:call-template name="localised">
@@ -151,6 +152,7 @@
           <xsl:with-param name="txt" select="$txt"/>
         </xsl:call-template>
       </xsl:for-each>
+  </span>
     </div>
 
 
@@ -358,6 +360,33 @@
     <br/>
   </xsl:template>
 
+  <!-- trying to add itemprop="license" to accesconstraints/otherconstraints but only when it's an anchor
+  aiming for:
+  <dl>
+      <dt>Use Constraint</dt>
+        <dd>
+            <a itemprop="license" href="http://astuntechnology.com">no limitations</a>
+        </dd>
+    </dl>
+    -->
+
+  <xsl:template mode="render-field"
+  				match="gmd:MD_LegalConstraints[gmd:accessConstraints]">
+  		<xsl:for-each select="./gmd:otherConstraints/gmx:Anchor[normalize-space(.) !='']">
+  			<xsl:variable name="licensetext">
+  				<xsl:apply-templates mode="render-value" select="./@xlink:href"/>
+            </xsl:variable>
+   				<dl>
+  					<dt>Use Constraint</dt>
+  					<dd>
+  						<a itemprop="license" href="{normalize-space($licensetext)}">
+               			<xsl:value-of select="normalize-space($licensetext)"/>
+               		</a>
+  					</dd>
+  				</dl>
+  		</xsl:for-each>		
+  	</xsl:template>
+
 
   <!-- A contact is displayed with its role as header -->
   <xsl:template mode="render-field"
@@ -393,6 +422,7 @@
     </xsl:variable>
 
     <div class="gn-contact">
+    <span itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Organization">
       <h3>
         <i class="fa fa-envelope">&#160;</i>
         <xsl:apply-templates mode="render-value"
@@ -400,9 +430,7 @@
       </h3>
       <div class="row">
         <div class="col-md-6">
-          <address itemprop="author"
-                   itemscope="itemscope"
-                   itemtype="http://schema.org/Organization">
+          <address>
             <strong>
               <xsl:choose>
                 <xsl:when test="$email">
@@ -466,7 +494,7 @@
                     <xsl:apply-templates mode="render-value" select="."/>
                   </xsl:variable>
                   <i class="fa fa-phone">&#160;</i>
-                  <a href="tel:{$phoneNumber}">
+                  <a itemprop="telephone" href="tel:{$phoneNumber}">
                     <xsl:value-of select="$phoneNumber"/>&#160;
                   </a>
                 </div>
@@ -476,7 +504,7 @@
                   <xsl:apply-templates mode="render-value" select="."/>
                 </xsl:variable>
                 <i class="fa fa-fax">&#160;</i>
-                <a href="tel:{normalize-space($phoneNumber)}">
+                <a itemprop="faxNumber" href="tel:{normalize-space($phoneNumber)}">
                   <xsl:value-of select="normalize-space($phoneNumber)"/>&#160;
                 </a>
               </xsl:for-each>
@@ -492,13 +520,21 @@
 
               <xsl:apply-templates mode="render-field"
                                    select="gmd:contactInstructions"/>
-              <xsl:apply-templates mode="render-field"
-                                   select="gmd:onlineResource"/>
-
+              <!-- <xsl:apply-templates mode="render-field"
+                                   select="gmd:onlineResource"/> -->
+               <xsl:for-each select="gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage/gmd:URL[normalize-space(.) != '']">
+               		<xsl:variable name="orgWebSite">
+               			<xsl:apply-templates mode="render-value" select="."/>
+               		</xsl:variable>
+               		<a itemprop="url" href="{normalize-space($orgWebSite)}">
+               			<xsl:value-of select="normalize-space($orgWebSite)"/>
+               		</a>
+           		</xsl:for-each>
             </xsl:for-each>
           </address>
         </div>
       </div>
+  </span>
     </div>
   </xsl:template>
 
