@@ -106,7 +106,7 @@
             <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M25/current/GEMINI/">UK GEMINI</gmx:Anchor>
         </gmd:metadataStandardName>
         <gmd:metadataStandardVersion>
-            <gco:CharacterString>2.2</gco:CharacterString>
+            <gco:CharacterString>2.3</gco:CharacterString>
         </gmd:metadataStandardVersion>
     </xsl:template>
     <!-- ========================================================================== -->
