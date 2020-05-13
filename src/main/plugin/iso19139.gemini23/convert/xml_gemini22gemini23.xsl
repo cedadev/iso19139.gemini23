@@ -8,7 +8,7 @@
                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                 xmlns:xlink="http://www.w3.org/1999/xlink"
                 xmlns:gmd="http://www.isotc211.org/2005/gmd"
-                xmlns:geonet="http://www.fao.org/geonet"
+                xmlns:geonet="http://www.fao.org/geonetwork"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 exclude-result-prefixes="#all">
 
@@ -20,23 +20,23 @@
 
     <!-- ================================================================= -->
 
-   
+
     <xsl:template match="@*|node()">
         <xsl:copy>
             <xsl:apply-templates select="@*|node()"/>
         </xsl:copy>
     </xsl:template>
-    
-   
-    
+
+
+
     <!-- ================================================================= -->
-    
+
     <!-- Resource Constraints -->
-    
+
     <!-- TODO Needs some tests to copy existing constraints into new encoding
         or these below as defaults -->
 
-    
+
     <xsl:template match="gmd:resourceConstraints[descendant::gmd:accessConstraints]" priority="10">
         <xsl:copy copy-namespaces="no">
             <!--<xsl:apply-templates select="@*|node()"/>-->
@@ -91,7 +91,7 @@
             </gmd:MD_LegalConstraints>
         </xsl:copy>
     </xsl:template>
-    
+
     <xsl:template match="*" priority="1">
         <xsl:element name="{name()}" namespace="{namespace-uri()}">
             <xsl:namespace name="gml" select="'http://www.opengis.net/gml/3.2'"/>
@@ -105,9 +105,9 @@
             <xsl:apply-templates select="@*|node()"/>
         </xsl:element>
     </xsl:template>
-    
+
     <xsl:template match="@xsi:schemaLocation" priority="10"/>
-    
+
     <!--  Change standard to UK GEMINI  -->
     <xsl:template match="//gmd:metadataStandardName"  priority="10">
         <xsl:message>=== Updating Metadata Standard Name</xsl:message>
@@ -115,7 +115,7 @@
             <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M25/current/GEMINI/">UK GEMINI</gmx:Anchor>
         </gmd:metadataStandardName>
     </xsl:template>
-    
+
     <xsl:template match="//gmd:metadataStandardVersion"  priority="10">
         <xsl:message>=== Updating Metadata Standard Version</xsl:message>
         <gmd:metadataStandardVersion>
@@ -224,7 +224,7 @@
         </xsl:copy>
         </xsl:template>
     <!-- ================================================================= -->
-    
+
     <!--  Remove geonet:* elements.  -->
     <xsl:template match="geonet:*" priority="10"/>
 
