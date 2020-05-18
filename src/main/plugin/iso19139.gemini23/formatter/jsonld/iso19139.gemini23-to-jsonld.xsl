@@ -155,6 +155,9 @@
     <xsl:for-each select="gmd:identificationInfo/*/gmd:citation/*/gmd:date[gmd:dateType/*/@codeListValue='revision']/*/gmd:date/*/text()">
 		"dateModified": "<xsl:value-of select="."/>",
     </xsl:for-each>
+    <xsl:for-each select="gmd:identificationInfo/*/gmd:citation/*/gmd:date[gmd:dateType/*/@codeListValue='publication']/*/gmd:date/*/text()">
+    "datePublished": "<xsl:value-of select="."/>",
+    </xsl:for-each>
     
 		"thumbnailUrl": [
     <xsl:for-each select="gmd:identificationInfo/*/gmd:graphicOverview/*/gmd:fileName/*[. != '']">
@@ -205,7 +208,7 @@
       </xsl:choose>
 
     -->
-    "publisher": [
+    "maintainer": [
       <xsl:for-each select="gmd:identificationInfo/*/gmd:pointOfContact/*">
         {
         <!-- TODO: Id could also be website if set -->
@@ -221,6 +224,11 @@
           ,"email": <xsl:apply-templates mode="toJsonLDLocalized"
                                        select="."/>
         </xsl:for-each>
+        <xsl:for-each select="gmd:contactInfo/*/gmd:phone/*/gmd:voice">
+          ,"telephone": <xsl:apply-templates mode="toJsonLDLocalized"
+                                       select="."/>
+        </xsl:for-each>
+
 
         <!-- TODO: only if children available -->
         ,"contactPoint": {
@@ -233,14 +241,70 @@
             ,"addressLocality": <xsl:apply-templates mode="toJsonLDLocalized"
                                                    select="."/>
           </xsl:for-each>
+           <xsl:for-each select="gmd:contactInfo/*/gmd:address/*/gmd:administrativeArea">
+            ,"addressRegion": <xsl:apply-templates mode="toJsonLDLocalized"
+                                                   select="."/>
+          </xsl:for-each>
           <xsl:for-each select="gmd:contactInfo/*/gmd:address/*/gmd:postalCode">
             ,"postalCode": <xsl:apply-templates mode="toJsonLDLocalized"
                                                    select="."/>
           </xsl:for-each>
+          ,"streetAddress": [
           <xsl:for-each select="gmd:contactInfo/*/gmd:address/*/gmd:deliveryPoint">
-            ,"streetAddress": <xsl:apply-templates mode="toJsonLDLocalized"
+            <xsl:apply-templates mode="toJsonLDLocalized" select="."/>
+            <xsl:if test="position() != last()">,</xsl:if>
+          </xsl:for-each>]
+          }
+        }
+        <xsl:if test="position() != last()">,</xsl:if>
+      </xsl:for-each>
+    ],
+
+     "publisher": [
+      <xsl:for-each select="gmd:contact/*">
+        {
+        <!-- TODO: Id could also be website if set -->
+        <xsl:variable name="id"
+                      select="gmd:contactInfo/*/gmd:address/*/gmd:electronicMailAddress/*/text()[1]"/>
+        "@id":"<xsl:value-of select="$id"/>",
+        "@type":"Organization"
+        <xsl:for-each select="gmd:organisationName">
+          ,"name": <xsl:apply-templates mode="toJsonLDLocalized"
+                                       select="."/>
+        </xsl:for-each>
+        <xsl:for-each select="gmd:contactInfo/*/gmd:address/*/gmd:electronicMailAddress">
+          ,"email": <xsl:apply-templates mode="toJsonLDLocalized"
+                                       select="."/>
+        </xsl:for-each>
+        <xsl:for-each select="gmd:contactInfo/*/gmd:phone/*/gmd:voice">
+          ,"telephone": <xsl:apply-templates mode="toJsonLDLocalized"
+                                       select="."/>
+        </xsl:for-each>
+
+        <!-- TODO: only if children available -->
+        ,"contactPoint": {
+          "@type" : "PostalAddress"
+          <xsl:for-each select="gmd:contactInfo/*/gmd:address/*/gmd:country">
+            ,"addressCountry": <xsl:apply-templates mode="toJsonLDLocalized"
                                                    select="."/>
           </xsl:for-each>
+          <xsl:for-each select="gmd:contactInfo/*/gmd:address/*/gmd:city">
+            ,"addressLocality": <xsl:apply-templates mode="toJsonLDLocalized"
+                                                   select="."/>
+          </xsl:for-each>
+          <xsl:for-each select="gmd:contactInfo/*/gmd:address/*/gmd:administrativeArea">
+            ,"addressRegion": <xsl:apply-templates mode="toJsonLDLocalized"
+                                                   select="."/>
+          </xsl:for-each>
+          <xsl:for-each select="gmd:contactInfo/*/gmd:address/*/gmd:postalCode">
+            ,"postalCode": <xsl:apply-templates mode="toJsonLDLocalized"
+                                                   select="."/>
+          </xsl:for-each>
+          ,"streetAddress": [
+          <xsl:for-each select="gmd:contactInfo/*/gmd:address/*/gmd:deliveryPoint">
+            <xsl:apply-templates mode="toJsonLDLocalized" select="."/>
+            <xsl:if test="position() != last()">,</xsl:if>
+          </xsl:for-each>]
           }
         }
         <xsl:if test="position() != last()">,</xsl:if>
@@ -328,11 +392,25 @@
       -->
     
     <!-- array of licenses is allowed, not multiple licenses-->
-    <xsl:if test="count(gmd:identificationInfo/*/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:otherConstraints[normalize-space(.) != '']) > 0"> 
-      ,"license":  [<xsl:for-each 
+   <!--  <xsl:if test="count(gmd:identificationInfo/*/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:otherConstraints[normalize-space(.) != '']) > 0"> 
+      ,"license": {"@type": "CreativeWork", "name": "License Text", "Text": [<xsl:for-each 
         select="gmd:identificationInfo/*/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:otherConstraints">
           <xsl:apply-templates mode="toJsonLDLocalized" select="."/>
-          <xsl:if test="position() != last()">,</xsl:if></xsl:for-each> ]
+          <xsl:if test="position() != last()">,</xsl:if></xsl:for-each> ]}
+    </xsl:if> -->
+
+    <xsl:if test="count(gmd:identificationInfo/*/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:otherConstraints[../gmd:accessConstraints]/gco:CharacterString) > 0"> 
+      ,"conditionsofAccess": [<xsl:for-each 
+        select="gmd:identificationInfo/*/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:otherConstraints[../gmd:accessConstraints]">
+          <xsl:apply-templates mode="toJsonLDLocalized" select="."/>
+          <xsl:if test="position() != last()">,</xsl:if></xsl:for-each>]
+    </xsl:if>
+
+    <xsl:if test="count(gmd:identificationInfo/*/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:otherConstraints[../gmd:useConstraints]/gco:CharacterString) > 0"> 
+      ,"license": {"@type": "CreativeWork", "name": "License Text", "Text": [<xsl:for-each 
+        select="gmd:identificationInfo/*/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:otherConstraints[../gmd:useConstraints]">
+          <xsl:apply-templates mode="toJsonLDLocalized" select="."/>
+          <xsl:if test="position() != last()">,</xsl:if></xsl:for-each>]}
     </xsl:if>
     <!-- TODO: When a dataset derives from or aggregates several originals, use the isBasedOn property. -->
     <!-- TODO: hasPart -->
