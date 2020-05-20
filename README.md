@@ -2,13 +2,19 @@
 
 Gemini 2.3 Metadata Profile
 
+## GeoNetwork versions to use with this plugin
+
+Use GeoNetwork 3.8.x or 3.10.x. A version for GeoNetwork 3.4 is also available- switch to the 3.4.x branch in this repository.
+
 ## Installing the plugin
 
-### GeoNetwork version to use with this plugin
+### Adding to an existing installation
 
-Use GeoNetwork 3.8+. It's not supported in older versions so don't plug it into it!
+ * Download and extract https://github.com/AstunTechnology/geonetwork-pr4039-pr3569/blob/master/geonetwork_38x_310x_patches.zip and overwrite the `xslt` and `WEB_INF` folders with the ones from the zip file. 
+ * Download or clone this repository, ensuring you choose the correct branch. Copy `src/main/plugin/iso19139.gemini23` to `INSTALL_DIR/geonetwork/WEB_INF/data/config/schema_plugins/iso19139.gemini23` in your installation and restart GeoNetwork
+ * Check that the schema is registered in GeoNetwork by visiting Admin Console -> Metadata and Templates -> Standards in GeoNetwork. If you do not see iso19139.gemini23 then it is not correctly deployed. Check your GeoNetwork log files for errors.
 
-### Adding the plugin to the source code
+### Adding the plugin to the source code prior to compiling GeoNetwork
 
 The best approach is to add the plugin as a submodule. Use https://github.com/geonetwork/core-geonetwork/blob/3.8.x/add-schema.sh for automatic deployment:
 
@@ -16,48 +22,32 @@ The best approach is to add the plugin as a submodule. Use https://github.com/ge
 .\add-schema.sh iso19139.gemini23 http://github.com/metadata101/iso19139.gemini23 3.8.x
 ```
 
-**Note: Check whether https://github.com/geonetwork/core-geonetwork/pull/3569 has been merged into the 3.8.x branch. If not, it is necessary to manually include the affected files as below:
+**Note: Check whether https://github.com/geonetwork/core-geonetwork/pull/3569 has been merged into the 3.10.x branch. If not, it is necessary to manually include the affected files as below, either by adding the PR manually or adding the files from the zip:
 
-### Adding manual PR
+#### Adding manual PR
 
 If pr/3569 is unmerged, then follow this process to manually include it:
 
 * Configure your local copy of the repository so you can check-out unmerged pull requests locally. See https://gist.github.com/piscisaureus/3342247 for instructions
 * Cherry-pick the commit for pr/3569- if there are conflicts, manually resolve them
 * If requested, `git stash` changes such as to pom.xml so you can re-apply them afterwards with `git stash pop`
-* You may also need to make a change to `schemas\iso19115-3.2018\src\main\plugin\iso19115-3.2018\layout\layout.xsl`- overwrite **line 393** with:
+* You may also need to make a change to `schemas/iso19115-3.2018/src\main/plugin/iso19115-3.2018/layout/layout.xsl`- overwrite **line 393** with:
 ```
 <xsl:copy-of select="gn-fn-metadata:getFieldDirective($editorConfig, name(), name($theElement), $xpath)"/> 
 ```
 
-### Adding editor configuration
+#### OR Adding patch files from zip
 
-Editor configuration in GeoNetwork 3.8.x is done in `schemas/iso19139.gemini23/src/main/plugin/iso19139.gemini23/layout/config-editor.xml` inside each view. Default values are the following:
+Download and extract https://github.com/AstunTechnology/geonetwork-pr4039-pr3569/blob/master/geonetwork_38x_310x_patches.zip
 
-      <sidePanel>
-        <directive data-gn-onlinesrc-list=""/>
-        <directive gn-geo-publisher=""
-                   data-ng-if="gnCurrentEdit.geoPublisherConfig"
-                   data-config="{{gnCurrentEdit.geoPublisherConfig}}"
-                   data-lang="lang"/>
-        <directive data-gn-validation-report=""/>
-        <directive data-gn-suggestion-list=""/>
-        <directive data-gn-need-help="user-guide/describing-information/creating-metadata.html"/>
-      </sidePanel>
+ * Copy the contents of `WEB_INF/data/config/schema_plugins/` into `schemas`
+ * Copy `xslt` into `web/src/main/webapp/`
+
 
 ### Build the application 
 
-Once the application is built, the war file contains the schema plugin:
+Once the application is built `web/target/geonetwork.war` will contain GeoNetwork and the Gemini 2.3 schema plugin:
 
 ```
 $ mvn clean install -Penv-prod
 ```
-
-### Deploy the profile in an existing installation
-
-The plugin can be deployed manually in an existing GeoNetwork installation:
-
-- Copy the content of the folder schemas/iso19139.gemini23/src/main/plugin to INSTALL_DIR/geonetwork/WEB-INF/data/config/schema_plugins/iso19139.gemini23
-
-**Note: https://github.com/geonetwork/core-geonetwork/pull/3569 will also need to be deployed in this case** 
-
