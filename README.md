@@ -22,9 +22,9 @@ The best approach is to add the plugin as a submodule. Use https://github.com/ge
 .\add-schema.sh iso19139.gemini23 http://github.com/metadata101/iso19139.gemini23 3.8.x
 ```
 
-**Note: Check whether https://github.com/geonetwork/core-geonetwork/pull/3569 has been merged into the 3.10.x branch. If not, it is necessary to manually include the affected files as below, either by adding the PR manually or adding the files from the zip:
+**Note: Check whether https://github.com/geonetwork/core-geonetwork/pull/3569 has been merged into the 3.10.x branch. If not, it is necessary to manually include the affected files as below, either by adding the PR manually or adding the files from the zip before building the application**
 
-#### Adding manual PR
+#### Adding PR manually
 
 If pr/3569 is unmerged, then follow this process to manually include it:
 
@@ -44,7 +44,7 @@ Download and extract https://github.com/AstunTechnology/geonetwork-pr4039-pr3569
  * Copy `xslt` into `web/src/main/webapp/`
 
 
-### Build the application 
+#### Building the application 
 
 Once the application is built `web/target/geonetwork.war` will contain GeoNetwork and the Gemini 2.3 schema plugin:
 
