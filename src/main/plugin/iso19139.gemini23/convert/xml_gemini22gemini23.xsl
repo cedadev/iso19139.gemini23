@@ -46,21 +46,31 @@
                     <gmd:MD_RestrictionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_RestrictionCode"
                         codeListValue="otherRestrictions">otherRestrictions</gmd:MD_RestrictionCode>
                 </gmd:accessConstraints>
+                 <xsl:if test="not(./gmd:MD_LegalConstraints/gmd:accessConstraints)">
+                    <xsl:message>=== Adding default access constraint</xsl:message>
+                    <gmd:otherConstraints>
+                        <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1e">no limitations</gmx:Anchor>
+                    </gmd:otherConstraints>
+                </xsl:if>
+                <xsl:for-each select="./gmd:MD_LegalConstraints/gmd:otherConstraints">
                 <xsl:choose>
-                    <xsl:when test="descendant::gmd:otherConstraints/gco:CharacterString">
-                    <xsl:variable name="otherConstraint" select="descendant::gmd:otherConstraints/gco:CharacterString"/>
-                    <xsl:message>=== Copying existing access constraint</xsl:message>
+                    <xsl:when test="./gco:CharacterString">
+                    <xsl:variable name="otherConstraint" select="gco:CharacterString"/>
+                    <xsl:message>=== Copying existing access constraint character string</xsl:message>
                     <gmd:otherConstraints>
                         <gco:CharacterString><xsl:value-of select="$otherConstraint"/></gco:CharacterString>
                     </gmd:otherConstraints>
                     </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:message>=== Adding default access constraint</xsl:message>
-                        <gmd:otherConstraints>
-                            <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1e">no limitations</gmx:Anchor>
-                        </gmd:otherConstraints>
-                    </xsl:otherwise>
+                     <xsl:when test="./gmx:Anchor">
+                    <xsl:variable name="otherConstrainttext" select="gmx:Anchor"/>
+                    <xsl:variable name="otherConstrainthref" select="gmx:Anchor/@xlink:href"/>
+                    <xsl:message>=== Copying existing access constraint anchor</xsl:message>
+                    <gmd:otherConstraints>
+                        <gmx:Anchor xlink:href="{$otherConstrainthref}"><xsl:value-of select="$otherConstrainttext"/></gmx:Anchor>
+                    </gmd:otherConstraints>
+                    </xsl:when>
                 </xsl:choose>
+            </xsl:for-each>
             </gmd:MD_LegalConstraints>
         </xsl:copy>
     </xsl:template>
@@ -73,21 +83,31 @@
                     <gmd:MD_RestrictionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_RestrictionCode"
                         codeListValue="otherRestrictions">otherRestrictions</gmd:MD_RestrictionCode>
                 </gmd:useConstraints>
-                <xsl:choose>
-                    <xsl:when test="descendant::gmd:useLimitation/gco:CharacterString">
-                        <xsl:variable name="useLimitation" select="descendant::gmd:useLimitation/gco:CharacterString"/>
-                        <xsl:message>=== Copying existing use Limitation</xsl:message>
-                        <gmd:otherConstraints>
-                            <gco:CharacterString><xsl:value-of select="$useLimitation"/></gco:CharacterString>
-                        </gmd:otherConstraints>
-                    </xsl:when>
-                    <xsl:otherwise>
+                <xsl:if test="not(./gmd:MD_Constraints/gmd:useLimitation)">
                         <xsl:message>=== Adding default use Limitation</xsl:message>
                         <gmd:otherConstraints>
                             <gmx:Anchor>no conditions apply</gmx:Anchor>
                         </gmd:otherConstraints>
-                    </xsl:otherwise>
-                </xsl:choose>
+                </xsl:if>
+                <xsl:for-each select="./gmd:MD_Constraints/gmd:useLimitation">
+                    <xsl:choose>
+                            <xsl:when test="./gco:CharacterString">
+                                <xsl:variable name="useLimitation" select="gco:CharacterString"/>
+                                <xsl:message>=== Copying existing use Limitation character string</xsl:message>
+                                <gmd:otherConstraints>
+                                    <gco:CharacterString><xsl:value-of select="$useLimitation"/></gco:CharacterString>
+                                    </gmd:otherConstraints>
+                            </xsl:when>
+                            <xsl:when test="./gmx:Anchor">
+                                <xsl:variable name="useLimitationtext" select="gmx:Anchor"/>
+                                <xsl:variable name="useLimitationhref" select="gmx:Anchor/@xlink:href"/>
+                                <xsl:message>=== Copying existing use limitation anchor</xsl:message>
+                                <gmd:otherConstraints>
+                                    <gmx:Anchor xlink:href="{$useLimitationhref}"><xsl:value-of select="$useLimitationtext"/></gmx:Anchor>
+                                </gmd:otherConstraints>
+                            </xsl:when>
+                        </xsl:choose>
+                        </xsl:for-each>
             </gmd:MD_LegalConstraints>
         </xsl:copy>
     </xsl:template>
