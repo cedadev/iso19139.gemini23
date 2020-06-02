@@ -1076,7 +1076,7 @@
 
   <xsl:template mode="render-value"
                 match="gmd:language/gmd:LanguageCode/@codeListValue">
-      <xsl:value-of select="xslUtils:twoCharLangCode(.)"/>
+      <xsl:value-of select="string-join((' (',xslUtils:twoCharLangCode(.),')'),'')"/>
   </xsl:template>
 
   <xsl:template mode="render-value"
