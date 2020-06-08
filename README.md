@@ -4,15 +4,30 @@ Gemini 2.3 Metadata Profile
 
 ## GeoNetwork versions to use with this plugin
 
-Use GeoNetwork 3.8.x or 3.10.x. A version for GeoNetwork 3.4 is also available- switch to the 3.4.x branch in this repository.
+Use GeoNetwork 3.8.x or 3.10.x (use 3.10.x if possible). A version for GeoNetwork 3.4 is also available- switch to the 3.4.x branch in this repository.
 
-## Installing the plugin
+## Installing the plugin in GeoNetwork 3.10.x (recommended version)
+
+### Adding to an existing installation
+
+ * Download or clone this repository, ensuring you choose the correct branch. Copy `src/main/plugin/iso19139.gemini23` to `INSTALL_DIR/geonetwork/WEB_INF/data/config/schema_plugins/iso19139.gemini23` in your installation and restart GeoNetwork
+ * Check that the schema is registered by visiting Admin Console -> Metadata and Templates -> Standards in GeoNetwork. If you do not see iso19139.gemini23 then it is not correctly deployed. Check your GeoNetwork log files for errors.
+
+### Adding the plugin to the source code prior to compiling GeoNetwork
+
+The best approach is to add the plugin as a submodule. Use https://github.com/geonetwork/core-geonetwork/blob/3.8.x/add-schema.sh for automatic deployment:
+
+```
+.\add-schema.sh iso19139.gemini23 http://github.com/metadata101/iso19139.gemini23 3.8.x
+```
+
+## Installing the plugin in GeoNetwork 3.8.x (deprecated)
 
 ### Adding to an existing installation
 
  * Download and extract https://github.com/AstunTechnology/geonetwork-pr4039-pr3569/blob/master/geonetwork_38x_310x_patches.zip and overwrite the `xslt` and `WEB_INF` folders with the ones from the zip file. 
  * Download or clone this repository, ensuring you choose the correct branch. Copy `src/main/plugin/iso19139.gemini23` to `INSTALL_DIR/geonetwork/WEB_INF/data/config/schema_plugins/iso19139.gemini23` in your installation and restart GeoNetwork
- * Check that the schema is registered in GeoNetwork by visiting Admin Console -> Metadata and Templates -> Standards in GeoNetwork. If you do not see iso19139.gemini23 then it is not correctly deployed. Check your GeoNetwork log files for errors.
+ * Check that the schema is registered by visiting Admin Console -> Metadata and Templates -> Standards in GeoNetwork. If you do not see iso19139.gemini23 then it is not correctly deployed. Check your GeoNetwork log files for errors.
 
 ### Adding the plugin to the source code prior to compiling GeoNetwork
 
@@ -46,8 +61,6 @@ Download and extract https://github.com/AstunTechnology/geonetwork-pr4039-pr3569
 
 #### Building the application 
 
-Once the application is built `web/target/geonetwork.war` will contain GeoNetwork and the Gemini 2.3 schema plugin:
+See https://geonetwork-opensource.org/manuals/trunk/en/maintainer-guide/installing/installing-from-source-code.html. 
 
-```
-$ mvn clean install -Penv-prod
-```
+Once the application is built `web/target/geonetwork.war` will contain GeoNetwork with the Gemini 2.3 schema plugin included.
