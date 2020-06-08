@@ -461,7 +461,8 @@
   <!-- View configuration -->
   <views>
     <!--Turn on INSPIRE according to system settings -->
-    <view name="inspire" upAndDownControlHidden="true" displayIfServiceInfo="/settings/system/inspire/enable='true'">
+<!--     <view name="inspire" upAndDownControlHidden="true" displayIfServiceInfo="/settings/system/inspire/enable='true'">
+ -->    <view name="inspire" upAndDownControlHidden="true" disabled="true">
       <sidePanel>
         <directive data-gn-onlinesrc-list=""/>
         <directive gn-geo-publisher=""
