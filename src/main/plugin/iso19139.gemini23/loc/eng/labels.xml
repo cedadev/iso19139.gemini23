@@ -2495,7 +2495,7 @@
     <description>Status of the resource(s)</description>
   </element>
   <element name="gmd:supplementalInformation" id="46.0">
-    <label>Additional information source</label>
+    <label>Additional information</label>
     <description>Any other descriptive information about the dataset</description>
   </element>
   <element name="gmd:temporalElement" id="337.0">
