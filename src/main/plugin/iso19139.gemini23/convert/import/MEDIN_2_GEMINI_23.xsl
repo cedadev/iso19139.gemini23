@@ -19,15 +19,15 @@
 	<xsl:template match="gmd:metadataStandardName">
 		<xsl:message>==== Updating Metadata Standard Name ====</xsl:message>
 		<gmd:metadataStandardName>
-			<gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M25/current/GEMINI/">UK GEMINI</gmx:Anchor>
-		</gmd:metadataStandardName>
+      <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M25/current/GEMINI/">UK GEMINI</gmx:Anchor>
+  </gmd:metadataStandardName>
 	</xsl:template>
 	
 	<xsl:template match="gmd:metadataStandardVersion">
 		<xsl:message>==== Updating Metadata Standard Version ====</xsl:message>
-		<gmd:metadataStandardVersion>
-			<gco:CharacterString>2.3</gco:CharacterString>
-		</gmd:metadataStandardVersion>
+		 <gmd:metadataStandardVersion>
+      <gco:CharacterString>2.3</gco:CharacterString>
+  </gmd:metadataStandardVersion>
 	</xsl:template>
 	
 	<!--  Change schema location to gemini version  -->
@@ -49,15 +49,15 @@
 			<xsl:if test="not(gmd:metadataStandardName)">
 				<xsl:message>==== Adding Metadata Standard Name ====</xsl:message>
 				<gmd:metadataStandardName>
-					<gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M25/current/GEMINI/">UK GEMINI</gmx:Anchor>
-				</gmd:metadataStandardName>
+      <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M25/current/GEMINI/">UK GEMINI</gmx:Anchor>
+  </gmd:metadataStandardName>
 			</xsl:if>
 
 			<xsl:apply-templates select="gmd:metadataStandardVersion" />
 			<xsl:if test="not(gmd:metadataStandardVersion)">
 				<xsl:message>==== Adding Metadata Standard Version ====</xsl:message>
 				<gmd:metadataStandardVersion>
-					<gco:CharacterString>2.2</gco:CharacterString>
+					<gco:CharacterString>2.3</gco:CharacterString>
 				</gmd:metadataStandardVersion>
 			</xsl:if>
 			
@@ -114,5 +114,4 @@
   	<xsl:template match="gmd:descriptiveKeywords[*/gmd:keyword/*/@xlink:href='http://vocab.ndg.nerc.ac.uk/term/N010/0']" mode="copy">
 	  	<xsl:message>==== Removing MEDIN-Specific Descriptive keywords ====</xsl:message>
 	</xsl:template>
-
 </xsl:stylesheet>

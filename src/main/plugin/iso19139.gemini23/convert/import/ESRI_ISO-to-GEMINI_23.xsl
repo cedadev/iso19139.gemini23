@@ -103,11 +103,11 @@
     <!-- ========================================================================== -->
     <xsl:template name="metadataNameVersion">
         <gmd:metadataStandardName>
-            <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M25/current/GEMINI/">UK GEMINI</gmx:Anchor>
-        </gmd:metadataStandardName>
-        <gmd:metadataStandardVersion>
-            <gco:CharacterString>2.3</gco:CharacterString>
-        </gmd:metadataStandardVersion>
+      <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M25/current/GEMINI/">UK GEMINI</gmx:Anchor>
+  </gmd:metadataStandardName>
+  <gmd:metadataStandardVersion>
+      <gco:CharacterString>2.3</gco:CharacterString>
+  </gmd:metadataStandardVersion>
     </xsl:template>
     <!-- ========================================================================== -->
     <!-- Metadata file identifier                                                   -->
@@ -261,9 +261,20 @@
                                             </xsl:call-template>
                                         </xsl:when>
                                         <xsl:when test="count(./refSysInfo/RefSystem/refSysID/identCode)!=0">
+                                            <xsl:choose>
+                                                <xsl:when test="boolean(./refSysInfo/RefSystem/refSysID/identCode[@code])">
+                                                    <xsl:message>--- identcode attribute matched --- </xsl:message>
+                                                    <xsl:call-template name="GetEpsgCode">
+                                                        <xsl:with-param name="esriCode" select="string(./refSysInfo/RefSystem/refSysID/identCode/@code)" />
+                                                    </xsl:call-template>
+                                                </xsl:when>
+                                                <xsl:otherwise>
+                                                    <xsl:message>--- identcode value matched --- </xsl:message>
                                             <xsl:call-template name="GetEpsgCode">
                                                 <xsl:with-param name="esriCode" select="./refSysInfo/RefSystem/refSysID/identCode" />
                                             </xsl:call-template>
+                                                </xsl:otherwise>
+                                            </xsl:choose> 
                                         </xsl:when>
                                         <xsl:when test="count(./spref/horizsys/cordsysn/*)!=0">
                                             <xsl:call-template name="GetEpsgCode">
@@ -322,7 +333,7 @@
             <!-- Limitations on public access and Use constraints -->
             <xsl:call-template name="limitationsOnPublicAccess"/>
             <!-- Use constraints -->
-            <xsl:call-template name="useConstraints"/>
+            <!--<xsl:call-template name="useConstraints"/>-->
             <!-- Service Type -->
             <xsl:call-template name="serviceType"/>
             <!-- Extent -->
@@ -363,7 +374,7 @@
             <!-- Limitations on public access and Use constraints -->
             <xsl:call-template name="limitationsOnPublicAccess"/>
             <!-- Use constraints -->
-            <xsl:call-template name="useConstraints"/>
+            <!--<xsl:call-template name="useConstraints"/>-->
             <!-- Spatial representation type -->
             <xsl:call-template name="spatialRepresentationType"/>
             <!-- 	Spatial Resolution	-->
@@ -781,6 +792,7 @@
                                         </xsl:with-param>
                                     </xsl:call-template>
                                 </xsl:element>
+                                <!-- add gmd:otherconstraints for access limitations here -->
                             </xsl:element>
                         </xsl:for-each>
                     </xsl:when>
@@ -817,6 +829,7 @@
                         </xsl:element>
                     </xsl:element>
                 </xsl:if>
+                <!-- this needs to be a separate legal constraints block -->
                 <xsl:for-each select="./dataIdInfo/resConst/LegConsts/useConsts">
                     <xsl:element name="gmd:useConstraints">
                         <xsl:element name="gmd:MD_RestrictionCode" namespace="http://www.isotc211.org/2005/gmd">
@@ -854,16 +867,51 @@
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:element>
+                <xsl:element name="gmd:MD_LegalConstraints" namespace="http://www.isotc211.org/2005/gmd">
+                    <xsl:element name="gmd:useConstraints">
+                        <xsl:element name="gmd:MD_RestrictionCode" namespace="http://www.isotc211.org/2005/gmd">
+                            <xsl:call-template name="CodeListAttributes">
+                                <xsl:with-param name="CodeList">
+                                    <xsl:text>MD_RestrictionCode</xsl:text>
+                                </xsl:with-param>
+                                <xsl:with-param name="CodeListValue">
+                                    <xsl:call-template name="GetConstraintCode">
+                                        <xsl:with-param name="esriCode">
+                                            <xsl:text>008</xsl:text>
+                                        </xsl:with-param>
+                                    </xsl:call-template>
+                                </xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:element>
+                    </xsl:element>
+                    <xsl:element name="gmd:otherConstraints" namespace="http://www.isotc211.org/2005/gmd">
+                        <xsl:choose>
+                            <xsl:when test="count(./dataIdInfo/resConst/Consts/useLimit)!=0">
+                                <xsl:call-template name="CharacterString">
+                                    <xsl:with-param name="value" select="./dataIdInfo/resConst/Consts/useLimit" />
+                                </xsl:call-template>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:call-template name="CharacterString">
+                                    <xsl:with-param name="value">
+                                        <xsl:text/>
+                                    </xsl:with-param>
+                                </xsl:call-template>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:element>
+                </xsl:element>
+            
         </xsl:element>
     </xsl:template>
     <!-- ========================================================================== -->
     <!-- Use constraints                                                            -->
     <!-- ========================================================================== -->
-    <xsl:template name="useConstraints">
+   <!-- <xsl:template name="useConstraints">
         <xsl:comment>Use constraints</xsl:comment>
         <xsl:element name="gmd:resourceConstraints" namespace="http://www.isotc211.org/2005/gmd">
-            <xsl:element name="gmd:MD_Constraints" namespace="http://www.isotc211.org/2005/gmd">
-                <xsl:element name="gmd:useLimitation" namespace="http://www.isotc211.org/2005/gmd">
+            <xsl:element name="gmd:MD_LegalConstraints" namespace="http://www.isotc211.org/2005/gmd">
+                <xsl:element name="gmd:useConstraints" namespace="http://www.isotc211.org/2005/gmd">
                     <xsl:choose>
                         <xsl:when test="count(./dataIdInfo/resConst/Consts/useLimit)!=0">
                             <xsl:call-template name="CharacterString">
@@ -881,7 +929,7 @@
                 </xsl:element>
             </xsl:element>
         </xsl:element>
-    </xsl:template>
+    </xsl:template>-->
     <!-- ========================================================================== -->
     <!-- Spatial resolution                                                         -->
     <!-- ========================================================================== -->
@@ -2107,6 +2155,7 @@
     <!-- ============================================================ -->
     <xsl:template name="GetEpsgCode">
         <xsl:param name="esriCode" />
+        <xsl:message>--- esricode var = <xsl:value-of select="$esriCode"/> ---</xsl:message>
         <xsl:choose>
             <xsl:when test="$esriCode='GCS_Airy_1830'">
                 <xsl:text>urn:ogc:def:crs:EPSG::4001</xsl:text>
