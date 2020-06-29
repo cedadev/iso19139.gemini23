@@ -291,7 +291,7 @@
     <div class="col-xs-offset-2 col-xs-8">
       <p class="help-block">This is the organisation or role in an organisation responsible for this metadata.</p>
       <ol class="help-block">
-        <li>Should include organisation name and contact email address.</li>
+        <li>Should include organisation name, delivery point, and contact email address.</li>
         <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1062-gemini-datasets-and-data-series#35">Gemini Guidance</a></li>
       </ol>
       </div>
@@ -302,7 +302,7 @@
     <div class="col-xs-offset-2 col-xs-8">
       <p class="help-block">This is the organisation or role in an organisation responsible for this metadata.</p>
       <ol class="help-block">
-        <li>Should include organisation name and contact email address.</li>
+        <li>Should include organisation name, delivery point, and contact email address.</li>
         <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1063-gemini-services#35">Gemini Guidance</a></li>
       </ol>
       </div>
@@ -605,7 +605,7 @@
     <div class="col-xs-offset-2 col-xs-8">
       <p class="help-block">This informs the user about who is responsible for the data resource.</p>
       <ol class="help-block">
-        <li>Include at least the organisation name, email, and role. A generic role may be given.</li>
+        <li>Include at least the organisation name, delivery point, email, and role. A generic role may be given.</li>
         <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1062-gemini-datasets-and-data-series#23">Gemini Guidance</a></li>
       </ol>
       </div>
@@ -616,7 +616,7 @@
     <div class="col-xs-offset-2 col-xs-8">
       <p class="help-block">This informs the user about who is responsible for the data resource.</p>
       <ol class="help-block">
-        <li>Include at least the organisation name, email, and role. A generic role may be given.</li>
+        <li>Include at least the organisation name, delivery point, email, and role. A generic role may be given.</li>
         <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1062-gemini-datasets-and-data-series#23">Gemini Guidance</a></li>
       </ol>
       </div>
