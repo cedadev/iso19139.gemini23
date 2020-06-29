@@ -79,7 +79,8 @@
          <gmd:referenceSystemIdentifier>
             <gmd:RS_Identifier>
                <gmd:code>
-                  <gco:CharacterString>http://www.opengis.net/def/crs/EPSG/0/27700</gco:CharacterString>
+                  <gmx:Anchor xlink:title="OSGB 1936 / British National Grid (EPSG:27700)"
+                              xlink:href="http://www.opengis.net/def/crs/EPSG/0/27700">EPSG:27700</gmx:Anchor>
                </gmd:code>
             </gmd:RS_Identifier>
          </gmd:referenceSystemIdentifier>
@@ -227,7 +228,7 @@
                                           codeListValue="otherRestrictions"/>
                </gmd:accessConstraints>
                <gmd:otherConstraints>
-                  <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1e">no limitations</gmx:Anchor>
+                  <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/noLimitations">no limitations</gmx:Anchor>
                </gmd:otherConstraints>
                <gmd:otherConstraints gco:nilReason="missing">
                   <gco:CharacterString/>
