@@ -363,14 +363,14 @@
       <header>
         <!-- TODO: Add label from strings.xml / label with context-->
         <col label="gmd:organisationName" class="gn-required"/>
-        <col label="gmd:individualName"/>
+        <col label="gmd:deliveryPoint"/>
         <col label="gmd:electronicMailAddress" class="gn-required"/>
         <col label="gmd:role" class="gn-required"/>
         <col/>
       </header>
       <row>
         <col xpath="gmd:organisationName"/>
-        <col xpath="gmd:individualName"/>
+        <col xpath="gmd:contactInfo/*/gmd:address/*/gmd:deliveryPoint"/>
         <col xpath="gmd:contactInfo/*/gmd:address/*/gmd:electronicMailAddress"/>
         <col xpath="gmd:role"/>
         <col del=".."/>
@@ -3464,7 +3464,7 @@
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription"
             if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0">
           </field>
-          <text ref="extent_help" if="count(/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription) > 0"/>
+          <text ref="extent_help" />
 
           <field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription"
