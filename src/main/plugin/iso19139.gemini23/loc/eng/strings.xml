@@ -494,7 +494,7 @@
 <extent_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">This element defines the geographical extent of coverage of the data resource relative to an administrative hierarchy.</p>
+      <p class="help-block">This element defines the geographical extent of coverage of the data resource relative to an administrative hierarchy. Use a known authority code or a linked data URI (eg data.os.uk)</p>
       <ol class="help-block">
         <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1062-gemini-datasets-and-data-series#15">Gemini Guidance</a></li>
       </ol>
@@ -526,7 +526,7 @@
 <extentsrv_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">This element defines the geographical extent of coverage of the data resource relative to an administrative hierarchy.</p>
+      <p class="help-block">This element defines the geographical extent of coverage of the data resource relative to an administrative hierarchy. Use a known authority code or a linked data URI (eg data.os.uk)</p>
       <ol class="help-block">
         <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1063-gemini-services#15">Gemini Guidance</a></li>
       </ol>
