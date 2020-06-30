@@ -14,7 +14,7 @@
 	
 	<xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" omit-xml-declaration="no"/>
 	<!--  Change GEMET Anchor to correct version  -->
-	<xsl:template match="gmd:thesaurusName/gmd:CI_Citation[gmd:title/gco:CharacterString/text()="GEMET - INSPIRE themes, version 1.0"]/gmd:identifier/gmd:MD_Identifier/gmd:code/gmx:Anchor">
+	<xsl:template match="gmd:thesaurusName/gmd:CI_Citation[gmd:title/gco:CharacterString/text()='GEMET - INSPIRE themes, version 1.0']/gmd:identifier/gmd:MD_Identifier/gmd:code/gmx:Anchor">
 		<xsl:message>==== Updating GEMET anchor encoding ====</xsl:message>
 		<gmx:Anchor xlink:href="http://localhost:8080/geonetwork/srv/eng/thesaurus.download?ref=external.theme.httpinspireeceuropaeutheme-theme">geonetwork.thesaurus.external.theme.httpinspireeceuropaeutheme-theme</gmx:Anchor>
 	</xsl:template>
