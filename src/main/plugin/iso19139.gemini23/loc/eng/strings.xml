@@ -60,14 +60,14 @@
   <bboxesSection>Geographic coverage</bboxesSection>
   <overviews>Overviews</overviews>
   <metadataInXML>XML</metadataInXML>
-  <providedBy>Provided by</providedBy>
+  <providedBy>Publishing Body</providedBy>
   <shareOnSocialSite>Share on social sites</shareOnSocialSite>
   <viewMode>Views</viewMode>
-  <linkToPortal>Access to the portal</linkToPortal>
-  <linkToPortal-help>Read here the full details and access to the data.</linkToPortal-help>
+  <linkToPortal>Access the portal</linkToPortal>
+  <linkToPortal-help>Full access to the portal and metadata.</linkToPortal-help>
   <citationProposal>Citation proposal</citationProposal>
   <citationProposal-help>This proposal was automatically generated, check if the metadata authors did not specified custom citation requirements.</citationProposal-help>
-  <associatedResources>Associated resources</associatedResources>
+  <associatedResources>Associated resources (if any)</associatedResources>
 
   <!-- XSD error translation -->
   <invalidElement>Invalid element. Invalid content was found starting with element:</invalidElement>
@@ -875,5 +875,6 @@
 </dataqualitysrv_help>
 <distributionFormat>Add Distribution Format</distributionFormat>
 <parentidentifier>Parent Identifier</parentidentifier>
+<gmd:MD_Metadata xmlns:gmd="http://www.isotc211.org/2005/gmd">Metadata</gmd:MD_Metadata>
 
 </strings>
