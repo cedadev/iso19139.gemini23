@@ -297,7 +297,7 @@
 												</gco:CharacterString>
 											</description>
 											<function>
-												<CI_OnLineFunctionCode codeList="./resources/codeList.xml#CI_OnLineFunctionCode" codeListValue="information"/>
+												<gmd:CI_OnLineFunctionCode codeList="./resources/codeList.xml#CI_OnLineFunctionCode" codeListValue="information"/>
 											</function>
 										</CI_OnlineResource>
 									</srv:connectPoint>
