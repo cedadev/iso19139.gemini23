@@ -14,14 +14,14 @@
   <gmd:fileIdentifier>
       <gco:CharacterString>b4f6d6c3-a126-4629-8d77-1488370dc118</gco:CharacterString>
   </gmd:fileIdentifier>
-  <gmd:language xmlns:geonet="http://www.fao.org/geonetwork">
+  <gmd:language >
       <gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="eng">English</gmd:LanguageCode>
   </gmd:language>
-  <gmd:hierarchyLevel xmlns:geonet="http://www.fao.org/geonetwork">
+  <gmd:hierarchyLevel >
       <gmd:MD_ScopeCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_ScopeCode"
                         codeListValue="dataset"/>
   </gmd:hierarchyLevel>
-  <gmd:contact xmlns:geonet="http://www.fao.org/geonetwork">
+  <gmd:contact >
       <gmd:CI_ResponsibleParty>
          <gmd:organisationName gco:nilReason="missing">
             <gco:CharacterString/>
@@ -65,16 +65,16 @@
          </gmd:role>
       </gmd:CI_ResponsibleParty>
   </gmd:contact>
-  <gmd:dateStamp xmlns:geonet="http://www.fao.org/geonetwork">
+  <gmd:dateStamp >
       <gco:DateTime>2020-03-04T16:22:51</gco:DateTime>
   </gmd:dateStamp>
-  <gmd:metadataStandardName xmlns:geonet="http://www.fao.org/geonetwork">
+  <gmd:metadataStandardName >
       <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M25/current/GEMINI/">UK GEMINI</gmx:Anchor>
   </gmd:metadataStandardName>
-  <gmd:metadataStandardVersion xmlns:geonet="http://www.fao.org/geonetwork">
+  <gmd:metadataStandardVersion >
       <gco:CharacterString>2.3</gco:CharacterString>
   </gmd:metadataStandardVersion>
-  <gmd:referenceSystemInfo xmlns:geonet="http://www.fao.org/geonetwork">
+  <gmd:referenceSystemInfo >
       <gmd:MD_ReferenceSystem>
          <gmd:referenceSystemIdentifier>
             <gmd:RS_Identifier>
@@ -86,7 +86,7 @@
          </gmd:referenceSystemIdentifier>
       </gmd:MD_ReferenceSystem>
   </gmd:referenceSystemInfo>
-  <gmd:identificationInfo xmlns:geonet="http://www.fao.org/geonetwork">
+  <gmd:identificationInfo >
       <gmd:MD_DataIdentification>
          <gmd:citation>
             <gmd:CI_Citation>
@@ -309,7 +309,7 @@
          </gmd:extent>
       </gmd:MD_DataIdentification>
   </gmd:identificationInfo>
-  <gmd:distributionInfo xmlns:geonet="http://www.fao.org/geonetwork">
+  <gmd:distributionInfo >
       <gmd:MD_Distribution>
          <gmd:distributionFormat>
             <gmd:MD_Format>
@@ -339,7 +339,7 @@
          </gmd:transferOptions>
       </gmd:MD_Distribution>
   </gmd:distributionInfo>
-  <gmd:dataQualityInfo xmlns:geonet="http://www.fao.org/geonetwork">
+  <gmd:dataQualityInfo >
       <gmd:DQ_DataQuality>
          <gmd:scope>
             <gmd:DQ_Scope>
