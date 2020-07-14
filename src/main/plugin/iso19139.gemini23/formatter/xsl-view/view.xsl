@@ -107,7 +107,7 @@
   </xsl:template>
 
 
-  <xsl:template mode="getTags" match="gmd:MD_Metadata">
+  <!-- <xsl:template mode="getTags" match="gmd:MD_Metadata">
     <xsl:param name="byThesaurus" select="false()"/>
 
     <section class="gn-md-side-social">
@@ -172,7 +172,7 @@
       </xsl:choose>
 
     </section>
-  </xsl:template>
+  </xsl:template> -->
 
   <xsl:template mode="getMetadataHierarchyLevel" match="gmd:MD_Metadata">
     <xsl:value-of select="gmd:hierarchyLevel/gmd:MD_ScopeCode/@codeListValue"/>
@@ -671,7 +671,7 @@
             </xsl:otherwise>
           </xsl:choose>
         </xsl:variable>
-        <a href="{$linkUrl}" title="{$linkName}">
+        <a class="relatedURL" id="canonicalpagelink" href="{$linkUrl}" title="{$linkName}">
           <span><xsl:comment select="name()"/>
             <xsl:value-of select="$linkName"/>
           </span>
@@ -1102,9 +1102,9 @@
                       select="tr:codelist-value-desc(
                             tr:create($schema),
                             parent::node()/local-name(), $id)"/>
-        <span title="{$codelistDesc}">
+        <!-- <span title="{$codelistDesc}">
           <xsl:value-of select="$codelistTranslation"/>
-        </span>
+        </span> -->
       </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="$id"/>

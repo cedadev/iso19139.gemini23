@@ -6,7 +6,7 @@
 
 <xsl:stylesheet xmlns:geonet="http://www.fao.org/geonetwork"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-	xmlns:eamp="http://environment.data.gov.uk/eamp" xmlns:gmx="http://www.isotc211.org/2005/gmx"
+	xmlns:gmx="http://www.isotc211.org/2005/gmx"
 	xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gco="http://www.isotc211.org/2005/gco"
 	xmlns:srv="http://www.isotc211.org/2005/srv" xmlns:gml="http://www.opengis.net/gml/3.2"
 	xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

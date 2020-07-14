@@ -79,9 +79,9 @@
     </xsl:template> -->
 
     <!--  Delete empty keyword elements  -->
-  <xsl:template match="//gmd:descriptiveKeywords[./gmd:MD_Keywords/gmd:keyword/@gco:nilReason='missing']">
+  <!-- <xsl:template match="//gmd:descriptiveKeywords[./gmd:MD_Keywords/gmd:keyword/@gco:nilReason='missing']">
     <xsl:message>==== Removing empty keyword element ====</xsl:message>
-  </xsl:template>
+  </xsl:template> -->
 
   <xsl:template match="gmd:MD_Format/gmd:version[not(string(gco:CharacterString))]" priority="10">
     <xsl:copy>
