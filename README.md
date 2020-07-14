@@ -10,7 +10,10 @@ Use GeoNetwork 3.8.x or 3.10.x (use 3.10.x if possible). A version for GeoNetwor
 
 ### Adding to an existing installation
 
- * Download or clone this repository, ensuring you choose the correct branch. Copy `src/main/plugin/iso19139.gemini23` to `INSTALL_DIR/geonetwork/WEB_INF/data/config/schema_plugins/iso19139.gemini23` in your installation and restart GeoNetwork
+ * Download or clone this repository, ensuring you choose the correct branch. 
+ * Copy `src/main/plugin/iso19139.gemini23` to `INSTALL_DIR/geonetwork/WEB_INF/data/config/schema_plugins/iso19139.gemini23` in your installation.
+ * Copy `target/schema-iso19139.gemini23-3.7.jar` to `INSTALL_DIR/geonetwork/WEB_INF/lib`
+ * Restart GeoNetwork
  * Check that the schema is registered by visiting Admin Console -> Metadata and Templates -> Standards in GeoNetwork. If you do not see iso19139.gemini23 then it is not correctly deployed. Check your GeoNetwork log files for errors.
 
 ### Adding the plugin to the source code prior to compiling GeoNetwork
