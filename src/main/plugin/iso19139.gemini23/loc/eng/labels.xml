@@ -709,7 +709,7 @@
     </description>
   </element>
   <element name="gmd:code" id="207.0" context="gmd:RS_Identifier">
-    <label>Reference System Identifier</label>
+    <label>Code</label>
     <description>Code identifying the reference system</description>
     <condition>mandatory</condition>
   </element>
