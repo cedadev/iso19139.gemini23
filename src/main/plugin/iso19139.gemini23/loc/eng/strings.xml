@@ -660,7 +660,7 @@
 <tempextent_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">This is the date or date range that identifies the currency of the data. It may refer to the period of collection, or the date at which it is deemed to be current.</p>
+      <p class="help-block">This is the date or date range that identifies the currency of the data. It may refer to the period of collection, or the date at which it is deemed to be current. Mandatory for Datasets and Series.</p>
       <ol class="help-block">
         <li>This element should not be confused with Dataset reference date which is an identifying date for the data resource.</li>
         <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1062-gemini-datasets-and-data-series#7">Gemini Guidance</a></li>
