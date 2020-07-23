@@ -2074,7 +2074,7 @@
       information applies
     </description>
     <condition/>
-  </element> 
+  </element>
   <element name="gmd:other" context="gmd:MD_ScopeDescription" id="155.0">
     <label>Scope Description</label>
     <description>Desciription of the level of scope indicated by the Quality Scope element
@@ -3518,27 +3518,6 @@
   </element>
  <element name="gmx:MimeFileType">
   <label>Mime File Type</label>
-  </element>
- <element name="gmd:CI_OnLineFunctionCode">
-  <label>Online Function Code</label>
-  </element>
- <element name="gmd:CI_PresentationFormCode">
-  <label>Presentation Form Code</label>
-  </element>
- <element name="gmd:DQ_EvaluationMethodTypeCode">
-  <label>Data Quality Evaluation Method Type Code</label>
-  </element>
- <element name="gmd:MD_CellGeometryCode">
-  <label>Cell Geometry Code</label>
-  </element>
- <element name="gmd:MD_ClassificationCode">
-  <label>Classification Code</label>
-  </element>
- <element name="gmd:MD_CoverageContentTypeCode">
-  <label>Coverage Content Type Code</label>
-  </element>
- <element name="gmd:MD_DimensionNameTypeCode">
-  <label>Dimension Name Type Code</label>
   </element>
 
 <element name="gmx:ML_ProjectedCRS">
