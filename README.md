@@ -4,7 +4,7 @@ Gemini 2.3 Metadata Profile
 
 ## GeoNetwork versions to use with this plugin
 
-Use GeoNetwork 3.8.x or 3.10.x (use 3.10.x if possible). A version for GeoNetwork 3.4 is also available- switch to the 3.4.x branch in this repository.
+**Use the correct branch for your version of GeoNetwork. The default branch is for GeoNetwork 3.10 and this is the recommended version.**
 
 ## Installing the plugin in GeoNetwork 3.10.x (recommended version)
 
