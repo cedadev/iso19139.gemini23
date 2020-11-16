@@ -2263,7 +2263,7 @@
       <option value="WWW:LINK-1.0-http--opendap">OPeNDAP URL</option>
       <option value="RBNB:DATATURBINE">Data Turbine</option>
       <option value="INSPIRE-ATOM">INSPIRE-ATOM</option>
-      <option value="UKST">Unknown Service Type</option>
+      <option value="GENERIC">Unknown Service Type</option>
     </helper>
   </element>
   <element name="gmd:purpose" id="26.0">
