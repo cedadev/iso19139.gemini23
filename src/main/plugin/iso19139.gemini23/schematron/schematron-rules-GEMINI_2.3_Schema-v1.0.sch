@@ -604,8 +604,9 @@
   <sch:pattern fpi="Gemini2-mi25-LimitationsOnPublicAccess">
     <sch:title>LimitationsOnPublicAccess codelist</sch:title>
     <sch:p>We need metadata to have a gmx:Anchor linking to one of the LimitationsOnPublicAccess codelist values from: http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess</sch:p>
-    <sch:let name="LoPAurl" value="'http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/'"/>
-    <sch:let name="LoPAurlNum" value="count(//gmd:MD_Metadata[1]/gmd:identificationInfo[1]/*[1]/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:otherConstraints/gmx:Anchor/@xlink:href[contains(.,$LoPAurl)])"/>
+    <sch:let name="LoPAurl_http" value="'http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/'"/>
+    <sch:let name="LoPAurl_https" value="'https://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/'"/>
+    <sch:let name="LoPAurlNum" value="count(//gmd:MD_Metadata[1]/gmd:identificationInfo[1]/*[1]/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:otherConstraints/gmx:Anchor/@xlink:href[contains(.,$LoPAurl_http) or contains(.,$LoPAurl_https)])"/>
     <sch:rule context="//gmd:MD_Metadata[1]/gmd:identificationInfo[1]/*[1]">
       <sch:report test="$LoPAurlNum != 1">
         MI-25c (Limitations on Public Access): There must be one (and only one) LimitationsOnPublicAccess code list value specified using a gmx:Anchor in gmd:otherConstraints.
