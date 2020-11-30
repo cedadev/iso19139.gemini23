@@ -44,6 +44,16 @@
         <xsl:call-template name="subtemplate-common-fields"/>
     </xsl:template>
 
+    <xsl:template mode="index" match="gmd:DQ_CompletenessCommission[count(ancestor::node()) =  1]">
+    <xsl:variable name="date"
+                  select="*/gmd:specification/*/gmd:date/*/gmd:date/gco:Date"/>
+    <Field name="_title"
+           string="{gmd:result/*/gmd:explanation/gco:CharacterString}{if ($date != '') then concat(' (', $date, ')') else ''}"
+           store="true" index="true"/>
+
+        <xsl:call-template name="subtemplate-common-fields"/>
+    </xsl:template>
+
 
     <xsl:template name="subtemplate-common-fields">
         <Field name="any" string="{normalize-space(string(.))}" store="false" index="true"/>
