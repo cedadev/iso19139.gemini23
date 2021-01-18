@@ -56,7 +56,7 @@
         <sch:title>Coordinate Reference System (warning)</sch:title>
         <sch:p>Checking whether coordinate reference system is a default CRS</sch:p>
         <sch:rule
-            context="//gmd:MD_Metadata[1]/gmd:referenceSystemInfo/*[1]/gmd:referenceSystemIdentifier/gmd:RS_Identifier[1]/gmd:code/gmx:Anchor[1]">
+            context="//gmd:MD_Metadata[1]/gmd:referenceSystemInfo/*[1]/gmd:MD_ReferenceSystem[1]/gmd:referenceSystemIdentifier/gmd:RS_Identifier[1]/gmd:code/gmx:Anchor[1]">
             <sch:assert
                 test="$defaultCRScodes//crs/text()[normalize-space(.) = normalize-space(current()/@xlink:href)]"
                 >SP-4a: Coordinate Reference System: <sch:value-of
